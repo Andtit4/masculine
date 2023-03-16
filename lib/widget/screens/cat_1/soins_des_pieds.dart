@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:masculine/widget/screens/cat_1/description.dart';
 
 class SoinsDesPieds extends StatefulWidget {
   const SoinsDesPieds({super.key});
@@ -141,7 +142,13 @@ class _SoinsDesPiedsState extends State<SoinsDesPieds> {
                     children: [
                       GestureDetector(
                         onTap: () {
-                          Get.to(() => SoinsDesPieds(),
+                          Get.to(
+                              () => DescribePage(
+                                    img:
+                                        'https://images.pexels.com/photos/1204473/pexels-photo-1204473.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+                                    title: 'Retouche des mains ',
+                                    montant: '2 500 XOF',
+                                  ),
                               duration: Duration(milliseconds: 500),
                               transition: Transition.leftToRight);
                         },
@@ -214,463 +221,568 @@ class _SoinsDesPiedsState extends State<SoinsDesPieds> {
                       SizedBox(
                         height: height * .03,
                       ),
-                      Container(
-                        width: width,
-                        height: height * .2,
-                        clipBehavior: Clip.hardEdge,
-                        decoration: BoxDecoration(color: Colors.transparent),
-                        child: Stack(
-                          fit: StackFit.expand,
-                          children: [
-                            Image.network(
-                              'https://images.pexels.com/photos/1204473/pexels-photo-1204473.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-                              fit: BoxFit.cover,
-                            ),
-                            Container(
-                              width: width,
-                              height: height * .8,
-                              padding: EdgeInsets.all(width * .04),
-                              decoration: BoxDecoration(
-                                  gradient: LinearGradient(
-                                      colors: [
-                                    Colors.black,
-                                    Colors.transparent
-                                  ],
-                                      begin: Alignment.bottomCenter,
-                                      end: Alignment.topCenter)),
-                              child: Column(
-                                // crossAxisAlignment: CrossAxisAlignment.end,
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: [
-                                  Row(
-                                    children: [
-                                      Text(
-                                        'Retouche des pieds',
-                                        style: GoogleFonts.poppins(
-                                            fontSize: 16, color: Colors.white),
-                                      ),
-                                      Container(
-                                        width: width * .1,
-                                        height: 1,
-                                        margin: EdgeInsets.only(
-                                          left: 10,
-                                        ),
-                                        color: Colors.white,
-                                      )
-                                    ],
+                      GestureDetector(
+                        onTap: () {
+                          Get.to(
+                              () => DescribePage(
+                                    img:
+                                        'https://images.pexels.com/photos/1204473/pexels-photo-1204473.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+                                    title: 'Retouche des pieds',
+                                    montant: '5 000 XOF',
                                   ),
-                                  SizedBox(
-                                    height: 8,
-                                  ),
-                                  Row(
-                                    children: [
-                                      Text(
-                                        '5 000 XOF',
-                                        style: GoogleFonts.poppins(
-                                            fontSize: 16, color: Colors.white),
-                                      ),
-                                    ],
-                                  ),
-                                ],
+                              duration: Duration(milliseconds: 500),
+                              transition: Transition.leftToRight);
+                        },
+                        child: Container(
+                          width: width,
+                          height: height * .2,
+                          clipBehavior: Clip.hardEdge,
+                          decoration: BoxDecoration(color: Colors.transparent),
+                          child: Stack(
+                            fit: StackFit.expand,
+                            children: [
+                              Image.network(
+                                'https://images.pexels.com/photos/1204473/pexels-photo-1204473.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+                                fit: BoxFit.cover,
                               ),
-                            )
-                          ],
+                              Container(
+                                width: width,
+                                height: height * .8,
+                                padding: EdgeInsets.all(width * .04),
+                                decoration: BoxDecoration(
+                                    gradient: LinearGradient(
+                                        colors: [
+                                      Colors.black,
+                                      Colors.transparent
+                                    ],
+                                        begin: Alignment.bottomCenter,
+                                        end: Alignment.topCenter)),
+                                child: Column(
+                                  // crossAxisAlignment: CrossAxisAlignment.end,
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Text(
+                                          'Retouche des pieds',
+                                          style: GoogleFonts.poppins(
+                                              fontSize: 16,
+                                              color: Colors.white),
+                                        ),
+                                        Container(
+                                          width: width * .1,
+                                          height: 1,
+                                          margin: EdgeInsets.only(
+                                            left: 10,
+                                          ),
+                                          color: Colors.white,
+                                        )
+                                      ],
+                                    ),
+                                    SizedBox(
+                                      height: 8,
+                                    ),
+                                    Row(
+                                      children: [
+                                        Text(
+                                          '5 000 XOF',
+                                          style: GoogleFonts.poppins(
+                                              fontSize: 16,
+                                              color: Colors.white),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              )
+                            ],
+                          ),
                         ),
                       ),
                       SizedBox(
                         height: height * .03,
                       ),
-                      Container(
-                        width: width,
-                        height: height * .2,
-                        clipBehavior: Clip.hardEdge,
-                        decoration: BoxDecoration(color: Colors.transparent),
-                        child: Stack(
-                          fit: StackFit.expand,
-                          children: [
-                            Image.network(
-                              'https://images.pexels.com/photos/1204473/pexels-photo-1204473.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-                              fit: BoxFit.cover,
-                            ),
-                            Container(
-                              width: width,
-                              height: height * .8,
-                              padding: EdgeInsets.all(width * .04),
-                              decoration: BoxDecoration(
-                                  gradient: LinearGradient(
-                                      colors: [
-                                    Colors.black,
-                                    Colors.transparent
-                                  ],
-                                      begin: Alignment.bottomCenter,
-                                      end: Alignment.topCenter)),
-                              child: Column(
-                                // crossAxisAlignment: CrossAxisAlignment.end,
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: [
-                                  Row(
-                                    children: [
-                                      Text(
-                                        'Vernis pied et mains',
-                                        style: GoogleFonts.poppins(
-                                            fontSize: 16, color: Colors.white),
-                                      ),
-                                      Container(
-                                        width: width * .1,
-                                        height: 1,
-                                        margin: EdgeInsets.only(
-                                          left: 10,
-                                        ),
-                                        color: Colors.white,
-                                      )
-                                    ],
+                      GestureDetector(
+                        onTap: () {
+                          Get.to(
+                              () => DescribePage(
+                                    img:
+                                        'https://images.pexels.com/photos/1204473/pexels-photo-1204473.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+                                    title: 'Vernis pied et mains',
+                                    montant: '5 000 XOF',
                                   ),
-                                  SizedBox(
-                                    height: 8,
-                                  ),
-                                  Row(
-                                    children: [
-                                      Text(
-                                        '5 000 XOF',
-                                        style: GoogleFonts.poppins(
-                                            fontSize: 16, color: Colors.white),
-                                      ),
-                                    ],
-                                  ),
-                                ],
+                              duration: Duration(milliseconds: 500),
+                              transition: Transition.leftToRight);
+                        },
+                        child: Container(
+                          width: width,
+                          height: height * .2,
+                          clipBehavior: Clip.hardEdge,
+                          decoration: BoxDecoration(color: Colors.transparent),
+                          child: Stack(
+                            fit: StackFit.expand,
+                            children: [
+                              Image.network(
+                                'https://images.pexels.com/photos/1204473/pexels-photo-1204473.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+                                fit: BoxFit.cover,
                               ),
-                            )
-                          ],
+                              Container(
+                                width: width,
+                                height: height * .8,
+                                padding: EdgeInsets.all(width * .04),
+                                decoration: BoxDecoration(
+                                    gradient: LinearGradient(
+                                        colors: [
+                                      Colors.black,
+                                      Colors.transparent
+                                    ],
+                                        begin: Alignment.bottomCenter,
+                                        end: Alignment.topCenter)),
+                                child: Column(
+                                  // crossAxisAlignment: CrossAxisAlignment.end,
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Text(
+                                          'Vernis pied et mains',
+                                          style: GoogleFonts.poppins(
+                                              fontSize: 16,
+                                              color: Colors.white),
+                                        ),
+                                        Container(
+                                          width: width * .1,
+                                          height: 1,
+                                          margin: EdgeInsets.only(
+                                            left: 10,
+                                          ),
+                                          color: Colors.white,
+                                        )
+                                      ],
+                                    ),
+                                    SizedBox(
+                                      height: 8,
+                                    ),
+                                    Row(
+                                      children: [
+                                        Text(
+                                          '5 000 XOF',
+                                          style: GoogleFonts.poppins(
+                                              fontSize: 16,
+                                              color: Colors.white),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              )
+                            ],
+                          ),
                         ),
                       ),
                       SizedBox(
                         height: height * .03,
                       ),
-                      Container(
-                        width: width,
-                        height: height * .2,
-                        clipBehavior: Clip.hardEdge,
-                        decoration: BoxDecoration(color: Colors.transparent),
-                        child: Stack(
-                          fit: StackFit.expand,
-                          children: [
-                            Image.network(
-                              'https://images.pexels.com/photos/1204473/pexels-photo-1204473.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-                              fit: BoxFit.cover,
-                            ),
-                            Container(
-                              width: width,
-                              height: height * .8,
-                              padding: EdgeInsets.all(width * .04),
-                              decoration: BoxDecoration(
-                                  gradient: LinearGradient(
-                                      colors: [
-                                    Colors.black,
-                                    Colors.transparent
-                                  ],
-                                      begin: Alignment.bottomCenter,
-                                      end: Alignment.topCenter)),
-                              child: Column(
-                                // crossAxisAlignment: CrossAxisAlignment.end,
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: [
-                                  Row(
-                                    children: [
-                                      Text(
-                                        'French manicure',
-                                        style: GoogleFonts.poppins(
-                                            fontSize: 16, color: Colors.white),
-                                      ),
-                                      Container(
-                                        width: width * .1,
-                                        height: 1,
-                                        margin: EdgeInsets.only(
-                                          left: 10,
-                                        ),
-                                        color: Colors.white,
-                                      )
-                                    ],
+                      GestureDetector(
+                        onTap: () {
+                          Get.to(
+                              () => DescribePage(
+                                    img:
+                                        'https://images.pexels.com/photos/1204473/pexels-photo-1204473.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+                                    title: 'French manicure',
+                                    montant: '5 000 XOF',
                                   ),
-                                  SizedBox(
-                                    height: 8,
-                                  ),
-                                  Row(
-                                    children: [
-                                      Text(
-                                        '5 000 XOF',
-                                        style: GoogleFonts.poppins(
-                                            fontSize: 16, color: Colors.white),
-                                      ),
-                                    ],
-                                  ),
-                                ],
+                              duration: Duration(milliseconds: 500),
+                              transition: Transition.leftToRight);
+                        },
+                        child: Container(
+                          width: width,
+                          height: height * .2,
+                          clipBehavior: Clip.hardEdge,
+                          decoration: BoxDecoration(color: Colors.transparent),
+                          child: Stack(
+                            fit: StackFit.expand,
+                            children: [
+                              Image.network(
+                                'https://images.pexels.com/photos/1204473/pexels-photo-1204473.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+                                fit: BoxFit.cover,
                               ),
-                            )
-                          ],
+                              Container(
+                                width: width,
+                                height: height * .8,
+                                padding: EdgeInsets.all(width * .04),
+                                decoration: BoxDecoration(
+                                    gradient: LinearGradient(
+                                        colors: [
+                                      Colors.black,
+                                      Colors.transparent
+                                    ],
+                                        begin: Alignment.bottomCenter,
+                                        end: Alignment.topCenter)),
+                                child: Column(
+                                  // crossAxisAlignment: CrossAxisAlignment.end,
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Text(
+                                          'French manicure',
+                                          style: GoogleFonts.poppins(
+                                              fontSize: 16,
+                                              color: Colors.white),
+                                        ),
+                                        Container(
+                                          width: width * .1,
+                                          height: 1,
+                                          margin: EdgeInsets.only(
+                                            left: 10,
+                                          ),
+                                          color: Colors.white,
+                                        )
+                                      ],
+                                    ),
+                                    SizedBox(
+                                      height: 8,
+                                    ),
+                                    Row(
+                                      children: [
+                                        Text(
+                                          '5 000 XOF',
+                                          style: GoogleFonts.poppins(
+                                              fontSize: 16,
+                                              color: Colors.white),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              )
+                            ],
+                          ),
                         ),
                       ),
                       SizedBox(
                         height: height * .03,
                       ),
-                      Container(
-                        width: width,
-                        height: height * .2,
-                        clipBehavior: Clip.hardEdge,
-                        decoration: BoxDecoration(color: Colors.transparent),
-                        child: Stack(
-                          fit: StackFit.expand,
-                          children: [
-                            Image.network(
-                              'https://images.pexels.com/photos/1204473/pexels-photo-1204473.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-                              fit: BoxFit.cover,
-                            ),
-                            Container(
-                              width: width,
-                              height: height * .8,
-                              padding: EdgeInsets.all(width * .04),
-                              decoration: BoxDecoration(
-                                  gradient: LinearGradient(
-                                      colors: [
-                                    Colors.black,
-                                    Colors.transparent
-                                  ],
-                                      begin: Alignment.bottomCenter,
-                                      end: Alignment.topCenter)),
-                              child: Column(
-                                // crossAxisAlignment: CrossAxisAlignment.end,
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: [
-                                  Row(
-                                    children: [
-                                      Text(
-                                        'Pose capsule',
-                                        style: GoogleFonts.poppins(
-                                            fontSize: 16, color: Colors.white),
-                                      ),
-                                      Container(
-                                        width: width * .1,
-                                        height: 1,
-                                        margin: EdgeInsets.only(
-                                          left: 10,
-                                        ),
-                                        color: Colors.white,
-                                      )
-                                    ],
+                      GestureDetector(
+                        onTap: () {
+                          Get.to(
+                              () => DescribePage(
+                                    img:
+                                        'https://images.pexels.com/photos/1204473/pexels-photo-1204473.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+                                    title: 'Pose capsule',
+                                    montant: '7 500 XOF',
                                   ),
-                                  SizedBox(
-                                    height: 8,
-                                  ),
-                                  Row(
-                                    children: [
-                                      Text(
-                                        '7 500 XOF',
-                                        style: GoogleFonts.poppins(
-                                            fontSize: 16, color: Colors.white),
-                                      ),
-                                    ],
-                                  ),
-                                ],
+                              duration: Duration(milliseconds: 500),
+                              transition: Transition.leftToRight);
+                        },
+                        child: Container(
+                          width: width,
+                          height: height * .2,
+                          clipBehavior: Clip.hardEdge,
+                          decoration: BoxDecoration(color: Colors.transparent),
+                          child: Stack(
+                            fit: StackFit.expand,
+                            children: [
+                              Image.network(
+                                'https://images.pexels.com/photos/1204473/pexels-photo-1204473.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+                                fit: BoxFit.cover,
                               ),
-                            )
-                          ],
+                              Container(
+                                width: width,
+                                height: height * .8,
+                                padding: EdgeInsets.all(width * .04),
+                                decoration: BoxDecoration(
+                                    gradient: LinearGradient(
+                                        colors: [
+                                      Colors.black,
+                                      Colors.transparent
+                                    ],
+                                        begin: Alignment.bottomCenter,
+                                        end: Alignment.topCenter)),
+                                child: Column(
+                                  // crossAxisAlignment: CrossAxisAlignment.end,
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Text(
+                                          'Pose capsule',
+                                          style: GoogleFonts.poppins(
+                                              fontSize: 16,
+                                              color: Colors.white),
+                                        ),
+                                        Container(
+                                          width: width * .1,
+                                          height: 1,
+                                          margin: EdgeInsets.only(
+                                            left: 10,
+                                          ),
+                                          color: Colors.white,
+                                        )
+                                      ],
+                                    ),
+                                    SizedBox(
+                                      height: 8,
+                                    ),
+                                    Row(
+                                      children: [
+                                        Text(
+                                          '7 500 XOF',
+                                          style: GoogleFonts.poppins(
+                                              fontSize: 16,
+                                              color: Colors.white),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              )
+                            ],
+                          ),
                         ),
                       ),
                       SizedBox(
                         height: height * .03,
                       ),
-                      Container(
-                        width: width,
-                        height: height * .2,
-                        clipBehavior: Clip.hardEdge,
-                        decoration: BoxDecoration(color: Colors.transparent),
-                        child: Stack(
-                          fit: StackFit.expand,
-                          children: [
-                            Image.network(
-                              'https://images.pexels.com/photos/1204473/pexels-photo-1204473.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-                              fit: BoxFit.cover,
-                            ),
-                            Container(
-                              width: width,
-                              height: height * .8,
-                              padding: EdgeInsets.all(width * .04),
-                              decoration: BoxDecoration(
-                                  gradient: LinearGradient(
-                                      colors: [
-                                    Colors.black,
-                                    Colors.transparent
-                                  ],
-                                      begin: Alignment.bottomCenter,
-                                      end: Alignment.topCenter)),
-                              child: Column(
-                                // crossAxisAlignment: CrossAxisAlignment.end,
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: [
-                                  Row(
-                                    children: [
-                                      Text(
-                                        'Pédicure',
-                                        style: GoogleFonts.poppins(
-                                            fontSize: 16, color: Colors.white),
-                                      ),
-                                      Container(
-                                        width: width * .1,
-                                        height: 1,
-                                        margin: EdgeInsets.only(
-                                          left: 10,
-                                        ),
-                                        color: Colors.white,
-                                      )
-                                    ],
+                      GestureDetector(
+                        onTap: () {
+                          Get.to(
+                              () => DescribePage(
+                                    img:
+                                        'https://images.pexels.com/photos/1204473/pexels-photo-1204473.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+                                    title: 'Pédicure',
+                                    montant: '10 000 XOF',
                                   ),
-                                  SizedBox(
-                                    height: 8,
-                                  ),
-                                  Row(
-                                    children: [
-                                      Text(
-                                        '10 000 XOF',
-                                        style: GoogleFonts.poppins(
-                                            fontSize: 16, color: Colors.white),
-                                      ),
-                                    ],
-                                  ),
-                                ],
+                              duration: Duration(milliseconds: 500),
+                              transition: Transition.leftToRight);
+                        },
+                        child: Container(
+                          width: width,
+                          height: height * .2,
+                          clipBehavior: Clip.hardEdge,
+                          decoration: BoxDecoration(color: Colors.transparent),
+                          child: Stack(
+                            fit: StackFit.expand,
+                            children: [
+                              Image.network(
+                                'https://images.pexels.com/photos/1204473/pexels-photo-1204473.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+                                fit: BoxFit.cover,
                               ),
-                            )
-                          ],
+                              Container(
+                                width: width,
+                                height: height * .8,
+                                padding: EdgeInsets.all(width * .04),
+                                decoration: BoxDecoration(
+                                    gradient: LinearGradient(
+                                        colors: [
+                                      Colors.black,
+                                      Colors.transparent
+                                    ],
+                                        begin: Alignment.bottomCenter,
+                                        end: Alignment.topCenter)),
+                                child: Column(
+                                  // crossAxisAlignment: CrossAxisAlignment.end,
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Text(
+                                          'Pédicure',
+                                          style: GoogleFonts.poppins(
+                                              fontSize: 16,
+                                              color: Colors.white),
+                                        ),
+                                        Container(
+                                          width: width * .1,
+                                          height: 1,
+                                          margin: EdgeInsets.only(
+                                            left: 10,
+                                          ),
+                                          color: Colors.white,
+                                        )
+                                      ],
+                                    ),
+                                    SizedBox(
+                                      height: 8,
+                                    ),
+                                    Row(
+                                      children: [
+                                        Text(
+                                          '10 000 XOF',
+                                          style: GoogleFonts.poppins(
+                                              fontSize: 16,
+                                              color: Colors.white),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              )
+                            ],
+                          ),
                         ),
                       ),
                       SizedBox(
                         height: height * .03,
                       ),
-                      Container(
-                        width: width,
-                        height: height * .2,
-                        clipBehavior: Clip.hardEdge,
-                        decoration: BoxDecoration(color: Colors.transparent),
-                        child: Stack(
-                          fit: StackFit.expand,
-                          children: [
-                            Image.network(
-                              'https://images.pexels.com/photos/1204473/pexels-photo-1204473.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-                              fit: BoxFit.cover,
-                            ),
-                            Container(
-                              width: width,
-                              height: height * .8,
-                              padding: EdgeInsets.all(width * .04),
-                              decoration: BoxDecoration(
-                                  gradient: LinearGradient(
-                                      colors: [
-                                    Colors.black,
-                                    Colors.transparent
-                                  ],
-                                      begin: Alignment.bottomCenter,
-                                      end: Alignment.topCenter)),
-                              child: Column(
-                                // crossAxisAlignment: CrossAxisAlignment.end,
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: [
-                                  Row(
-                                    children: [
-                                      Text(
-                                        'Vernis permanent',
-                                        style: GoogleFonts.poppins(
-                                            fontSize: 16, color: Colors.white),
-                                      ),
-                                      Container(
-                                        width: width * .1,
-                                        height: 1,
-                                        margin: EdgeInsets.only(
-                                          left: 10,
-                                        ),
-                                        color: Colors.white,
-                                      )
-                                    ],
+                      GestureDetector(
+                        onTap: () {
+                          Get.to(
+                              () => DescribePage(
+                                    img:
+                                        'https://images.pexels.com/photos/1204473/pexels-photo-1204473.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+                                    title: 'Vernis permanent',
+                                    montant: '20 000 XOF',
                                   ),
-                                  SizedBox(
-                                    height: 8,
-                                  ),
-                                  Row(
-                                    children: [
-                                      Text(
-                                        '20 000 XOF',
-                                        style: GoogleFonts.poppins(
-                                            fontSize: 16, color: Colors.white),
-                                      ),
-                                    ],
-                                  ),
-                                ],
+                              duration: Duration(milliseconds: 500),
+                              transition: Transition.leftToRight);
+                        },
+                        child: Container(
+                          width: width,
+                          height: height * .2,
+                          clipBehavior: Clip.hardEdge,
+                          decoration: BoxDecoration(color: Colors.transparent),
+                          child: Stack(
+                            fit: StackFit.expand,
+                            children: [
+                              Image.network(
+                                'https://images.pexels.com/photos/1204473/pexels-photo-1204473.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+                                fit: BoxFit.cover,
                               ),
-                            )
-                          ],
+                              Container(
+                                width: width,
+                                height: height * .8,
+                                padding: EdgeInsets.all(width * .04),
+                                decoration: BoxDecoration(
+                                    gradient: LinearGradient(
+                                        colors: [
+                                      Colors.black,
+                                      Colors.transparent
+                                    ],
+                                        begin: Alignment.bottomCenter,
+                                        end: Alignment.topCenter)),
+                                child: Column(
+                                  // crossAxisAlignment: CrossAxisAlignment.end,
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Text(
+                                          'Vernis permanent',
+                                          style: GoogleFonts.poppins(
+                                              fontSize: 16,
+                                              color: Colors.white),
+                                        ),
+                                        Container(
+                                          width: width * .1,
+                                          height: 1,
+                                          margin: EdgeInsets.only(
+                                            left: 10,
+                                          ),
+                                          color: Colors.white,
+                                        )
+                                      ],
+                                    ),
+                                    SizedBox(
+                                      height: 8,
+                                    ),
+                                    Row(
+                                      children: [
+                                        Text(
+                                          '20 000 XOF',
+                                          style: GoogleFonts.poppins(
+                                              fontSize: 16,
+                                              color: Colors.white),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              )
+                            ],
+                          ),
                         ),
                       ),
                       SizedBox(
                         height: height * .03,
                       ),
-                      Container(
-                        width: width,
-                        height: height * .2,
-                        clipBehavior: Clip.hardEdge,
-                        decoration: BoxDecoration(color: Colors.transparent),
-                        child: Stack(
-                          fit: StackFit.expand,
-                          children: [
-                            Image.network(
-                              'https://images.pexels.com/photos/1204473/pexels-photo-1204473.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-                              fit: BoxFit.cover,
-                            ),
-                            Container(
-                              width: width,
-                              height: height * .8,
-                              padding: EdgeInsets.all(width * .04),
-                              decoration: BoxDecoration(
-                                  gradient: LinearGradient(
-                                      colors: [
-                                    Colors.black,
-                                    Colors.transparent
-                                  ],
-                                      begin: Alignment.bottomCenter,
-                                      end: Alignment.topCenter)),
-                              child: Column(
-                                // crossAxisAlignment: CrossAxisAlignment.end,
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: [
-                                  Row(
-                                    children: [
-                                      Text(
-                                        'Gel',
-                                        style: GoogleFonts.poppins(
-                                            fontSize: 16, color: Colors.white),
-                                      ),
-                                      Container(
-                                        width: width * .1,
-                                        height: 1,
-                                        margin: EdgeInsets.only(
-                                          left: 10,
-                                        ),
-                                        color: Colors.white,
-                                      )
-                                    ],
+                      GestureDetector(
+                        onTap: () {
+                          Get.to(
+                              () => DescribePage(
+                                    img:
+                                        'https://images.pexels.com/photos/1204473/pexels-photo-1204473.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+                                    title: 'Gel',
+                                    montant: '20 000 XOF',
                                   ),
-                                  SizedBox(
-                                    height: 8,
-                                  ),
-                                  Row(
-                                    children: [
-                                      Text(
-                                        '20 000 XOF',
-                                        style: GoogleFonts.poppins(
-                                            fontSize: 16, color: Colors.white),
-                                      ),
-                                    ],
-                                  ),
-                                ],
+                              duration: Duration(milliseconds: 500),
+                              transition: Transition.leftToRight);
+                        },
+                        child: Container(
+                          width: width,
+                          height: height * .2,
+                          clipBehavior: Clip.hardEdge,
+                          decoration: BoxDecoration(color: Colors.transparent),
+                          child: Stack(
+                            fit: StackFit.expand,
+                            children: [
+                              Image.network(
+                                'https://images.pexels.com/photos/1204473/pexels-photo-1204473.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+                                fit: BoxFit.cover,
                               ),
-                            )
-                          ],
+                              Container(
+                                width: width,
+                                height: height * .8,
+                                padding: EdgeInsets.all(width * .04),
+                                decoration: BoxDecoration(
+                                    gradient: LinearGradient(
+                                        colors: [
+                                      Colors.black,
+                                      Colors.transparent
+                                    ],
+                                        begin: Alignment.bottomCenter,
+                                        end: Alignment.topCenter)),
+                                child: Column(
+                                  // crossAxisAlignment: CrossAxisAlignment.end,
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Text(
+                                          'Gel',
+                                          style: GoogleFonts.poppins(
+                                              fontSize: 16,
+                                              color: Colors.white),
+                                        ),
+                                        Container(
+                                          width: width * .1,
+                                          height: 1,
+                                          margin: EdgeInsets.only(
+                                            left: 10,
+                                          ),
+                                          color: Colors.white,
+                                        )
+                                      ],
+                                    ),
+                                    SizedBox(
+                                      height: 8,
+                                    ),
+                                    Row(
+                                      children: [
+                                        Text(
+                                          '20 000 XOF',
+                                          style: GoogleFonts.poppins(
+                                              fontSize: 16,
+                                              color: Colors.white),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              )
+                            ],
+                          ),
                         ),
                       )
                     ],

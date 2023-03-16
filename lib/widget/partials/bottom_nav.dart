@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:masculine/widget/screens/home.dart';
 import 'package:masculine/widget/screens/notification.dart';
+import 'package:masculine/widget/screens/profile.dart';
 import 'package:masculine/widget/screens/rdv.dart';
 import 'package:sliding_clipped_nav_bar/sliding_clipped_nav_bar.dart';
 
@@ -38,7 +39,12 @@ class _BottomNavBarState extends State<BottomNavBar> {
               currentpage = index;
             });
           },
-          children: [HomeScreen(), RendezVous(), NotificationScreen()],
+          children: [
+            HomeScreen(),
+            RendezVous(),
+            NotificationScreen(),
+            ProfileScreen()
+          ],
         ),
       ),
       bottomNavigationBar: SlidingClippedNavBar(

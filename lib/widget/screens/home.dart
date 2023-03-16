@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:masculine/widget/partials/carousel_image.dart';
 import 'package:masculine/widget/screens/cat_1/service.dart';
+import 'package:masculine/widget/screens/cat_2/service.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -33,10 +34,16 @@ class _HomeScreenState extends State<HomeScreen> {
               SizedBox(
                 height: height * .04,
               ),
-              Text(
-                'Welcome \nto Masculine',
-                style: GoogleFonts.poppins(
-                    fontSize: 22, fontWeight: FontWeight.bold),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'Welcome \nto Masculine',
+                    style: GoogleFonts.poppins(
+                        fontSize: 22, fontWeight: FontWeight.bold),
+                  ),
+                  Icon(Icons.notifications)
+                ],
               ),
               SizedBox(
                 height: height * .02,
@@ -47,6 +54,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   clipBehavior: Clip.hardEdge,
                   decoration: BoxDecoration(color: Colors.transparent),
                   child: Stack(
+                    fit: StackFit.expand,
                     children: [
                       Image.network(
                         "https://images.pexels.com/photos/4148931/pexels-photo-4148931.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
@@ -156,6 +164,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       clipBehavior: Clip.hardEdge,
                       decoration: BoxDecoration(color: Colors.transparent),
                       child: Stack(
+                        fit: StackFit.expand,
                         children: [
                           Image.network(
                             'https://images.pexels.com/photos/904332/pexels-photo-904332.jpeg?auto=compress&cs=tinysrgb&w=1600',
@@ -188,7 +197,11 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                   GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      Get.to(() => ServiceDame(),
+                          duration: Duration(milliseconds: 500),
+                          transition: Transition.leftToRight);
+                    },
                     child: Container(
                       width: width * .45,
                       height: height * .38,
