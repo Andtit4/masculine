@@ -14,6 +14,7 @@ class _RendezVousState extends State<RendezVous> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black,
       body: SingleChildScrollView(
         physics: BouncingScrollPhysics(),
         child: Padding(
@@ -29,19 +30,23 @@ class _RendezVousState extends State<RendezVous> {
                   Text(
                     'Masculine ',
                     style: GoogleFonts.poppins(
-                        fontSize: 22, fontWeight: FontWeight.bold),
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white),
                   ),
                   Container(
                     width: width * .2,
                     height: 1,
-                    color: Colors.black,
+                    color: Colors.white,
                   )
                 ],
               ),
               Text(
                 'vos rendez-vous',
                 style: GoogleFonts.poppins(
-                    fontSize: 22, fontWeight: FontWeight.bold),
+                    fontSize: 22,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white),
               ),
               SizedBox(
                 height: height * .02,
@@ -52,7 +57,7 @@ class _RendezVousState extends State<RendezVous> {
                 padding: EdgeInsets.all(15),
                 // color: Colors.black,
                 decoration: BoxDecoration(
-                    border: Border.all(width: .1, color: Colors.black)),
+                    border: Border.all(width: .1, color: Colors.white)),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -61,28 +66,28 @@ class _RendezVousState extends State<RendezVous> {
                       children: [
                         Row(
                           children: [
-                            Icon(Icons.message),
+                            Icon(Icons.message, color: Colors.white),
                             Text(
                               ' TE-025514',
-                              style: GoogleFonts.poppins(),
+                              style: GoogleFonts.poppins(color: Colors.white),
                             )
                           ],
                         ),
                         Row(
                           children: [
-                            Icon(Icons.person),
+                            Icon(Icons.person, color: Colors.white),
                             Text(
                               'Amide Yaya',
-                              style: GoogleFonts.poppins(),
+                              style: GoogleFonts.poppins(color: Colors.white),
                             )
                           ],
                         ),
                         Row(
                           children: [
-                            Icon(Icons.calendar_month),
+                            Icon(Icons.calendar_month, color: Colors.white),
                             Text(
                               '24/03/2023',
-                              style: GoogleFonts.poppins(),
+                              style: GoogleFonts.poppins(color: Colors.white),
                             )
                           ],
                         )
@@ -93,16 +98,17 @@ class _RendezVousState extends State<RendezVous> {
                       children: [
                         Row(
                           children: [
-                            Icon(Icons.supervised_user_circle),
+                            Icon(Icons.supervised_user_circle,
+                                color: Colors.white),
                             Text(
                               'Soin visage',
-                              style: GoogleFonts.poppins(),
+                              style: GoogleFonts.poppins(color: Colors.white),
                             )
                           ],
                         ),
                         Row(
                           children: [
-                            Icon(Icons.history),
+                            Icon(Icons.history, color: Colors.white),
                             Container(
                               // margin: EdgeInsets.only(left: 20),
                               child: Text(
@@ -114,10 +120,11 @@ class _RendezVousState extends State<RendezVous> {
                         ),
                         Row(
                           children: [
-                            Icon(Icons.monetization_on_rounded),
+                            Icon(Icons.monetization_on_rounded,
+                                color: Colors.white),
                             Text(
                               ' 15 000 XOF',
-                              style: GoogleFonts.poppins(),
+                              style: GoogleFonts.poppins(color: Colors.white),
                             )
                           ],
                         )

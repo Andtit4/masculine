@@ -16,6 +16,7 @@ class _PayementScreenState extends State<PayementScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black,
       body: SingleChildScrollView(
         physics: BouncingScrollPhysics(),
         child: Padding(
@@ -38,14 +39,23 @@ class _PayementScreenState extends State<PayementScreen> {
                         height: height * .08,
                         decoration: BoxDecoration(
                             border: Border.all(width: 1, color: Colors.black)),
-                        child: Icon(Icons.arrow_back)),
+                        child: Icon(
+                          Icons.arrow_back,
+                          color: Colors.white,
+                        )),
                   ),
                   /*                  Text(
                     "Service pour homme",
                     style: GoogleFonts.poppins(
                         fontSize: 20, fontWeight: FontWeight.bold),
                   ), */
-                  SizedBox()
+                  SizedBox(),
+                  Container(
+                      width: width * .2,
+                      height: height * .07,
+                      decoration: BoxDecoration(
+                          /* border: Border.all(width: 1, color: Colors.white) */),
+                      child: Center(child: Image.asset("assets/logo1.png")))
                 ],
               ),
               SizedBox(
@@ -116,7 +126,7 @@ class _PayementScreenState extends State<PayementScreen> {
               Container(
                 width: width * .3,
                 height: 1,
-                color: Colors.black,
+                color: Colors.white,
               ),
               SizedBox(
                 height: height * .04,
@@ -127,7 +137,9 @@ class _PayementScreenState extends State<PayementScreen> {
                   Text(
                     'Montant',
                     style: GoogleFonts.poppins(
-                        fontSize: 18, fontWeight: FontWeight.bold),
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white),
                   ),
                   Text(
                     widget.data.montant,
@@ -142,7 +154,9 @@ class _PayementScreenState extends State<PayementScreen> {
               Text(
                 'Mode de paiement',
                 style: GoogleFonts.poppins(
-                    fontSize: 18, fontWeight: FontWeight.bold),
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -151,12 +165,12 @@ class _PayementScreenState extends State<PayementScreen> {
                     width: width * .4,
                     height: height * .07,
                     margin: EdgeInsets.only(top: height * .04),
-                    color: Colors.black,
+                    color: Colors.white,
                     child: Center(
                       child: Text(
                         'Espèce',
                         style: GoogleFonts.poppins(
-                            color: Colors.white, fontSize: 18),
+                            color: Colors.black, fontSize: 18),
                       ),
                     ),
                   ),
@@ -164,12 +178,12 @@ class _PayementScreenState extends State<PayementScreen> {
                     width: width * .4,
                     height: height * .07,
                     margin: EdgeInsets.only(top: height * .04),
-                    color: Colors.black,
+                    color: Colors.white,
                     child: Center(
                       child: Text(
                         'Mobile money',
                         style: GoogleFonts.poppins(
-                            color: Colors.white, fontSize: 18),
+                            color: Colors.black, fontSize: 18),
                       ),
                     ),
                   ),

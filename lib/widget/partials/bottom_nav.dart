@@ -48,9 +48,10 @@ class _BottomNavBarState extends State<BottomNavBar> {
         ),
       ),
       bottomNavigationBar: SlidingClippedNavBar(
+        backgroundColor: Colors.black,
         selectedIndex: currentpage,
-        activeColor: Colors.black,
-        inactiveColor: Colors.black,
+        activeColor: Colors.white,
+        inactiveColor: Colors.white,
         // fontStyle: FontS,
         onButtonPressed: (index) {
           setState(() {

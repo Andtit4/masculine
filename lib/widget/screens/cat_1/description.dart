@@ -26,6 +26,7 @@ class _DescribePageState extends State<DescribePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black,
       body: SingleChildScrollView(
         physics: BouncingScrollPhysics(),
         child: Padding(
@@ -48,14 +49,23 @@ class _DescribePageState extends State<DescribePage> {
                         height: height * .08,
                         decoration: BoxDecoration(
                             border: Border.all(width: 1, color: Colors.black)),
-                        child: Icon(Icons.arrow_back)),
+                        child: Icon(
+                          Icons.arrow_back,
+                          color: Colors.white,
+                        )),
                   ),
                   /*                  Text(
                     "Service pour homme",
                     style: GoogleFonts.poppins(
                         fontSize: 20, fontWeight: FontWeight.bold),
                   ), */
-                  SizedBox()
+                  SizedBox(),
+                  Container(
+                      width: width * .2,
+                      height: height * .07,
+                      decoration: BoxDecoration(
+                          /* border: Border.all(width: 1, color: Colors.white) */),
+                      child: Center(child: Image.asset("assets/logo1.png")))
                 ],
               ),
               SizedBox(
@@ -137,7 +147,9 @@ class _DescribePageState extends State<DescribePage> {
                   Text(
                     'Description',
                     style: GoogleFonts.poppins(
-                        fontSize: 18, fontWeight: FontWeight.bold),
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white),
                   ),
                   Text(
                     widget.montant,
@@ -151,7 +163,7 @@ class _DescribePageState extends State<DescribePage> {
               ),
               Text(
                 'Soluta maiores et aperiam. Iure hic quo. Deleniti suscipit beatae et unde occaecati sed corporis debitis. Veniam neque non ea quaerat perspiciatis ut qui labore.',
-                style: GoogleFonts.poppins(),
+                style: GoogleFonts.poppins(color: Colors.white),
               ),
               SizedBox(
                 height: height * .02,
@@ -159,7 +171,9 @@ class _DescribePageState extends State<DescribePage> {
               Text(
                 'Service similaire',
                 style: GoogleFonts.poppins(
-                    fontSize: 18, fontWeight: FontWeight.bold),
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white),
               ),
               SizedBox(
                 height: height * .02,
@@ -249,6 +263,11 @@ class _DescribePageState extends State<DescribePage> {
               GestureDetector(
                 onTap: () {
                   DatePicker.showDateTimePicker(context,
+                      theme: DatePickerTheme(
+                          backgroundColor: Colors.black,
+                          itemStyle: GoogleFonts.poppins(color: Colors.white),
+                          cancelStyle:
+                              GoogleFonts.poppins(color: Colors.white)),
                       showTitleActions: true,
                       minTime: DateTime(2018, 3, 5),
                       maxTime: DateTime(2040, 12, 31), onChanged: (date) {
@@ -295,14 +314,14 @@ class _DescribePageState extends State<DescribePage> {
                 },
                 child: Container(
                   width: double.infinity,
-                  height: height * .1,
+                  height: height * .07,
                   margin: EdgeInsets.only(top: height * .04),
-                  color: Colors.black,
+                  color: Colors.white,
                   child: Center(
                     child: Text(
                       'Prendre un rendez-vous',
                       style: GoogleFonts.poppins(
-                          color: Colors.white, fontSize: 18),
+                          color: Colors.black, fontSize: 18),
                     ),
                   ),
                 ),

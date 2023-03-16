@@ -19,6 +19,7 @@ class _ServiceHommeState extends State<ServiceHomme> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black,
       body: SingleChildScrollView(
         physics: BouncingScrollPhysics(),
         child: Padding(
@@ -41,14 +42,23 @@ class _ServiceHommeState extends State<ServiceHomme> {
                         height: height * .08,
                         decoration: BoxDecoration(
                             border: Border.all(width: 1, color: Colors.black)),
-                        child: Icon(Icons.arrow_back)),
+                        child: Icon(
+                          Icons.arrow_back,
+                          color: Colors.white,
+                        )),
                   ),
                   /*                  Text(
                     "Service pour homme",
                     style: GoogleFonts.poppins(
                         fontSize: 20, fontWeight: FontWeight.bold),
                   ), */
-                  SizedBox()
+                  SizedBox(),
+                  Container(
+                      width: width * .2,
+                      height: height * .07,
+                      decoration: BoxDecoration(
+                          /* border: Border.all(width: 1, color: Colors.white) */),
+                      child: Center(child: Image.asset("assets/logo1.png")))
                 ],
               ),
               SizedBox(

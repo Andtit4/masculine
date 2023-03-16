@@ -43,14 +43,8 @@ class _SplashScreenState extends State<SplashScreen> {
                     width: width * .2,
                     height: height * .07,
                     decoration: BoxDecoration(
-                        border: Border.all(width: 1, color: Colors.white)),
-                    child: Center(
-                      child: Text(
-                        'Skip',
-                        style: GoogleFonts.poppins(
-                            fontSize: 16, color: Colors.white),
-                      ),
-                    )),
+                        /* border: Border.all(width: 1, color: Colors.white) */),
+                    child: Center(child: Image.asset("assets/logo.png"))),
               ),
             ),
             Positioned(

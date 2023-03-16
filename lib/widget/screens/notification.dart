@@ -16,6 +16,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black,
       body: SingleChildScrollView(
         physics: BouncingScrollPhysics(),
         child: Padding(
@@ -31,12 +32,14 @@ class _NotificationScreenState extends State<NotificationScreen> {
                   Text(
                     'Masculine ',
                     style: GoogleFonts.poppins(
-                        fontSize: 22, fontWeight: FontWeight.bold),
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white),
                   ),
                   Container(
                     width: width * .2,
                     height: 1,
-                    color: Colors.black,
+                    color: Colors.white,
                   )
                 ],
               ),
@@ -46,17 +49,19 @@ class _NotificationScreenState extends State<NotificationScreen> {
                   Text(
                     'vos notifications',
                     style: GoogleFonts.poppins(
-                        fontSize: 22, fontWeight: FontWeight.bold),
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white),
                   ),
                   Container(
                     width: width * .1,
                     height: height * .05,
                     // margin: EdgeInsets.only(left: 10),
-                    color: Colors.black,
+                    color: Colors.white,
                     child: Center(
                       child: Text(
                         '1',
-                        style: GoogleFonts.poppins(color: Colors.white),
+                        style: GoogleFonts.poppins(color: Colors.black),
                       ),
                     ),
                   )
@@ -77,7 +82,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
                   padding: EdgeInsets.all(15),
                   // color: Colors.black,
                   decoration: BoxDecoration(
-                      color: select ? Colors.white : Colors.black,
+                      color: select ? Colors.black : Colors.white,
                       border: Border.all(
                           width: .1,
                           color: select ? Colors.white : Colors.black)),
@@ -96,7 +101,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
                               width: width * .1,
                               height: 1,
                               margin: EdgeInsets.only(bottom: 10),
-                              color: select ? Colors.black : Colors.white,
+                              color: select ? Colors.white : Colors.black,
                             )
                           ],
                         ),
@@ -105,7 +110,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Icon(Icons.messenger_outline_sharp,
-                              color: select ? Colors.black : Colors.white),
+                              color: select ? Colors.white : Colors.black),
                           SizedBox(
                             width: width * .75,
                             child: Text(
@@ -113,7 +118,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
                               maxLines: 2,
                               overflow: TextOverflow.ellipsis,
                               style: GoogleFonts.poppins(
-                                  color: select ? Colors.black : Colors.white),
+                                  color: select ? Colors.white : Colors.black),
                             ),
                           )
                           /* Column(

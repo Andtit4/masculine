@@ -15,6 +15,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black,
       body: SingleChildScrollView(
         physics: BouncingScrollPhysics(),
         child: Padding(
@@ -29,12 +30,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   Text(
                     'Masculine ',
                     style: GoogleFonts.poppins(
-                        fontSize: 22, fontWeight: FontWeight.bold),
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white),
                   ),
                   Container(
                     width: width * .2,
                     height: 1,
-                    color: Colors.black,
+                    color: Colors.white,
                   )
                 ],
               ),
@@ -44,7 +47,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   Text(
                     'votre compte',
                     style: GoogleFonts.poppins(
-                        fontSize: 22, fontWeight: FontWeight.bold),
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white),
                   ),
                   /* Container(
                     width: width * .1,
@@ -74,7 +79,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       Text(
                         'Information',
                         style: GoogleFonts.poppins(
-                            fontSize: 16, fontWeight: FontWeight.bold),
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white),
                       ),
                       GestureDetector(
                         onTap: () {
@@ -84,9 +91,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           width: double.infinity,
                           height: height * .07,
                           decoration: BoxDecoration(
-                            color: Color.fromARGB(255, 238, 237,
-                                237), /* borderRadius: BorderRadius.circular(25) */
-                          ),
+                              color: Color.fromARGB(94, 46, 46,
+                                  46) /* borderRadius: BorderRadius.circular(25) */
+                              ),
                           child: Padding(
                             padding: const EdgeInsets.all(10.0),
                             child: Row(
@@ -105,11 +112,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               ), */
                                 Text(
                                   'Information personnelle',
-                                  style: GoogleFonts.poppins(),
+                                  style:
+                                      GoogleFonts.poppins(color: Colors.white),
                                 ),
-                                Icon(
-                                  Icons.arrow_right_alt,
-                                ),
+                                Icon(Icons.arrow_right_alt,
+                                    color: Colors.white),
                               ],
                             ),
                           ),
@@ -121,7 +128,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       Text(
                         'Support',
                         style: GoogleFonts.poppins(
-                            fontSize: 16, fontWeight: FontWeight.bold),
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white),
                       ),
                       GestureDetector(
                         onTap: () {
@@ -131,9 +140,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           width: double.infinity,
                           height: height * .07,
                           decoration: BoxDecoration(
-                            color: Color.fromARGB(255, 238, 237,
-                                237), /* borderRadius: BorderRadius.circular(25) */
-                          ),
+                              color: Color.fromARGB(94, 46, 46,
+                                  46) /* borderRadius: BorderRadius.circular(25) */
+                              ),
                           child: Padding(
                             padding: const EdgeInsets.all(10.0),
                             child: Row(
@@ -152,11 +161,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               ), */
                                 Text(
                                   'Service Client',
-                                  style: GoogleFonts.poppins(),
+                                  style:
+                                      GoogleFonts.poppins(color: Colors.white),
                                 ),
-                                Icon(
-                                  Icons.arrow_right_alt,
-                                ),
+                                Icon(Icons.arrow_right_alt,
+                                    color: Colors.white),
                               ],
                             ),
                           ),
@@ -173,9 +182,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           width: double.infinity,
                           height: height * .07,
                           decoration: BoxDecoration(
-                            color: Color.fromARGB(255, 238, 237,
-                                237), /* borderRadius: BorderRadius.circular(25) */
-                          ),
+                              color: Color.fromARGB(94, 46, 46,
+                                  46) /* borderRadius: BorderRadius.circular(25) */
+                              ),
                           child: Padding(
                             padding: const EdgeInsets.all(10.0),
                             child: Row(
@@ -194,11 +203,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               ), */
                                 Text(
                                   'Comment ça marche',
-                                  style: GoogleFonts.poppins(),
+                                  style:
+                                      GoogleFonts.poppins(color: Colors.white),
                                 ),
-                                Icon(
-                                  Icons.arrow_right_alt,
-                                ),
+                                Icon(Icons.arrow_right_alt,
+                                    color: Colors.white),
                               ],
                             ),
                           ),
@@ -215,9 +224,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           width: double.infinity,
                           height: height * .07,
                           decoration: BoxDecoration(
-                            color: Color.fromARGB(255, 238, 237,
-                                237), /* borderRadius: BorderRadius.circular(25) */
-                          ),
+                              color: Color.fromARGB(94, 46, 46,
+                                  46) /* borderRadius: BorderRadius.circular(25) */
+                              ),
                           child: Padding(
                             padding: const EdgeInsets.all(10.0),
                             child: Row(
@@ -236,11 +245,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               ), */
                                 Text(
                                   'FAQ',
-                                  style: GoogleFonts.poppins(),
+                                  style:
+                                      GoogleFonts.poppins(color: Colors.white),
                                 ),
-                                Icon(
-                                  Icons.arrow_right_alt,
-                                ),
+                                Icon(Icons.arrow_right_alt,
+                                    color: Colors.white),
                               ],
                             ),
                           ),
@@ -257,9 +266,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           width: double.infinity,
                           height: height * .07,
                           decoration: BoxDecoration(
-                            color: Color.fromARGB(255, 238, 237,
-                                237), /* borderRadius: BorderRadius.circular(25) */
-                          ),
+                              color: Color.fromARGB(94, 46, 46,
+                                  46) /* borderRadius: BorderRadius.circular(25) */
+                              ),
                           child: Padding(
                             padding: const EdgeInsets.all(10.0),
                             child: Row(
@@ -278,11 +287,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               ), */
                                 Text(
                                   'A propos',
-                                  style: GoogleFonts.poppins(),
+                                  style:
+                                      GoogleFonts.poppins(color: Colors.white),
                                 ),
-                                Icon(
-                                  Icons.arrow_right_alt,
-                                ),
+                                Icon(Icons.arrow_right_alt,
+                                    color: Colors.white),
                               ],
                             ),
                           ),
@@ -294,7 +303,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       Text(
                         'Politique',
                         style: GoogleFonts.poppins(
-                            fontSize: 16, fontWeight: FontWeight.bold),
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white),
                       ),
                       GestureDetector(
                         onTap: () {
@@ -304,9 +315,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           width: double.infinity,
                           height: height * .07,
                           decoration: BoxDecoration(
-                            color: Color.fromARGB(255, 238, 237,
-                                237), /* borderRadius: BorderRadius.circular(25) */
-                          ),
+                              color: Color.fromARGB(94, 46, 46,
+                                  46) /* borderRadius: BorderRadius.circular(25) */
+                              ),
                           child: Padding(
                             padding: const EdgeInsets.all(10.0),
                             child: Row(
@@ -325,11 +336,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               ), */
                                 Text(
                                   'Politique de confidentialité',
-                                  style: GoogleFonts.poppins(),
+                                  style:
+                                      GoogleFonts.poppins(color: Colors.white),
                                 ),
-                                Icon(
-                                  Icons.arrow_right_alt,
-                                ),
+                                Icon(Icons.arrow_right_alt,
+                                    color: Colors.white),
                               ],
                             ),
                           ),
@@ -346,8 +357,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           width: double.infinity,
                           height: height * .07,
                           decoration: BoxDecoration(
-                            color: Color.fromARGB(255, 238, 237,
-                                237), /* borderRadius: BorderRadius.circular(25) */
+                            color: Color.fromARGB(94, 46, 46,
+                                46), /* borderRadius: BorderRadius.circular(25) */
                           ),
                           child: Padding(
                             padding: const EdgeInsets.all(10.0),
@@ -356,11 +367,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               children: [
                                 Text(
                                   'Politique de sécurité',
-                                  style: GoogleFonts.poppins(),
+                                  style:
+                                      GoogleFonts.poppins(color: Colors.white),
                                 ),
-                                Icon(
-                                  Icons.arrow_right_alt,
-                                ),
+                                Icon(Icons.arrow_right_alt,
+                                    color: Colors.white),
                               ],
                             ),
                           ),

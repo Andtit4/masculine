@@ -24,6 +24,7 @@ class _HomeScreenState extends State<HomeScreen> {
     ];
 
     return Scaffold(
+      backgroundColor: Colors.black,
       body: SingleChildScrollView(
         physics: BouncingScrollPhysics(),
         child: Padding(
@@ -40,9 +41,16 @@ class _HomeScreenState extends State<HomeScreen> {
                   Text(
                     'Welcome \nto Masculine',
                     style: GoogleFonts.poppins(
-                        fontSize: 22, fontWeight: FontWeight.bold),
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white),
                   ),
-                  Icon(Icons.notifications)
+                  Container(
+                      width: width * .2,
+                      height: height * .07,
+                      decoration: BoxDecoration(
+                          /* border: Border.all(width: 1, color: Colors.white) */),
+                      child: Center(child: Image.asset("assets/logo1.png"))),
                 ],
               ),
               SizedBox(
@@ -141,10 +149,20 @@ class _HomeScreenState extends State<HomeScreen> {
               SizedBox(
                 height: height * .04,
               ),
-              Container(
-                width: width * .3,
-                height: 1,
-                color: Colors.black,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Container(
+                    width: width * .3,
+                    height: 1,
+                    color: Colors.white,
+                  ),
+                  Container(
+                    width: width * .3,
+                    height: 1,
+                    color: Colors.white,
+                  ),
+                ],
               ),
               SizedBox(
                 height: height * .04,
