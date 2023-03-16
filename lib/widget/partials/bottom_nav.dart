@@ -38,7 +38,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
       ),
       bottomNavigationBar: SlidingClippedNavBar(
         selectedIndex: currentpage,
-        activeColor: Colors.blue,
+        activeColor: Colors.black,
         inactiveColor: Colors.black,
         // fontStyle: FontS,
         onButtonPressed: (index) {
@@ -53,25 +53,25 @@ class _BottomNavBarState extends State<BottomNavBar> {
           BarItem(
             icon: Icons.event,
             title: 'Home',
-          
+
             // activeColor: Colors.blue,
             // inactiveColor: Colors.orange,
           ),
           BarItem(
-            icon: Icons.search_rounded,
-            title: 'Search',
+            icon: Icons.calendar_month,
+            title: 'Rendez-vous',
             // activeColor: Colors.yellow,
             // inactiveColor: Colors.green,
           ),
           BarItem(
-            icon: Icons.bolt_rounded,
-            title: 'Energy',
+            icon: Icons.notifications,
+            title: 'Notification',
             // activeColor: Colors.blue,
             // inactiveColor: Colors.red,
           ),
           BarItem(
-            icon: Icons.tune_rounded,
-            title: 'Settings',
+            icon: Icons.person,
+            title: 'Compte',
             // activeColor: Colors.cyan,
             // inactiveColor: Colors.purple,
           ),

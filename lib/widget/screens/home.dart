@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:masculine/widget/partials/carousel_image.dart';
+import 'package:masculine/widget/screens/cat_1/service.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -143,7 +145,11 @@ class _HomeScreenState extends State<HomeScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      Get.to(() => ServiceHomme(),
+                          duration: Duration(milliseconds: 500),
+                          transition: Transition.leftToRight);
+                    },
                     child: Container(
                       width: width * .45,
                       height: height * .38,
