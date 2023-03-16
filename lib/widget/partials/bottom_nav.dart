@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:masculine/widget/screens/home.dart';
+import 'package:masculine/widget/screens/notification.dart';
+import 'package:masculine/widget/screens/rdv.dart';
 import 'package:sliding_clipped_nav_bar/sliding_clipped_nav_bar.dart';
 
 class BottomNavBar extends StatefulWidget {
@@ -31,9 +33,12 @@ class _BottomNavBarState extends State<BottomNavBar> {
         height: height,
         child: PageView(
           controller: _controller,
-          children: [
-            HomeScreen(),
-          ],
+          onPageChanged: (index) {
+            setState(() {
+              currentpage = index;
+            });
+          },
+          children: [HomeScreen(), RendezVous(), NotificationScreen()],
         ),
       ),
       bottomNavigationBar: SlidingClippedNavBar(
