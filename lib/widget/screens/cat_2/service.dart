@@ -154,7 +154,12 @@ class _ServiceDameState extends State<ServiceDame> {
                     children: [
                       GestureDetector(
                         onTap: () {
-                          Get.to(() => SoinsDesPieds(),
+                          Get.to(
+                              () => SoinsDesPieds(
+                                    img:
+                                        'https://images.pexels.com/photos/1204473/pexels-photo-1204473.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+                                    title: 'Soin de pieds',
+                                  ),
                               duration: Duration(milliseconds: 500),
                               transition: Transition.leftToRight);
                         },

@@ -4,7 +4,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:masculine/widget/screens/cat_1/description.dart';
 
 class SoinsDesPieds extends StatefulWidget {
-  const SoinsDesPieds({super.key});
+  final String img;
+  final String title;
+  const SoinsDesPieds({super.key, required this.img, required this.title});
 
   @override
   State<SoinsDesPieds> createState() => _SoinsDesPiedsState();
@@ -71,7 +73,7 @@ class _SoinsDesPiedsState extends State<SoinsDesPieds> {
                     fit: StackFit.expand,
                     children: [
                       Image.network(
-                        "https://images.pexels.com/photos/1204473/pexels-photo-1204473.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+                        widget.img,
                         fit: BoxFit.cover,
                       ),
                       Container(
@@ -114,17 +116,6 @@ class _SoinsDesPiedsState extends State<SoinsDesPieds> {
                                   style: GoogleFonts.poppins(
                                       fontSize: 16, color: Colors.white),
                                 ),
-                                /*  Container(
-                                  width: width * .08,
-                                  height: 1,
-                                  margin: EdgeInsets.only(left: 10, right: 10),
-                                  color: Colors.white,
-                                ), */
-                                /*  Text(
-                                  '08h à 18h',
-                                  style: GoogleFonts.poppins(
-                                      fontSize: 16, color: Colors.white),
-                                ), */
                               ],
                             ),
                           ],
@@ -155,8 +146,10 @@ class _SoinsDesPiedsState extends State<SoinsDesPieds> {
                           Get.to(
                               () => DescribePage(
                                     img:
-                                        'https://images.pexels.com/photos/1204473/pexels-photo-1204473.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+                                        'https://atelierfaitmain.fr/wp-content/uploads/2021/04/Atelier-Fait-Main-_30A9952-%C2%A9TonyGuillou.jpg',
                                     title: 'Retouche des mains ',
+                                    desc:
+                                        "Notre service de retouche des mains consiste à rafraîchir et à entretenir l'apparence des ongles et des cuticules",
                                     montant: '2 500 XOF',
                                   ),
                               duration: Duration(milliseconds: 500),
@@ -171,7 +164,7 @@ class _SoinsDesPiedsState extends State<SoinsDesPieds> {
                             fit: StackFit.expand,
                             children: [
                               Image.network(
-                                'https://images.pexels.com/photos/1204473/pexels-photo-1204473.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+                                'https://atelierfaitmain.fr/wp-content/uploads/2021/04/Atelier-Fait-Main-_30A9952-%C2%A9TonyGuillou.jpg',
                                 fit: BoxFit.cover,
                               ),
                               Container(
@@ -236,8 +229,10 @@ class _SoinsDesPiedsState extends State<SoinsDesPieds> {
                           Get.to(
                               () => DescribePage(
                                     img:
-                                        'https://images.pexels.com/photos/1204473/pexels-photo-1204473.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+                                        'https://static.wixstatic.com/media/2602bf_1ca899de8ab142a2a79353081db4f313~mv2.jpg/v1/fill/w_706,h_447,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/pedicure.jpg',
                                     title: 'Retouche des pieds',
+                                    desc:
+                                        "Notre service de retouche des pieds consiste à rafraîchir et à entretenir l'apparence des ongles et des pieds",
                                     montant: '5 000 XOF',
                                   ),
                               duration: Duration(milliseconds: 500),
@@ -252,7 +247,7 @@ class _SoinsDesPiedsState extends State<SoinsDesPieds> {
                             fit: StackFit.expand,
                             children: [
                               Image.network(
-                                'https://images.pexels.com/photos/1204473/pexels-photo-1204473.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+                                'https://static.wixstatic.com/media/2602bf_1ca899de8ab142a2a79353081db4f313~mv2.jpg/v1/fill/w_706,h_447,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/pedicure.jpg',
                                 fit: BoxFit.cover,
                               ),
                               Container(
@@ -317,8 +312,10 @@ class _SoinsDesPiedsState extends State<SoinsDesPieds> {
                           Get.to(
                               () => DescribePage(
                                     img:
-                                        'https://images.pexels.com/photos/1204473/pexels-photo-1204473.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-                                    title: 'Vernis pied et mains',
+                                        'https://previews.123rf.com/images/evgenyatamanenko/evgenyatamanenko1709/evgenyatamanenko170900007/85262742-bonne-enfant-dr%C3%B4le-petite-fille-aux-bigoudis-fait-une-p%C3%A9dicure-peint-des-ongles-et-des-rires.jpg',
+                                    title: 'Pédicure enfant',
+                                    desc:
+                                        "Notre service de pédicure pour enfants est un traitement de beauté pour les pieds et les ongles destiné aux enfants.",
                                     montant: '5 000 XOF',
                                   ),
                               duration: Duration(milliseconds: 500),
@@ -333,7 +330,7 @@ class _SoinsDesPiedsState extends State<SoinsDesPieds> {
                             fit: StackFit.expand,
                             children: [
                               Image.network(
-                                'https://images.pexels.com/photos/1204473/pexels-photo-1204473.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+                                'https://previews.123rf.com/images/evgenyatamanenko/evgenyatamanenko1709/evgenyatamanenko170900007/85262742-bonne-enfant-dr%C3%B4le-petite-fille-aux-bigoudis-fait-une-p%C3%A9dicure-peint-des-ongles-et-des-rires.jpg',
                                 fit: BoxFit.cover,
                               ),
                               Container(
@@ -355,7 +352,90 @@ class _SoinsDesPiedsState extends State<SoinsDesPieds> {
                                     Row(
                                       children: [
                                         Text(
-                                          'Vernis pied et mains',
+                                          'Pédicure enfant',
+                                          style: GoogleFonts.poppins(
+                                              fontSize: 16,
+                                              color: Colors.white),
+                                        ),
+                                        Container(
+                                          width: width * .1,
+                                          height: 1,
+                                          margin: EdgeInsets.only(
+                                            left: 10,
+                                          ),
+                                          color: Colors.white,
+                                        )
+                                      ],
+                                    ),
+                                    SizedBox(
+                                      height: 8,
+                                    ),
+                                    Row(
+                                      children: [
+                                        Text(
+                                          '5 000 XOF',
+                                          style: GoogleFonts.poppins(
+                                              fontSize: 16,
+                                              color: Colors.white),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: height * .03,
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          Get.to(
+                              () => DescribePage(
+                                    img:
+                                        'https://www.cdiscount.com/pdt2/3/1/7/1/550x550/auc5699008055317/rw/18-faux-ongles-a-pression-pour-enfants-outil-de.jpg',
+                                    title: 'Manicure enfant',
+                                    desc:
+                                        "Notre service de manucure pour enfants est un traitement de beauté pour les mains et les ongles destiné aux enfants",
+                                    montant: '5 000 XOF',
+                                  ),
+                              duration: Duration(milliseconds: 500),
+                              transition: Transition.leftToRight);
+                        },
+                        child: Container(
+                          width: width,
+                          height: height * .2,
+                          clipBehavior: Clip.hardEdge,
+                          decoration: BoxDecoration(color: Colors.transparent),
+                          child: Stack(
+                            fit: StackFit.expand,
+                            children: [
+                              Image.network(
+                                'https://www.cdiscount.com/pdt2/3/1/7/1/550x550/auc5699008055317/rw/18-faux-ongles-a-pression-pour-enfants-outil-de.jpg',
+                                fit: BoxFit.cover,
+                              ),
+                              Container(
+                                width: width,
+                                height: height * .8,
+                                padding: EdgeInsets.all(width * .04),
+                                decoration: BoxDecoration(
+                                    gradient: LinearGradient(
+                                        colors: [
+                                      Colors.black,
+                                      Colors.transparent
+                                    ],
+                                        begin: Alignment.bottomCenter,
+                                        end: Alignment.topCenter)),
+                                child: Column(
+                                  // crossAxisAlignment: CrossAxisAlignment.end,
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Text(
+                                          'Manicure enfant',
                                           style: GoogleFonts.poppins(
                                               fontSize: 16,
                                               color: Colors.white),
@@ -399,8 +479,10 @@ class _SoinsDesPiedsState extends State<SoinsDesPieds> {
                               () => DescribePage(
                                     img:
                                         'https://images.pexels.com/photos/1204473/pexels-photo-1204473.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-                                    title: 'French manicure',
-                                    montant: '5 000 XOF',
+                                    title: 'Manicure',
+                                    desc:
+                                        "Notre service de manucure est un traitement de beauté pour les mains et les ongles, qui consiste en plusieurs étapes pour nettoyer, façonner, polir, hydrater et embellir les ongles.",
+                                    montant: '10 000 XOF',
                                   ),
                               duration: Duration(milliseconds: 500),
                               transition: Transition.leftToRight);
@@ -436,7 +518,7 @@ class _SoinsDesPiedsState extends State<SoinsDesPieds> {
                                     Row(
                                       children: [
                                         Text(
-                                          'French manicure',
+                                          'Manicure',
                                           style: GoogleFonts.poppins(
                                               fontSize: 16,
                                               color: Colors.white),
@@ -457,7 +539,7 @@ class _SoinsDesPiedsState extends State<SoinsDesPieds> {
                                     Row(
                                       children: [
                                         Text(
-                                          '5 000 XOF',
+                                          '10 000 XOF',
                                           style: GoogleFonts.poppins(
                                               fontSize: 16,
                                               color: Colors.white),
@@ -480,87 +562,8 @@ class _SoinsDesPiedsState extends State<SoinsDesPieds> {
                               () => DescribePage(
                                     img:
                                         'https://images.pexels.com/photos/1204473/pexels-photo-1204473.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-                                    title: 'Pose capsule',
-                                    montant: '7 500 XOF',
-                                  ),
-                              duration: Duration(milliseconds: 500),
-                              transition: Transition.leftToRight);
-                        },
-                        child: Container(
-                          width: width,
-                          height: height * .2,
-                          clipBehavior: Clip.hardEdge,
-                          decoration: BoxDecoration(color: Colors.transparent),
-                          child: Stack(
-                            fit: StackFit.expand,
-                            children: [
-                              Image.network(
-                                'https://images.pexels.com/photos/1204473/pexels-photo-1204473.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-                                fit: BoxFit.cover,
-                              ),
-                              Container(
-                                width: width,
-                                height: height * .8,
-                                padding: EdgeInsets.all(width * .04),
-                                decoration: BoxDecoration(
-                                    gradient: LinearGradient(
-                                        colors: [
-                                      Colors.black,
-                                      Colors.transparent
-                                    ],
-                                        begin: Alignment.bottomCenter,
-                                        end: Alignment.topCenter)),
-                                child: Column(
-                                  // crossAxisAlignment: CrossAxisAlignment.end,
-                                  mainAxisAlignment: MainAxisAlignment.end,
-                                  children: [
-                                    Row(
-                                      children: [
-                                        Text(
-                                          'Pose capsule',
-                                          style: GoogleFonts.poppins(
-                                              fontSize: 16,
-                                              color: Colors.white),
-                                        ),
-                                        Container(
-                                          width: width * .1,
-                                          height: 1,
-                                          margin: EdgeInsets.only(
-                                            left: 10,
-                                          ),
-                                          color: Colors.white,
-                                        )
-                                      ],
-                                    ),
-                                    SizedBox(
-                                      height: 8,
-                                    ),
-                                    Row(
-                                      children: [
-                                        Text(
-                                          '7 500 XOF',
-                                          style: GoogleFonts.poppins(
-                                              fontSize: 16,
-                                              color: Colors.white),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        height: height * .03,
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          Get.to(
-                              () => DescribePage(
-                                    img:
-                                        'https://images.pexels.com/photos/1204473/pexels-photo-1204473.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+                                    desc:
+                                        "Notre service de pédicure est un traitement de beauté pour les pieds et les ongles, qui consiste en plusieurs étapes pour nettoyer, façonner, polir, hydrater et embellir les ongles des pieds",
                                     title: 'Pédicure',
                                     montant: '10 000 XOF',
                                   ),
@@ -633,6 +636,7 @@ class _SoinsDesPiedsState extends State<SoinsDesPieds> {
                           ),
                         ),
                       ),
+                      /*
                       SizedBox(
                         height: height * .03,
                       ),
@@ -794,7 +798,7 @@ class _SoinsDesPiedsState extends State<SoinsDesPieds> {
                             ],
                           ),
                         ),
-                      )
+                      ) */
                     ],
                   ),
                 ),

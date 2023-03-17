@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -13,16 +15,46 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  late double width = MediaQuery.of(context).size.width;
+  late double height = MediaQuery.of(context).size.height;
+  PageController _controller = PageController();
+  int currentPage = 0;
+  Timer? timer;
+
+  String _caption =
+      "Offrez à votre peau le soin qu'elle mérite et révélez votre éclat naturel avec nos soins du visage de qualité professionnelle !";
+
+  List<String> imgList = [
+    "https://images.pexels.com/photos/7389078/pexels-photo-7389078.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    "https://images.pexels.com/photos/7697361/pexels-photo-7697361.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    "https://images.pexels.com/photos/3764568/pexels-photo-3764568.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    "https://images.pexels.com/photos/3997983/pexels-photo-3997983.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    'https://www.dreads-expert.com/wp-content/uploads/2021/06/Dreads-courtes-degrade-scaled.jpg',
+  ];
+  increment() {
+    timer = Timer.periodic(Duration(seconds: 5), (timer) {
+      if (currentPage != 4) {
+        setState(() {
+          currentPage++;
+        });
+      } else {
+        _controller.jumpToPage(0);
+      }
+      _controller.nextPage(
+          duration: Duration(seconds: 1), curve: Curves.easeInOut);
+      print(currentPage);
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = PageController(initialPage: currentPage);
+    increment();
+  }
+
   @override
   Widget build(BuildContext context) {
-    late double width = MediaQuery.of(context).size.width;
-    late double height = MediaQuery.of(context).size.height;
-
-    List<String> imgList = [
-      "https://images.pexels.com/photos/7389078/pexels-photo-7389078.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-      "https://images.pexels.com/photos/7697361/pexels-photo-7697361.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-    ];
-
     return Scaffold(
       backgroundColor: Colors.black,
       body: SingleChildScrollView(
@@ -64,9 +96,18 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: Stack(
                     fit: StackFit.expand,
                     children: [
-                      Image.network(
-                        "https://images.pexels.com/photos/4148931/pexels-photo-4148931.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-                        fit: BoxFit.cover,
+                      PageView(
+                        scrollDirection: Axis.horizontal,
+                        physics: BouncingScrollPhysics(),
+                        controller: _controller,
+                        children: imgList
+                            .map(
+                              (e) => Image.network(
+                                e,
+                                fit: BoxFit.cover,
+                              ),
+                            )
+                            .toList(),
                       ),
                       Container(
                         width: width,
@@ -103,41 +144,13 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                             Row(
                               children: [
-                                Text(
-                                  'Lundi à Vendredi',
-                                  style: GoogleFonts.poppins(
-                                      fontSize: 16, color: Colors.white),
-                                ),
-                                Container(
-                                  width: width * .08,
-                                  height: 1,
-                                  margin: EdgeInsets.only(left: 10, right: 10),
-                                  color: Colors.white,
-                                ),
-                                Text(
-                                  '08h à 18h',
-                                  style: GoogleFonts.poppins(
-                                      fontSize: 16, color: Colors.white),
-                                ),
-                              ],
-                            ),
-                            Row(
-                              children: [
-                                Text(
-                                  'Samedi à Dimanche',
-                                  style: GoogleFonts.poppins(
-                                      fontSize: 16, color: Colors.white),
-                                ),
-                                Container(
-                                  width: width * .08,
-                                  height: 1,
-                                  margin: EdgeInsets.only(left: 10, right: 10),
-                                  color: Colors.white,
-                                ),
-                                Text(
-                                  '08h à 12h',
-                                  style: GoogleFonts.poppins(
-                                      fontSize: 16, color: Colors.white),
+                                SizedBox(
+                                  width: width * .85,
+                                  child: Text(
+                                    'Sublimez votre beauté avec notre gamme complète de services esthétiques haut de gamme. .',
+                                    style: GoogleFonts.poppins(
+                                        fontSize: 16, color: Colors.white),
+                                  ),
                                 ),
                               ],
                             ),
@@ -226,6 +239,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       clipBehavior: Clip.hardEdge,
                       decoration: BoxDecoration(color: Colors.transparent),
                       child: Stack(
+                        fit: StackFit.expand,
                         children: [
                           Image.network(
                             'https://images.pexels.com/photos/2661255/pexels-photo-2661255.jpeg?auto=compress&cs=tinysrgb&w=1600',

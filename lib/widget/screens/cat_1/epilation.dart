@@ -2,16 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:masculine/widget/screens/cat_1/description.dart';
-import 'package:masculine/widget/screens/cat_1/soins_des_pieds.dart';
 
-class SoinsDuVisage extends StatefulWidget {
-  const SoinsDuVisage({super.key});
+class EpilationPage extends StatefulWidget {
+  const EpilationPage({super.key});
 
   @override
-  State<SoinsDuVisage> createState() => _SoinsDuVisageState();
+  State<EpilationPage> createState() => _EpilationPageState();
 }
 
-class _SoinsDuVisageState extends State<SoinsDuVisage> {
+class _EpilationPageState extends State<EpilationPage> {
   late double width = MediaQuery.of(context).size.width;
   late double height = MediaQuery.of(context).size.height;
   @override
@@ -45,11 +44,6 @@ class _SoinsDuVisageState extends State<SoinsDuVisage> {
                           color: Colors.white,
                         )),
                   ),
-                  /*                  Text(
-                    "Service pour homme",
-                    style: GoogleFonts.poppins(
-                        fontSize: 20, fontWeight: FontWeight.bold),
-                  ), */
                   SizedBox(),
                   Container(
                       width: width * .2,
@@ -71,7 +65,7 @@ class _SoinsDuVisageState extends State<SoinsDuVisage> {
                     fit: StackFit.expand,
                     children: [
                       Image.network(
-                        "https://images.pexels.com/photos/6001507/pexels-photo-6001507.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+                        'https://cdn0.mariages.net/article-vendor/1041/3_2/960/jpg/cire-dos-homme_3_221041-159448283085415.jpeg',
                         fit: BoxFit.cover,
                       ),
                       Container(
@@ -110,21 +104,10 @@ class _SoinsDuVisageState extends State<SoinsDuVisage> {
                             Row(
                               children: [
                                 Text(
-                                  'Soins du visage',
+                                  'Epilation',
                                   style: GoogleFonts.poppins(
                                       fontSize: 16, color: Colors.white),
                                 ),
-                                /*  Container(
-                                  width: width * .08,
-                                  height: 1,
-                                  margin: EdgeInsets.only(left: 10, right: 10),
-                                  color: Colors.white,
-                                ), */
-                                /*  Text(
-                                  '08h à 18h',
-                                  style: GoogleFonts.poppins(
-                                      fontSize: 16, color: Colors.white),
-                                ), */
                               ],
                             ),
                           ],
@@ -150,22 +133,21 @@ class _SoinsDuVisageState extends State<SoinsDuVisage> {
                   physics: BouncingScrollPhysics(),
                   child: Column(
                     children: [
+                      SizedBox(
+                        height: height * .03,
+                      ),
                       GestureDetector(
                         onTap: () {
                           Get.to(
                               () => DescribePage(
-                                    img:
-                                        'https://i.shgcdn.com/84402c53-6b0d-4f5a-b8f1-b07ac120f709/-/format/auto/-/preview/3000x3000/-/quality/lighter/',
-                                    title: 'Soins visage gommage simple ',
-                                    desc:
-                                        "Notre service de soins du visage avec un gommage est une méthode que nous utilisons pour éliminer les cellules mortes de la peau et favoriser le renouvellement cellulaire.",
-                                    montant: '12 500 XOF',
-                                  ),
+                                  img:
+                                      'https://www.spa-autourdesoi.fr/wp-content/uploads/2019/07/massage-dos-revitalisant.jpg',
+                                  title: 'Epilation sourcils',
+                                  desc:
+                                      "Notre service d’épilation des sourcils est une technique de soins de beauté qui consiste à épiler les poils indésirables de la région des sourcils pour façonner et définir les sourcils",
+                                  montant: '3 000 XOF'),
                               duration: Duration(milliseconds: 500),
                               transition: Transition.leftToRight);
-                          /* Get.to(() => SoinsDesPieds(),
-                              duration: Duration(milliseconds: 500),
-                              transition: Transition.leftToRight); */
                         },
                         child: Container(
                           width: width,
@@ -176,7 +158,7 @@ class _SoinsDuVisageState extends State<SoinsDuVisage> {
                             fit: StackFit.expand,
                             children: [
                               Image.network(
-                                'https://i.shgcdn.com/84402c53-6b0d-4f5a-b8f1-b07ac120f709/-/format/auto/-/preview/3000x3000/-/quality/lighter/',
+                                'https://www.spa-autourdesoi.fr/wp-content/uploads/2019/07/massage-dos-revitalisant.jpg',
                                 fit: BoxFit.cover,
                               ),
                               Container(
@@ -198,7 +180,7 @@ class _SoinsDuVisageState extends State<SoinsDuVisage> {
                                     Row(
                                       children: [
                                         Text(
-                                          'Soins visage gommage simple ',
+                                          'Epilation sourcils',
                                           style: GoogleFonts.poppins(
                                               fontSize: 16,
                                               color: Colors.white),
@@ -219,7 +201,7 @@ class _SoinsDuVisageState extends State<SoinsDuVisage> {
                                     Row(
                                       children: [
                                         Text(
-                                          '12 500 XOF',
+                                          '3 000 XOF',
                                           style: GoogleFonts.poppins(
                                               fontSize: 16,
                                               color: Colors.white),
@@ -240,13 +222,12 @@ class _SoinsDuVisageState extends State<SoinsDuVisage> {
                         onTap: () {
                           Get.to(
                               () => DescribePage(
-                                    img:
-                                        'https://www.phoenix-barber-institut.fr/photos/550x367/shutterstock_413266930-min.jpg',
-                                    title: 'Soins visage revitalisant',
-                                    desc:
-                                        "Notre service de soins du visage revitalisants est une méthode que nous utilisons pour rafraîchir et tonifier la peau tout en lui redonnant de l'éclat. Ces soins du visage visent à stimuler la circulation sanguine et à oxygéner les cellules de la peau pour améliorer la texture, la fermeté et l'apparence générale du visage",
-                                    montant: '20 000 XOF',
-                                  ),
+                                  img:
+                                      'https://www.charlotted.fr/img/box-epilation-homme.jpg',
+                                  title: 'Epilation Aisselles',
+                                  desc:
+                                      "Notre service d’épilation des aisselles est une technique de soins de beauté qui consiste à éliminer les poils indésirables de la zone des aisselles pour créer une apparence plus lisse et plus propre.",
+                                  montant: '5 000 XOF'),
                               duration: Duration(milliseconds: 500),
                               transition: Transition.leftToRight);
                         },
@@ -259,7 +240,7 @@ class _SoinsDuVisageState extends State<SoinsDuVisage> {
                             fit: StackFit.expand,
                             children: [
                               Image.network(
-                                'https://www.phoenix-barber-institut.fr/photos/550x367/shutterstock_413266930-min.jpg',
+                                'https://www.charlotted.fr/img/box-epilation-homme.jpg',
                                 fit: BoxFit.cover,
                               ),
                               Container(
@@ -281,7 +262,7 @@ class _SoinsDuVisageState extends State<SoinsDuVisage> {
                                     Row(
                                       children: [
                                         Text(
-                                          'Soins visage revitalisant',
+                                          'Epilation Aisselles',
                                           style: GoogleFonts.poppins(
                                               fontSize: 16,
                                               color: Colors.white),
@@ -302,7 +283,7 @@ class _SoinsDuVisageState extends State<SoinsDuVisage> {
                                     Row(
                                       children: [
                                         Text(
-                                          '20 000 XOF',
+                                          '5 000 XOF',
                                           style: GoogleFonts.poppins(
                                               fontSize: 16,
                                               color: Colors.white),
@@ -323,13 +304,12 @@ class _SoinsDuVisageState extends State<SoinsDuVisage> {
                         onTap: () {
                           Get.to(
                               () => DescribePage(
-                                    img:
-                                        'https://www.phoenix-barber-institut.fr/photos/549x366/adobestock_269425555.jpeg',
-                                    title: 'Soins purifiant',
-                                    desc:
-                                        "Notre service de soins du visage purifiants est une méthode que nous utilisons pour nettoyer en profondeur la peau, éliminer les impuretés et réduire les pores dilatés. Ces soins du visage visent à éliminer les toxines, l'excès de sébum et les cellules mortes de la peau qui peuvent causer des problèmes de peau tels que l'acné, les points noirs et les boutons",
-                                    montant: '20 000 XOF',
-                                  ),
+                                  img:
+                                      'https://assets.afcdn.com/story/20211202/2150321_w2119h1589c1cx1060cy707cxt0cyt0cxb2119cyb1414.jpg',
+                                  title: 'Epilation Visage',
+                                  desc:
+                                      "Notre service d’épilation du visage est une technique de soins de beauté qui consiste à éliminer les poils indésirables de la zone du visage pour créer une apparence plus lisse et plus propre.",
+                                  montant: '10 000 XOF'),
                               duration: Duration(milliseconds: 500),
                               transition: Transition.leftToRight);
                         },
@@ -342,7 +322,7 @@ class _SoinsDuVisageState extends State<SoinsDuVisage> {
                             fit: StackFit.expand,
                             children: [
                               Image.network(
-                                'https://www.phoenix-barber-institut.fr/photos/549x366/adobestock_269425555.jpeg',
+                                'https://assets.afcdn.com/story/20211202/2150321_w2119h1589c1cx1060cy707cxt0cyt0cxb2119cyb1414.jpg',
                                 fit: BoxFit.cover,
                               ),
                               Container(
@@ -364,7 +344,7 @@ class _SoinsDuVisageState extends State<SoinsDuVisage> {
                                     Row(
                                       children: [
                                         Text(
-                                          'Soins purifiant',
+                                          'Epilation Visage',
                                           style: GoogleFonts.poppins(
                                               fontSize: 16,
                                               color: Colors.white),
@@ -385,7 +365,7 @@ class _SoinsDuVisageState extends State<SoinsDuVisage> {
                                     Row(
                                       children: [
                                         Text(
-                                          '20 000 XOF',
+                                          '10 000 XOF',
                                           style: GoogleFonts.poppins(
                                               fontSize: 16,
                                               color: Colors.white),
@@ -402,17 +382,16 @@ class _SoinsDuVisageState extends State<SoinsDuVisage> {
                       SizedBox(
                         height: height * .03,
                       ),
-                      GestureDetector(
+                      /* GestureDetector(
                         onTap: () {
                           Get.to(
                               () => DescribePage(
-                                    img:
-                                        'https://i0.wp.com/www.lhommetendance.fr/wp-content/uploads/2013/07/gommage-homme2.jpg?w=655&ssl=1',
-                                    title: 'Soins anti-âge',
-                                    desc:
-                                        "Notre service de soins du visage anti-âge est une méthode que nous utilisons pour réduire les signes du vieillissement tels que les rides, les ridules et le relâchement cutané. Ces soins du visage visent à stimuler la production de collagène et d'élastine dans la peau, ce qui peut aider à améliorer sa texture, son élasticité et sa fermeté.",
-                                    montant: '30 000 XOF',
-                                  ),
+                                  img:
+                                      'https://img.static-rmg.be/a/view/q75/w1092/h615/1795498/conseils-massage-jpg.jpg',
+                                  title: 'Massage 1h',
+                                  desc:
+                                      "Notre service de massage est une technique de manipulation des tissus mous du corps pour aider à soulager la tension musculaire, la douleur et le stress, ainsi qu'à améliorer la circulation sanguine et lymphatique. ",
+                                  montant: '25 000 XOF'),
                               duration: Duration(milliseconds: 500),
                               transition: Transition.leftToRight);
                         },
@@ -425,7 +404,7 @@ class _SoinsDuVisageState extends State<SoinsDuVisage> {
                             fit: StackFit.expand,
                             children: [
                               Image.network(
-                                'https://i0.wp.com/www.lhommetendance.fr/wp-content/uploads/2013/07/gommage-homme2.jpg?w=655&ssl=1',
+                                'https://img.static-rmg.be/a/view/q75/w1092/h615/1795498/conseils-massage-jpg.jpg',
                                 fit: BoxFit.cover,
                               ),
                               Container(
@@ -447,7 +426,89 @@ class _SoinsDuVisageState extends State<SoinsDuVisage> {
                                     Row(
                                       children: [
                                         Text(
-                                          'Soins anti-âge',
+                                          'Massage 1h',
+                                          style: GoogleFonts.poppins(
+                                              fontSize: 16,
+                                              color: Colors.white),
+                                        ),
+                                        Container(
+                                          width: width * .1,
+                                          height: 1,
+                                          margin: EdgeInsets.only(
+                                            left: 10,
+                                          ),
+                                          color: Colors.white,
+                                        )
+                                      ],
+                                    ),
+                                    SizedBox(
+                                      height: 8,
+                                    ),
+                                    Row(
+                                      children: [
+                                        Text(
+                                          '25 000 XOF',
+                                          style: GoogleFonts.poppins(
+                                              fontSize: 16,
+                                              color: Colors.white),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: height * .03,
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          Get.to(
+                              () => DescribePage(
+                                  img:
+                                      'https://www.retrouver-son-equilibre.com/wp-content/uploads/2021/02/Deep-Tissue-massage@2x.jpg',
+                                  title: 'Massage dep-tissus',
+                                  desc:
+                                      "Notre service de massage des tissus profonds est une technique de massage qui vise à soulager la douleur et la tension musculaire en ciblant les couches profondes des muscles, des tendons et des fascias. ",
+                                  montant: '30 000 XOF'),
+                              duration: Duration(milliseconds: 500),
+                              transition: Transition.leftToRight);
+                        },
+                        child: Container(
+                          width: width,
+                          height: height * .2,
+                          clipBehavior: Clip.hardEdge,
+                          decoration: BoxDecoration(color: Colors.transparent),
+                          child: Stack(
+                            fit: StackFit.expand,
+                            children: [
+                              Image.network(
+                                'https://www.retrouver-son-equilibre.com/wp-content/uploads/2021/02/Deep-Tissue-massage@2x.jpg',
+                                fit: BoxFit.cover,
+                              ),
+                              Container(
+                                width: width,
+                                height: height * .8,
+                                padding: EdgeInsets.all(width * .04),
+                                decoration: BoxDecoration(
+                                    gradient: LinearGradient(
+                                        colors: [
+                                      Colors.black,
+                                      Colors.transparent
+                                    ],
+                                        begin: Alignment.bottomCenter,
+                                        end: Alignment.topCenter)),
+                                child: Column(
+                                  // crossAxisAlignment: CrossAxisAlignment.end,
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Text(
+                                          'Massage dep-tissus',
                                           style: GoogleFonts.poppins(
                                               fontSize: 16,
                                               color: Colors.white),
@@ -485,6 +546,167 @@ class _SoinsDuVisageState extends State<SoinsDuVisage> {
                       SizedBox(
                         height: height * .03,
                       ),
+                      GestureDetector(
+                        onTap: () {
+                          Get.to(
+                              () => DescribePage(
+                                  img:
+                                      'http://massage-homme-paris14.fr/wp-content/uploads/2015/05/massage-4-mains-300x200.jpg',
+                                  title: 'Massage 4 mains',
+                                  desc:
+                                      "Notre service de massage 4 mains, également connu sous le nom de massage synchronisé, est une technique de massage où deux thérapeutes travaillent en tandem pour masser le corps d'une personne.",
+                                  montant: '40 000 XOF'),
+                              duration: Duration(milliseconds: 500),
+                              transition: Transition.leftToRight);
+                        },
+                        child: Container(
+                          width: width,
+                          height: height * .2,
+                          clipBehavior: Clip.hardEdge,
+                          decoration: BoxDecoration(color: Colors.transparent),
+                          child: Stack(
+                            fit: StackFit.expand,
+                            children: [
+                              Image.network(
+                                'http://massage-homme-paris14.fr/wp-content/uploads/2015/05/massage-4-mains-300x200.jpg',
+                                fit: BoxFit.cover,
+                              ),
+                              Container(
+                                width: width,
+                                height: height * .8,
+                                padding: EdgeInsets.all(width * .04),
+                                decoration: BoxDecoration(
+                                    gradient: LinearGradient(
+                                        colors: [
+                                      Colors.black,
+                                      Colors.transparent
+                                    ],
+                                        begin: Alignment.bottomCenter,
+                                        end: Alignment.topCenter)),
+                                child: Column(
+                                  // crossAxisAlignment: CrossAxisAlignment.end,
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Text(
+                                          'Massage 4 mains',
+                                          style: GoogleFonts.poppins(
+                                              fontSize: 16,
+                                              color: Colors.white),
+                                        ),
+                                        Container(
+                                          width: width * .1,
+                                          height: 1,
+                                          margin: EdgeInsets.only(
+                                            left: 10,
+                                          ),
+                                          color: Colors.white,
+                                        )
+                                      ],
+                                    ),
+                                    SizedBox(
+                                      height: 8,
+                                    ),
+                                    Row(
+                                      children: [
+                                        Text(
+                                          '40 000 XOF',
+                                          style: GoogleFonts.poppins(
+                                              fontSize: 16,
+                                              color: Colors.white),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: height * .03,
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          Get.to(
+                              () => DescribePage(
+                                  img:
+                                      'https://www.masculin.com/wp-content/uploads/sites/2/2013/07/shutterstock_2036999507-1568x1029.jpg',
+                                  title: 'Massage pierre chaude',
+                                  desc:
+                                      "Notre service de massage aux pierres chaudes est une technique de massage qui utilise des pierres chaudes pour soulager la tension musculaire et améliorer la circulation sanguine. ",
+                                  montant: '30 000 XOF'),
+                              duration: Duration(milliseconds: 500),
+                              transition: Transition.leftToRight);
+                        },
+                        child: Container(
+                          width: width,
+                          height: height * .2,
+                          clipBehavior: Clip.hardEdge,
+                          decoration: BoxDecoration(color: Colors.transparent),
+                          child: Stack(
+                            fit: StackFit.expand,
+                            children: [
+                              Image.network(
+                                'https://www.masculin.com/wp-content/uploads/sites/2/2013/07/shutterstock_2036999507-1568x1029.jpg',
+                                fit: BoxFit.cover,
+                              ),
+                              Container(
+                                width: width,
+                                height: height * .8,
+                                padding: EdgeInsets.all(width * .04),
+                                decoration: BoxDecoration(
+                                    gradient: LinearGradient(
+                                        colors: [
+                                      Colors.black,
+                                      Colors.transparent
+                                    ],
+                                        begin: Alignment.bottomCenter,
+                                        end: Alignment.topCenter)),
+                                child: Column(
+                                  // crossAxisAlignment: CrossAxisAlignment.end,
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Text(
+                                          'Massage pierre chaude',
+                                          style: GoogleFonts.poppins(
+                                              fontSize: 16,
+                                              color: Colors.white),
+                                        ),
+                                        Container(
+                                          width: width * .1,
+                                          height: 1,
+                                          margin: EdgeInsets.only(
+                                            left: 10,
+                                          ),
+                                          color: Colors.white,
+                                        )
+                                      ],
+                                    ),
+                                    SizedBox(
+                                      height: 8,
+                                    ),
+                                    Row(
+                                      children: [
+                                        Text(
+                                          '30 000 XOF',
+                                          style: GoogleFonts.poppins(
+                                              fontSize: 16,
+                                              color: Colors.white),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                      ), */
                     ],
                   ),
                 ),

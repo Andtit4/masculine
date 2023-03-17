@@ -9,11 +9,14 @@ class DescribePage extends StatefulWidget {
   final String img;
   final String title;
   final String montant;
+  final String desc;
+
   const DescribePage(
       {super.key,
       required this.img,
       required this.title,
-      required this.montant});
+      required this.montant,
+      required this.desc});
 
   @override
   State<DescribePage> createState() => _DescribePageState();
@@ -162,7 +165,7 @@ class _DescribePageState extends State<DescribePage> {
                 height: height * .01,
               ),
               Text(
-                'Soluta maiores et aperiam. Iure hic quo. Deleniti suscipit beatae et unde occaecati sed corporis debitis. Veniam neque non ea quaerat perspiciatis ut qui labore.',
+                widget.desc,
                 style: GoogleFonts.poppins(color: Colors.white),
               ),
               SizedBox(
