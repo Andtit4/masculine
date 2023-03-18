@@ -67,106 +67,23 @@ class _ServiceHommeState extends State<ServiceHomme> {
               SizedBox(
                 height: height * .03,
               ),
-              Container(
-                  width: width,
-                  height: height * .3,
-                  clipBehavior: Clip.hardEdge,
-                  decoration: BoxDecoration(color: Colors.transparent),
-                  child: Stack(
-                    fit: StackFit.expand,
-                    children: [
-                      Image.network(
-                        "https://images.pexels.com/photos/3031396/pexels-photo-3031396.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-                        fit: BoxFit.cover,
-                      ),
-                      Container(
-                        width: width,
-                        height: height * .8,
-                        padding: EdgeInsets.all(width * .04),
-                        decoration: BoxDecoration(
-                            gradient: LinearGradient(
-                                colors: [Colors.black, Colors.transparent],
-                                begin: Alignment.bottomCenter,
-                                end: Alignment.topCenter)),
-                        child: Column(
-                          // crossAxisAlignment: CrossAxisAlignment.end,
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            Row(
-                              children: [
-                                Text(
-                                  'Masculine',
-                                  style: GoogleFonts.poppins(
-                                      fontSize: 16, color: Colors.white),
-                                ),
-                                Container(
-                                  width: width * .1,
-                                  height: 1,
-                                  margin: EdgeInsets.only(
-                                    left: 10,
-                                  ),
-                                  color: Colors.white,
-                                )
-                              ],
-                            ),
-                            SizedBox(
-                              height: 8,
-                            ),
-                            Row(
-                              children: [
-                                SizedBox(
-                                  width: width * .8,
-                                  child: Text(
-                                    'Découvrez dès maintenant notre liste de soins et laissez-vous chouchouter par nos experts de la beauté.',
-                                    style: GoogleFonts.poppins(
-                                        fontSize: 16, color: Colors.white),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      )
-                    ],
-                  )),
               SizedBox(
-                height: height * .04,
-              ),
-              Container(
-                width: width * .3,
-                height: 1,
-                color: Colors.black,
-              ),
-              SizedBox(
-                height: height * .04,
-              ),
-              SizedBox(
-                width: width,
-                height: height * .4,
+                width: width * .9,
+                height: height * .8,
                 child: SingleChildScrollView(
                   physics: BouncingScrollPhysics(),
                   child: Column(
                     children: [
-                      GestureDetector(
-                        onTap: () {
-                          Get.to(
-                              () => SoinsDesPieds(
-                                  img:
-                                      'https://images.pexels.com/photos/1204473/pexels-photo-1204473.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-                                  title: 'Soin de pieds'),
-                              duration: Duration(milliseconds: 500),
-                              transition: Transition.leftToRight);
-                        },
-                        child: Container(
+                      Container(
                           width: width,
-                          height: height * .2,
+                          height: height * .3,
                           clipBehavior: Clip.hardEdge,
                           decoration: BoxDecoration(color: Colors.transparent),
                           child: Stack(
                             fit: StackFit.expand,
                             children: [
                               Image.network(
-                                'https://images.pexels.com/photos/1204473/pexels-photo-1204473.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+                                "https://images.pexels.com/photos/3031396/pexels-photo-3031396.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
                                 fit: BoxFit.cover,
                               ),
                               Container(
@@ -188,7 +105,7 @@ class _ServiceHommeState extends State<ServiceHomme> {
                                     Row(
                                       children: [
                                         Text(
-                                          'Service',
+                                          'Masculine',
                                           style: GoogleFonts.poppins(
                                               fontSize: 16,
                                               color: Colors.white),
@@ -208,11 +125,14 @@ class _ServiceHommeState extends State<ServiceHomme> {
                                     ),
                                     Row(
                                       children: [
-                                        Text(
-                                          'Soin de pieds',
-                                          style: GoogleFonts.poppins(
-                                              fontSize: 16,
-                                              color: Colors.white),
+                                        SizedBox(
+                                          width: width * .8,
+                                          child: Text(
+                                            'Découvrez dès maintenant notre liste de soins et laissez-vous chouchouter par nos experts de la beauté.',
+                                            style: GoogleFonts.poppins(
+                                                fontSize: 16,
+                                                color: Colors.white),
+                                          ),
                                         ),
                                       ],
                                     ),
@@ -220,384 +140,483 @@ class _ServiceHommeState extends State<ServiceHomme> {
                                 ),
                               )
                             ],
-                          ),
-                        ),
+                          )),
+                      SizedBox(
+                        height: height * .04,
+                      ),
+                      Container(
+                        width: width * .3,
+                        height: 1,
+                        color: Colors.black,
                       ),
                       SizedBox(
-                        height: height * .03,
+                        height: height * .04,
                       ),
-                      GestureDetector(
-                        onTap: () {
-                          Get.to(() => SoinsDuVisage(),
-                              duration: Duration(milliseconds: 500),
-                              transition: Transition.leftToRight);
-                        },
-                        child: Container(
-                          width: width,
-                          height: height * .2,
-                          clipBehavior: Clip.hardEdge,
-                          decoration: BoxDecoration(color: Colors.transparent),
-                          child: Stack(
-                            fit: StackFit.expand,
-                            children: [
-                              Image.network(
-                                'https://images.pexels.com/photos/6001507/pexels-photo-6001507.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-                                fit: BoxFit.cover,
+                      Column(
+                        children: [
+                          GestureDetector(
+                            onTap: () {
+                              Get.to(
+                                  () => SoinsDesPieds(
+                                      img:
+                                          'https://images.pexels.com/photos/1204473/pexels-photo-1204473.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+                                      title: 'Soin de pieds'),
+                                  duration: Duration(milliseconds: 500),
+                                  transition: Transition.leftToRight);
+                            },
+                            child: Container(
+                              width: width,
+                              height: height * .2,
+                              clipBehavior: Clip.hardEdge,
+                              decoration:
+                                  BoxDecoration(color: Colors.transparent),
+                              child: Stack(
+                                fit: StackFit.expand,
+                                children: [
+                                  Image.network(
+                                    'https://images.pexels.com/photos/1204473/pexels-photo-1204473.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+                                    fit: BoxFit.cover,
+                                  ),
+                                  Container(
+                                    width: width,
+                                    height: height * .8,
+                                    padding: EdgeInsets.all(width * .04),
+                                    decoration: BoxDecoration(
+                                        gradient: LinearGradient(
+                                            colors: [
+                                          Colors.black,
+                                          Colors.transparent
+                                        ],
+                                            begin: Alignment.bottomCenter,
+                                            end: Alignment.topCenter)),
+                                    child: Column(
+                                      // crossAxisAlignment: CrossAxisAlignment.end,
+                                      mainAxisAlignment: MainAxisAlignment.end,
+                                      children: [
+                                        Row(
+                                          children: [
+                                            Text(
+                                              'Service',
+                                              style: GoogleFonts.poppins(
+                                                  fontSize: 16,
+                                                  color: Colors.white),
+                                            ),
+                                            Container(
+                                              width: width * .1,
+                                              height: 1,
+                                              margin: EdgeInsets.only(
+                                                left: 10,
+                                              ),
+                                              color: Colors.white,
+                                            )
+                                          ],
+                                        ),
+                                        SizedBox(
+                                          height: 8,
+                                        ),
+                                        Row(
+                                          children: [
+                                            Text(
+                                              'Soin de pieds',
+                                              style: GoogleFonts.poppins(
+                                                  fontSize: 16,
+                                                  color: Colors.white),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                  )
+                                ],
                               ),
-                              Container(
-                                width: width,
-                                height: height * .8,
-                                padding: EdgeInsets.all(width * .04),
-                                decoration: BoxDecoration(
-                                    gradient: LinearGradient(
-                                        colors: [
-                                      Colors.black,
-                                      Colors.transparent
-                                    ],
-                                        begin: Alignment.bottomCenter,
-                                        end: Alignment.topCenter)),
-                                child: Column(
-                                  // crossAxisAlignment: CrossAxisAlignment.end,
-                                  mainAxisAlignment: MainAxisAlignment.end,
-                                  children: [
-                                    Row(
-                                      children: [
-                                        Text(
-                                          'Service',
-                                          style: GoogleFonts.poppins(
-                                              fontSize: 16,
-                                              color: Colors.white),
-                                        ),
-                                        Container(
-                                          width: width * .1,
-                                          height: 1,
-                                          margin: EdgeInsets.only(
-                                            left: 10,
-                                          ),
-                                          color: Colors.white,
-                                        )
-                                      ],
-                                    ),
-                                    SizedBox(
-                                      height: 8,
-                                    ),
-                                    Row(
-                                      children: [
-                                        Text(
-                                          'Soin du visage',
-                                          style: GoogleFonts.poppins(
-                                              fontSize: 16,
-                                              color: Colors.white),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              )
-                            ],
+                            ),
                           ),
-                        ),
-                      ),
-                      SizedBox(
-                        height: height * .03,
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          Get.to(() => MassagePage(),
-                              duration: Duration(milliseconds: 500),
-                              transition: Transition.leftToRight);
-                        },
-                        child: Container(
-                          width: width,
-                          height: height * .2,
-                          clipBehavior: Clip.hardEdge,
-                          decoration: BoxDecoration(color: Colors.transparent),
-                          child: Stack(
-                            fit: StackFit.expand,
-                            children: [
-                              Image.network(
-                                'https://images.pexels.com/photos/3865792/pexels-photo-3865792.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-                                fit: BoxFit.cover,
+                          SizedBox(
+                            height: height * .03,
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              Get.to(() => SoinsDuVisage(),
+                                  duration: Duration(milliseconds: 500),
+                                  transition: Transition.leftToRight);
+                            },
+                            child: Container(
+                              width: width,
+                              height: height * .2,
+                              clipBehavior: Clip.hardEdge,
+                              decoration:
+                                  BoxDecoration(color: Colors.transparent),
+                              child: Stack(
+                                fit: StackFit.expand,
+                                children: [
+                                  Image.network(
+                                    'https://images.pexels.com/photos/6001507/pexels-photo-6001507.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+                                    fit: BoxFit.cover,
+                                  ),
+                                  Container(
+                                    width: width,
+                                    height: height * .8,
+                                    padding: EdgeInsets.all(width * .04),
+                                    decoration: BoxDecoration(
+                                        gradient: LinearGradient(
+                                            colors: [
+                                          Colors.black,
+                                          Colors.transparent
+                                        ],
+                                            begin: Alignment.bottomCenter,
+                                            end: Alignment.topCenter)),
+                                    child: Column(
+                                      // crossAxisAlignment: CrossAxisAlignment.end,
+                                      mainAxisAlignment: MainAxisAlignment.end,
+                                      children: [
+                                        Row(
+                                          children: [
+                                            Text(
+                                              'Service',
+                                              style: GoogleFonts.poppins(
+                                                  fontSize: 16,
+                                                  color: Colors.white),
+                                            ),
+                                            Container(
+                                              width: width * .1,
+                                              height: 1,
+                                              margin: EdgeInsets.only(
+                                                left: 10,
+                                              ),
+                                              color: Colors.white,
+                                            )
+                                          ],
+                                        ),
+                                        SizedBox(
+                                          height: 8,
+                                        ),
+                                        Row(
+                                          children: [
+                                            Text(
+                                              'Soin du visage',
+                                              style: GoogleFonts.poppins(
+                                                  fontSize: 16,
+                                                  color: Colors.white),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                  )
+                                ],
                               ),
-                              Container(
-                                width: width,
-                                height: height * .8,
-                                padding: EdgeInsets.all(width * .04),
-                                decoration: BoxDecoration(
-                                    gradient: LinearGradient(
-                                        colors: [
-                                      Colors.black,
-                                      Colors.transparent
-                                    ],
-                                        begin: Alignment.bottomCenter,
-                                        end: Alignment.topCenter)),
-                                child: Column(
-                                  // crossAxisAlignment: CrossAxisAlignment.end,
-                                  mainAxisAlignment: MainAxisAlignment.end,
-                                  children: [
-                                    Row(
-                                      children: [
-                                        Text(
-                                          'Service',
-                                          style: GoogleFonts.poppins(
-                                              fontSize: 16,
-                                              color: Colors.white),
-                                        ),
-                                        Container(
-                                          width: width * .1,
-                                          height: 1,
-                                          margin: EdgeInsets.only(
-                                            left: 10,
-                                          ),
-                                          color: Colors.white,
-                                        )
-                                      ],
-                                    ),
-                                    SizedBox(
-                                      height: 8,
-                                    ),
-                                    Row(
-                                      children: [
-                                        Text(
-                                          'Massage',
-                                          style: GoogleFonts.poppins(
-                                              fontSize: 16,
-                                              color: Colors.white),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              )
-                            ],
+                            ),
                           ),
-                        ),
-                      ),
-                      SizedBox(
-                        height: height * .03,
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          Get.to(() => CoupePage(),
-                              duration: Duration(milliseconds: 500),
-                              transition: Transition.leftToRight);
-                        },
-                        child: Container(
-                          width: width,
-                          height: height * .2,
-                          clipBehavior: Clip.hardEdge,
-                          decoration: BoxDecoration(color: Colors.transparent),
-                          child: Stack(
-                            fit: StackFit.expand,
-                            children: [
-                              Image.network(
-                                'https://images.pexels.com/photos/2775269/pexels-photo-2775269.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-                                fit: BoxFit.cover,
+                          SizedBox(
+                            height: height * .03,
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              Get.to(() => MassagePage(),
+                                  duration: Duration(milliseconds: 500),
+                                  transition: Transition.leftToRight);
+                            },
+                            child: Container(
+                              width: width,
+                              height: height * .2,
+                              clipBehavior: Clip.hardEdge,
+                              decoration:
+                                  BoxDecoration(color: Colors.transparent),
+                              child: Stack(
+                                fit: StackFit.expand,
+                                children: [
+                                  Image.network(
+                                    'https://images.pexels.com/photos/3865792/pexels-photo-3865792.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+                                    fit: BoxFit.cover,
+                                  ),
+                                  Container(
+                                    width: width,
+                                    height: height * .8,
+                                    padding: EdgeInsets.all(width * .04),
+                                    decoration: BoxDecoration(
+                                        gradient: LinearGradient(
+                                            colors: [
+                                          Colors.black,
+                                          Colors.transparent
+                                        ],
+                                            begin: Alignment.bottomCenter,
+                                            end: Alignment.topCenter)),
+                                    child: Column(
+                                      // crossAxisAlignment: CrossAxisAlignment.end,
+                                      mainAxisAlignment: MainAxisAlignment.end,
+                                      children: [
+                                        Row(
+                                          children: [
+                                            Text(
+                                              'Service',
+                                              style: GoogleFonts.poppins(
+                                                  fontSize: 16,
+                                                  color: Colors.white),
+                                            ),
+                                            Container(
+                                              width: width * .1,
+                                              height: 1,
+                                              margin: EdgeInsets.only(
+                                                left: 10,
+                                              ),
+                                              color: Colors.white,
+                                            )
+                                          ],
+                                        ),
+                                        SizedBox(
+                                          height: 8,
+                                        ),
+                                        Row(
+                                          children: [
+                                            Text(
+                                              'Massage',
+                                              style: GoogleFonts.poppins(
+                                                  fontSize: 16,
+                                                  color: Colors.white),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                  )
+                                ],
                               ),
-                              Container(
-                                width: width,
-                                height: height * .8,
-                                padding: EdgeInsets.all(width * .04),
-                                decoration: BoxDecoration(
-                                    gradient: LinearGradient(
-                                        colors: [
-                                      Colors.black,
-                                      Colors.transparent
-                                    ],
-                                        begin: Alignment.bottomCenter,
-                                        end: Alignment.topCenter)),
-                                child: Column(
-                                  // crossAxisAlignment: CrossAxisAlignment.end,
-                                  mainAxisAlignment: MainAxisAlignment.end,
-                                  children: [
-                                    Row(
-                                      children: [
-                                        Text(
-                                          'Service',
-                                          style: GoogleFonts.poppins(
-                                              fontSize: 16,
-                                              color: Colors.white),
-                                        ),
-                                        Container(
-                                          width: width * .1,
-                                          height: 1,
-                                          margin: EdgeInsets.only(
-                                            left: 10,
-                                          ),
-                                          color: Colors.white,
-                                        )
-                                      ],
-                                    ),
-                                    SizedBox(
-                                      height: 8,
-                                    ),
-                                    Row(
-                                      children: [
-                                        Text(
-                                          'Coupe',
-                                          style: GoogleFonts.poppins(
-                                              fontSize: 16,
-                                              color: Colors.white),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              )
-                            ],
+                            ),
                           ),
-                        ),
-                      ),
-                      SizedBox(
-                        height: height * .03,
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          Get.to(() => EpilationPage(),
-                              duration: Duration(milliseconds: 500),
-                              transition: Transition.leftToRight);
-                        },
-                        child: Container(
-                          width: width,
-                          height: height * .2,
-                          clipBehavior: Clip.hardEdge,
-                          decoration: BoxDecoration(color: Colors.transparent),
-                          child: Stack(
-                            fit: StackFit.expand,
-                            children: [
-                              Image.network(
-                                'https://images.pexels.com/photos/4156341/pexels-photo-4156341.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-                                fit: BoxFit.cover,
+                          SizedBox(
+                            height: height * .03,
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              Get.to(() => CoupePage(),
+                                  duration: Duration(milliseconds: 500),
+                                  transition: Transition.leftToRight);
+                            },
+                            child: Container(
+                              width: width,
+                              height: height * .2,
+                              clipBehavior: Clip.hardEdge,
+                              decoration:
+                                  BoxDecoration(color: Colors.transparent),
+                              child: Stack(
+                                fit: StackFit.expand,
+                                children: [
+                                  Image.network(
+                                    'https://images.pexels.com/photos/2775269/pexels-photo-2775269.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+                                    fit: BoxFit.cover,
+                                  ),
+                                  Container(
+                                    width: width,
+                                    height: height * .8,
+                                    padding: EdgeInsets.all(width * .04),
+                                    decoration: BoxDecoration(
+                                        gradient: LinearGradient(
+                                            colors: [
+                                          Colors.black,
+                                          Colors.transparent
+                                        ],
+                                            begin: Alignment.bottomCenter,
+                                            end: Alignment.topCenter)),
+                                    child: Column(
+                                      // crossAxisAlignment: CrossAxisAlignment.end,
+                                      mainAxisAlignment: MainAxisAlignment.end,
+                                      children: [
+                                        Row(
+                                          children: [
+                                            Text(
+                                              'Service',
+                                              style: GoogleFonts.poppins(
+                                                  fontSize: 16,
+                                                  color: Colors.white),
+                                            ),
+                                            Container(
+                                              width: width * .1,
+                                              height: 1,
+                                              margin: EdgeInsets.only(
+                                                left: 10,
+                                              ),
+                                              color: Colors.white,
+                                            )
+                                          ],
+                                        ),
+                                        SizedBox(
+                                          height: 8,
+                                        ),
+                                        Row(
+                                          children: [
+                                            Text(
+                                              'Coupe',
+                                              style: GoogleFonts.poppins(
+                                                  fontSize: 16,
+                                                  color: Colors.white),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                  )
+                                ],
                               ),
-                              Container(
-                                width: width,
-                                height: height * .8,
-                                padding: EdgeInsets.all(width * .04),
-                                decoration: BoxDecoration(
-                                    gradient: LinearGradient(
-                                        colors: [
-                                      Colors.black,
-                                      Colors.transparent
-                                    ],
-                                        begin: Alignment.bottomCenter,
-                                        end: Alignment.topCenter)),
-                                child: Column(
-                                  // crossAxisAlignment: CrossAxisAlignment.end,
-                                  mainAxisAlignment: MainAxisAlignment.end,
-                                  children: [
-                                    Row(
-                                      children: [
-                                        Text(
-                                          'Service',
-                                          style: GoogleFonts.poppins(
-                                              fontSize: 16,
-                                              color: Colors.white),
-                                        ),
-                                        Container(
-                                          width: width * .1,
-                                          height: 1,
-                                          margin: EdgeInsets.only(
-                                            left: 10,
-                                          ),
-                                          color: Colors.white,
-                                        )
-                                      ],
-                                    ),
-                                    SizedBox(
-                                      height: 8,
-                                    ),
-                                    Row(
-                                      children: [
-                                        Text(
-                                          'Epilation',
-                                          style: GoogleFonts.poppins(
-                                              fontSize: 16,
-                                              color: Colors.white),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              )
-                            ],
+                            ),
                           ),
-                        ),
-                      ),
-                      SizedBox(
-                        height: height * .03,
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          Get.to(() => SoinsBarbePage(img: "https://www.barbechic.fr/wp-content/uploads/2015/04/barbe-shampoing-entretien-lavage.jpg", title: "Soins barbe"),
-                              duration: Duration(milliseconds: 500),
-                              transition: Transition.leftToRight);
-                        },
-                        child: Container(
-                          width: width,
-                          height: height * .2,
-                          clipBehavior: Clip.hardEdge,
-                          decoration: BoxDecoration(color: Colors.transparent),
-                          child: Stack(
-                            fit: StackFit.expand,
-                            children: [
-                              Image.network(
-                                'https://www.barbechic.fr/wp-content/uploads/2015/04/barbe-shampoing-entretien-lavage.jpg',
-                                fit: BoxFit.cover,
+                          SizedBox(
+                            height: height * .03,
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              Get.to(() => EpilationPage(),
+                                  duration: Duration(milliseconds: 500),
+                                  transition: Transition.leftToRight);
+                            },
+                            child: Container(
+                              width: width,
+                              height: height * .2,
+                              clipBehavior: Clip.hardEdge,
+                              decoration:
+                                  BoxDecoration(color: Colors.transparent),
+                              child: Stack(
+                                fit: StackFit.expand,
+                                children: [
+                                  Image.network(
+                                    'https://images.pexels.com/photos/4156341/pexels-photo-4156341.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+                                    fit: BoxFit.cover,
+                                  ),
+                                  Container(
+                                    width: width,
+                                    height: height * .8,
+                                    padding: EdgeInsets.all(width * .04),
+                                    decoration: BoxDecoration(
+                                        gradient: LinearGradient(
+                                            colors: [
+                                          Colors.black,
+                                          Colors.transparent
+                                        ],
+                                            begin: Alignment.bottomCenter,
+                                            end: Alignment.topCenter)),
+                                    child: Column(
+                                      // crossAxisAlignment: CrossAxisAlignment.end,
+                                      mainAxisAlignment: MainAxisAlignment.end,
+                                      children: [
+                                        Row(
+                                          children: [
+                                            Text(
+                                              'Service',
+                                              style: GoogleFonts.poppins(
+                                                  fontSize: 16,
+                                                  color: Colors.white),
+                                            ),
+                                            Container(
+                                              width: width * .1,
+                                              height: 1,
+                                              margin: EdgeInsets.only(
+                                                left: 10,
+                                              ),
+                                              color: Colors.white,
+                                            )
+                                          ],
+                                        ),
+                                        SizedBox(
+                                          height: 8,
+                                        ),
+                                        Row(
+                                          children: [
+                                            Text(
+                                              'Epilation',
+                                              style: GoogleFonts.poppins(
+                                                  fontSize: 16,
+                                                  color: Colors.white),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                  )
+                                ],
                               ),
-                              Container(
-                                width: width,
-                                height: height * .8,
-                                padding: EdgeInsets.all(width * .04),
-                                decoration: BoxDecoration(
-                                    gradient: LinearGradient(
-                                        colors: [
-                                      Colors.black,
-                                      Colors.transparent
-                                    ],
-                                        begin: Alignment.bottomCenter,
-                                        end: Alignment.topCenter)),
-                                child: Column(
-                                  // crossAxisAlignment: CrossAxisAlignment.end,
-                                  mainAxisAlignment: MainAxisAlignment.end,
-                                  children: [
-                                    Row(
-                                      children: [
-                                        Text(
-                                          'Service',
-                                          style: GoogleFonts.poppins(
-                                              fontSize: 16,
-                                              color: Colors.white),
-                                        ),
-                                        Container(
-                                          width: width * .1,
-                                          height: 1,
-                                          margin: EdgeInsets.only(
-                                            left: 10,
-                                          ),
-                                          color: Colors.white,
-                                        )
-                                      ],
-                                    ),
-                                    SizedBox(
-                                      height: 8,
-                                    ),
-                                    Row(
-                                      children: [
-                                        Text(
-                                          'Soins barbes',
-                                          style: GoogleFonts.poppins(
-                                              fontSize: 16,
-                                              color: Colors.white),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              )
-                            ],
+                            ),
                           ),
-                        ),
-                      ),
+                          SizedBox(
+                            height: height * .03,
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              Get.to(
+                                  () => SoinsBarbePage(
+                                      img:
+                                          "https://www.barbechic.fr/wp-content/uploads/2015/04/barbe-shampoing-entretien-lavage.jpg",
+                                      title: "Soins barbe"),
+                                  duration: Duration(milliseconds: 500),
+                                  transition: Transition.leftToRight);
+                            },
+                            child: Container(
+                              width: width,
+                              height: height * .2,
+                              clipBehavior: Clip.hardEdge,
+                              decoration:
+                                  BoxDecoration(color: Colors.transparent),
+                              child: Stack(
+                                fit: StackFit.expand,
+                                children: [
+                                  Image.network(
+                                    'https://www.barbechic.fr/wp-content/uploads/2015/04/barbe-shampoing-entretien-lavage.jpg',
+                                    fit: BoxFit.cover,
+                                  ),
+                                  Container(
+                                    width: width,
+                                    height: height * .8,
+                                    padding: EdgeInsets.all(width * .04),
+                                    decoration: BoxDecoration(
+                                        gradient: LinearGradient(
+                                            colors: [
+                                          Colors.black,
+                                          Colors.transparent
+                                        ],
+                                            begin: Alignment.bottomCenter,
+                                            end: Alignment.topCenter)),
+                                    child: Column(
+                                      // crossAxisAlignment: CrossAxisAlignment.end,
+                                      mainAxisAlignment: MainAxisAlignment.end,
+                                      children: [
+                                        Row(
+                                          children: [
+                                            Text(
+                                              'Service',
+                                              style: GoogleFonts.poppins(
+                                                  fontSize: 16,
+                                                  color: Colors.white),
+                                            ),
+                                            Container(
+                                              width: width * .1,
+                                              height: 1,
+                                              margin: EdgeInsets.only(
+                                                left: 10,
+                                              ),
+                                              color: Colors.white,
+                                            )
+                                          ],
+                                        ),
+                                        SizedBox(
+                                          height: 8,
+                                        ),
+                                        Row(
+                                          children: [
+                                            Text(
+                                              'Soins barbes',
+                                              style: GoogleFonts.poppins(
+                                                  fontSize: 16,
+                                                  color: Colors.white),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      )
                     ],
                   ),
                 ),

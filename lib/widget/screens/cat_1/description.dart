@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:masculine/widget/login.dart';
 import 'package:masculine/widget/screens/cat_1/payement.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
@@ -171,6 +172,23 @@ class _DescribePageState extends State<DescribePage> {
               SizedBox(
                 height: height * .02,
               ),
+              Row(
+                children: [
+                  IconButton(
+                      onPressed: () {},
+                      icon: Icon(
+                        Icons.location_on,
+                        color: Colors.white,
+                      )),
+                  Text(
+                    "Nous voir",
+                    style: GoogleFonts.poppins(color: Colors.white),
+                  )
+                ],
+              ),
+              SizedBox(
+                height: height * .02,
+              ),
               Text(
                 'Service similaire',
                 style: GoogleFonts.poppins(
@@ -295,9 +313,13 @@ class _DescribePageState extends State<DescribePage> {
                               onPressed: () {
                                 Navigator.pop(context);
 
-                                Get.to(() => PayementScreen(data: widget),
+                                Get.to(() => LoginPage(data: widget),
                                     duration: Duration(milliseconds: 500),
                                     transition: Transition.rightToLeft);
+
+                                /*  Get.to(() => PayementScreen(data: widget),
+                                    duration: Duration(milliseconds: 500),
+                                    transition: Transition.rightToLeft); */
                               }),
                           DialogButton(
                               width: width * .3,

@@ -115,26 +115,6 @@ class _TiCarouselState extends State<TiCarousel> {
                 setState(() {
                   currentPage = index;
                 });
-                /* switch (index) {
-                  case 0:
-                    setState(() {
-                      _caption ==
-                          "Offrez à votre peau le soin qu'elle mérite et révélez votre éclat naturel avec nos soins du visage de qualité professionnelle !";
-                    });
-                    break;
-                  case 1:
-                    setState(() {
-                      _caption ==
-                          "Détendez-vous complètement et laissez-nous prendre soin de votre corps et de votre esprit";
-                    });
-                    break;
-                  case 2:
-                    setState(() {
-                      _caption ==
-                          "Transformez votre look avec une coupe de cheveux personnalisée qui mettra en valeur votre beauté naturelle.";
-                    });
-                    break;
-                } */
               },
               children: widget.imgList
                   .map((e) => Container(
@@ -147,17 +127,7 @@ class _TiCarouselState extends State<TiCarousel> {
                           fit: BoxFit.cover,
                         ),
                       ))
-                  .toList()
-
-              /* Container(
-                width: widget.width,
-                height: widget.height,
-                clipBehavior: Clip.hardEdge,
-                decoration: BoxDecoration(color: Colors.transparent),
-                child: Image.network(widget.imgList),
-              ), */
-
-              ),
+                  .toList()),
           Positioned(
             top: widget.height * .03,
             left: 10,
@@ -185,15 +155,13 @@ class _TiCarouselState extends State<TiCarousel> {
             top: widget.height * .05,
             right: 10,
             child: GestureDetector(
-              onTap: () {
-                // Vibration.vibrate(amplitude: 30, duration: 30);
-              },
+              onTap: () {},
               child: Container(
                   width: widget.width * .2,
                   height: widget.height * .07,
                   decoration: BoxDecoration(
                       /* border: Border.all(width: 1, color: Colors.white) */),
-                  child: Center(child: Image.asset("assets/logo.png"))),
+                  child: Center(child: Image.asset("assets/logo1.png"))),
             ),
           ),
           Positioned(

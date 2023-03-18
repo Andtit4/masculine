@@ -62,429 +62,442 @@ class _SoinsDuVisageState extends State<SoinsDuVisage> {
               SizedBox(
                 height: height * .03,
               ),
-              Container(
-                  width: width,
-                  height: height * .3,
-                  clipBehavior: Clip.hardEdge,
-                  decoration: BoxDecoration(color: Colors.transparent),
-                  child: Stack(
-                    fit: StackFit.expand,
+              SizedBox(
+                width: width * .9,
+                height: height * .9,
+                child: SingleChildScrollView(
+                  physics: BouncingScrollPhysics(),
+                  child: Column(
                     children: [
-                      Image.network(
-                        "https://images.pexels.com/photos/6001507/pexels-photo-6001507.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-                        fit: BoxFit.cover,
-                      ),
                       Container(
-                        width: width,
-                        height: height * .8,
-                        padding: EdgeInsets.all(width * .04),
-                        decoration: BoxDecoration(
-                            gradient: LinearGradient(
-                                colors: [Colors.black, Colors.transparent],
-                                begin: Alignment.bottomCenter,
-                                end: Alignment.topCenter)),
-                        child: Column(
-                          // crossAxisAlignment: CrossAxisAlignment.end,
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            Row(
-                              children: [
-                                Text(
-                                  'Masculine',
-                                  style: GoogleFonts.poppins(
-                                      fontSize: 16, color: Colors.white),
-                                ),
-                                Container(
-                                  width: width * .1,
-                                  height: 1,
-                                  margin: EdgeInsets.only(
-                                    left: 10,
-                                  ),
-                                  color: Colors.white,
-                                )
-                              ],
-                            ),
-                            SizedBox(
-                              height: 8,
-                            ),
-                            Row(
-                              children: [
-                                Text(
-                                  'Soins du visage',
-                                  style: GoogleFonts.poppins(
-                                      fontSize: 16, color: Colors.white),
-                                ),
-                                /*  Container(
+                          width: width,
+                          height: height * .3,
+                          clipBehavior: Clip.hardEdge,
+                          decoration: BoxDecoration(color: Colors.transparent),
+                          child: Stack(
+                            fit: StackFit.expand,
+                            children: [
+                              Image.network(
+                                "https://images.pexels.com/photos/6001507/pexels-photo-6001507.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+                                fit: BoxFit.cover,
+                              ),
+                              Container(
+                                width: width,
+                                height: height * .8,
+                                padding: EdgeInsets.all(width * .04),
+                                decoration: BoxDecoration(
+                                    gradient: LinearGradient(
+                                        colors: [
+                                      Colors.black,
+                                      Colors.transparent
+                                    ],
+                                        begin: Alignment.bottomCenter,
+                                        end: Alignment.topCenter)),
+                                child: Column(
+                                  // crossAxisAlignment: CrossAxisAlignment.end,
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Text(
+                                          'Masculine',
+                                          style: GoogleFonts.poppins(
+                                              fontSize: 16,
+                                              color: Colors.white),
+                                        ),
+                                        Container(
+                                          width: width * .1,
+                                          height: 1,
+                                          margin: EdgeInsets.only(
+                                            left: 10,
+                                          ),
+                                          color: Colors.white,
+                                        )
+                                      ],
+                                    ),
+                                    SizedBox(
+                                      height: 8,
+                                    ),
+                                    Row(
+                                      children: [
+                                        Text(
+                                          'Soins du visage',
+                                          style: GoogleFonts.poppins(
+                                              fontSize: 16,
+                                              color: Colors.white),
+                                        ),
+                                        /*  Container(
                                   width: width * .08,
                                   height: 1,
                                   margin: EdgeInsets.only(left: 10, right: 10),
                                   color: Colors.white,
                                 ), */
-                                /*  Text(
+                                        /*  Text(
                                   '08h à 18h',
                                   style: GoogleFonts.poppins(
                                       fontSize: 16, color: Colors.white),
                                 ), */
-                              ],
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              )
+                            ],
+                          )),
+                      SizedBox(
+                        height: height * .04,
+                      ),
+                      Container(
+                        width: width * .3,
+                        height: 1,
+                        color: Colors.white,
+                      ),
+                      SizedBox(
+                        height: height * .04,
+                      ),
+                      Column(
+                        children: [
+                          GestureDetector(
+                            onTap: () {
+                              Get.to(
+                                  () => DescribePage(
+                                        img:
+                                            'https://i.shgcdn.com/84402c53-6b0d-4f5a-b8f1-b07ac120f709/-/format/auto/-/preview/3000x3000/-/quality/lighter/',
+                                        title: 'Soins visage gommage simple ',
+                                        desc:
+                                            "Notre service de soins du visage avec un gommage est une méthode que nous utilisons pour éliminer les cellules mortes de la peau et favoriser le renouvellement cellulaire.",
+                                        montant: '12 500 XOF',
+                                      ),
+                                  duration: Duration(milliseconds: 500),
+                                  transition: Transition.leftToRight);
+                              /* Get.to(() => SoinsDesPieds(),
+                          duration: Duration(milliseconds: 500),
+                          transition: Transition.leftToRight); */
+                            },
+                            child: Container(
+                              width: width,
+                              height: height * .2,
+                              clipBehavior: Clip.hardEdge,
+                              decoration:
+                                  BoxDecoration(color: Colors.transparent),
+                              child: Stack(
+                                fit: StackFit.expand,
+                                children: [
+                                  Image.network(
+                                    'https://i.shgcdn.com/84402c53-6b0d-4f5a-b8f1-b07ac120f709/-/format/auto/-/preview/3000x3000/-/quality/lighter/',
+                                    fit: BoxFit.cover,
+                                  ),
+                                  Container(
+                                    width: width,
+                                    height: height * .8,
+                                    padding: EdgeInsets.all(width * .04),
+                                    decoration: BoxDecoration(
+                                        gradient: LinearGradient(
+                                            colors: [
+                                          Colors.black,
+                                          Colors.transparent
+                                        ],
+                                            begin: Alignment.bottomCenter,
+                                            end: Alignment.topCenter)),
+                                    child: Column(
+                                      // crossAxisAlignment: CrossAxisAlignment.end,
+                                      mainAxisAlignment: MainAxisAlignment.end,
+                                      children: [
+                                        Row(
+                                          children: [
+                                            Text(
+                                              'Soins visage gommage simple ',
+                                              style: GoogleFonts.poppins(
+                                                  fontSize: 16,
+                                                  color: Colors.white),
+                                            ),
+                                            Container(
+                                              width: width * .1,
+                                              height: 1,
+                                              margin: EdgeInsets.only(
+                                                left: 10,
+                                              ),
+                                              color: Colors.white,
+                                            )
+                                          ],
+                                        ),
+                                        SizedBox(
+                                          height: 8,
+                                        ),
+                                        Row(
+                                          children: [
+                                            Text(
+                                              '12 500 XOF',
+                                              style: GoogleFonts.poppins(
+                                                  fontSize: 16,
+                                                  color: Colors.white),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                  )
+                                ],
+                              ),
                             ),
-                          ],
-                        ),
+                          ),
+                          SizedBox(
+                            height: height * .03,
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              Get.to(
+                                  () => DescribePage(
+                                        img:
+                                            'https://www.phoenix-barber-institut.fr/photos/550x367/shutterstock_413266930-min.jpg',
+                                        title: 'Soins visage revitalisant',
+                                        desc:
+                                            "Notre service de soins du visage revitalisants est une méthode que nous utilisons pour rafraîchir et tonifier la peau tout en lui redonnant de l'éclat. Ces soins du visage visent à stimuler la circulation sanguine et à oxygéner les cellules de la peau pour améliorer la texture, la fermeté et l'apparence générale du visage",
+                                        montant: '20 000 XOF',
+                                      ),
+                                  duration: Duration(milliseconds: 500),
+                                  transition: Transition.leftToRight);
+                            },
+                            child: Container(
+                              width: width,
+                              height: height * .2,
+                              clipBehavior: Clip.hardEdge,
+                              decoration:
+                                  BoxDecoration(color: Colors.transparent),
+                              child: Stack(
+                                fit: StackFit.expand,
+                                children: [
+                                  Image.network(
+                                    'https://www.phoenix-barber-institut.fr/photos/550x367/shutterstock_413266930-min.jpg',
+                                    fit: BoxFit.cover,
+                                  ),
+                                  Container(
+                                    width: width,
+                                    height: height * .8,
+                                    padding: EdgeInsets.all(width * .04),
+                                    decoration: BoxDecoration(
+                                        gradient: LinearGradient(
+                                            colors: [
+                                          Colors.black,
+                                          Colors.transparent
+                                        ],
+                                            begin: Alignment.bottomCenter,
+                                            end: Alignment.topCenter)),
+                                    child: Column(
+                                      // crossAxisAlignment: CrossAxisAlignment.end,
+                                      mainAxisAlignment: MainAxisAlignment.end,
+                                      children: [
+                                        Row(
+                                          children: [
+                                            Text(
+                                              'Soins visage revitalisant',
+                                              style: GoogleFonts.poppins(
+                                                  fontSize: 16,
+                                                  color: Colors.white),
+                                            ),
+                                            Container(
+                                              width: width * .1,
+                                              height: 1,
+                                              margin: EdgeInsets.only(
+                                                left: 10,
+                                              ),
+                                              color: Colors.white,
+                                            )
+                                          ],
+                                        ),
+                                        SizedBox(
+                                          height: 8,
+                                        ),
+                                        Row(
+                                          children: [
+                                            Text(
+                                              '20 000 XOF',
+                                              style: GoogleFonts.poppins(
+                                                  fontSize: 16,
+                                                  color: Colors.white),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            height: height * .03,
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              Get.to(
+                                  () => DescribePage(
+                                        img:
+                                            'https://www.phoenix-barber-institut.fr/photos/549x366/adobestock_269425555.jpeg',
+                                        title: 'Soins purifiant',
+                                        desc:
+                                            "Notre service de soins du visage purifiants est une méthode que nous utilisons pour nettoyer en profondeur la peau, éliminer les impuretés et réduire les pores dilatés. Ces soins du visage visent à éliminer les toxines, l'excès de sébum et les cellules mortes de la peau qui peuvent causer des problèmes de peau tels que l'acné, les points noirs et les boutons",
+                                        montant: '20 000 XOF',
+                                      ),
+                                  duration: Duration(milliseconds: 500),
+                                  transition: Transition.leftToRight);
+                            },
+                            child: Container(
+                              width: width,
+                              height: height * .2,
+                              clipBehavior: Clip.hardEdge,
+                              decoration:
+                                  BoxDecoration(color: Colors.transparent),
+                              child: Stack(
+                                fit: StackFit.expand,
+                                children: [
+                                  Image.network(
+                                    'https://www.phoenix-barber-institut.fr/photos/549x366/adobestock_269425555.jpeg',
+                                    fit: BoxFit.cover,
+                                  ),
+                                  Container(
+                                    width: width,
+                                    height: height * .8,
+                                    padding: EdgeInsets.all(width * .04),
+                                    decoration: BoxDecoration(
+                                        gradient: LinearGradient(
+                                            colors: [
+                                          Colors.black,
+                                          Colors.transparent
+                                        ],
+                                            begin: Alignment.bottomCenter,
+                                            end: Alignment.topCenter)),
+                                    child: Column(
+                                      // crossAxisAlignment: CrossAxisAlignment.end,
+                                      mainAxisAlignment: MainAxisAlignment.end,
+                                      children: [
+                                        Row(
+                                          children: [
+                                            Text(
+                                              'Soins purifiant',
+                                              style: GoogleFonts.poppins(
+                                                  fontSize: 16,
+                                                  color: Colors.white),
+                                            ),
+                                            Container(
+                                              width: width * .1,
+                                              height: 1,
+                                              margin: EdgeInsets.only(
+                                                left: 10,
+                                              ),
+                                              color: Colors.white,
+                                            )
+                                          ],
+                                        ),
+                                        SizedBox(
+                                          height: 8,
+                                        ),
+                                        Row(
+                                          children: [
+                                            Text(
+                                              '20 000 XOF',
+                                              style: GoogleFonts.poppins(
+                                                  fontSize: 16,
+                                                  color: Colors.white),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            height: height * .03,
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              Get.to(
+                                  () => DescribePage(
+                                        img:
+                                            'https://i0.wp.com/www.lhommetendance.fr/wp-content/uploads/2013/07/gommage-homme2.jpg?w=655&ssl=1',
+                                        title: 'Soins anti-âge',
+                                        desc:
+                                            "Notre service de soins du visage anti-âge est une méthode que nous utilisons pour réduire les signes du vieillissement tels que les rides, les ridules et le relâchement cutané. Ces soins du visage visent à stimuler la production de collagène et d'élastine dans la peau, ce qui peut aider à améliorer sa texture, son élasticité et sa fermeté.",
+                                        montant: '30 000 XOF',
+                                      ),
+                                  duration: Duration(milliseconds: 500),
+                                  transition: Transition.leftToRight);
+                            },
+                            child: Container(
+                              width: width,
+                              height: height * .2,
+                              clipBehavior: Clip.hardEdge,
+                              decoration:
+                                  BoxDecoration(color: Colors.transparent),
+                              child: Stack(
+                                fit: StackFit.expand,
+                                children: [
+                                  Image.network(
+                                    'https://i0.wp.com/www.lhommetendance.fr/wp-content/uploads/2013/07/gommage-homme2.jpg?w=655&ssl=1',
+                                    fit: BoxFit.cover,
+                                  ),
+                                  Container(
+                                    width: width,
+                                    height: height * .8,
+                                    padding: EdgeInsets.all(width * .04),
+                                    decoration: BoxDecoration(
+                                        gradient: LinearGradient(
+                                            colors: [
+                                          Colors.black,
+                                          Colors.transparent
+                                        ],
+                                            begin: Alignment.bottomCenter,
+                                            end: Alignment.topCenter)),
+                                    child: Column(
+                                      // crossAxisAlignment: CrossAxisAlignment.end,
+                                      mainAxisAlignment: MainAxisAlignment.end,
+                                      children: [
+                                        Row(
+                                          children: [
+                                            Text(
+                                              'Soins anti-âge',
+                                              style: GoogleFonts.poppins(
+                                                  fontSize: 16,
+                                                  color: Colors.white),
+                                            ),
+                                            Container(
+                                              width: width * .1,
+                                              height: 1,
+                                              margin: EdgeInsets.only(
+                                                left: 10,
+                                              ),
+                                              color: Colors.white,
+                                            )
+                                          ],
+                                        ),
+                                        SizedBox(
+                                          height: 8,
+                                        ),
+                                        Row(
+                                          children: [
+                                            Text(
+                                              '30 000 XOF',
+                                              style: GoogleFonts.poppins(
+                                                  fontSize: 16,
+                                                  color: Colors.white),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            height: height * .03,
+                          ),
+                        ],
                       )
-                    ],
-                  )),
-              SizedBox(
-                height: height * .04,
-              ),
-              Container(
-                width: width * .3,
-                height: 1,
-                color: Colors.white,
-              ),
-              SizedBox(
-                height: height * .04,
-              ),
-              SizedBox(
-                width: width,
-                height: height * .4,
-                child: SingleChildScrollView(
-                  physics: BouncingScrollPhysics(),
-                  child: Column(
-                    children: [
-                      GestureDetector(
-                        onTap: () {
-                          Get.to(
-                              () => DescribePage(
-                                    img:
-                                        'https://i.shgcdn.com/84402c53-6b0d-4f5a-b8f1-b07ac120f709/-/format/auto/-/preview/3000x3000/-/quality/lighter/',
-                                    title: 'Soins visage gommage simple ',
-                                    desc:
-                                        "Notre service de soins du visage avec un gommage est une méthode que nous utilisons pour éliminer les cellules mortes de la peau et favoriser le renouvellement cellulaire.",
-                                    montant: '12 500 XOF',
-                                  ),
-                              duration: Duration(milliseconds: 500),
-                              transition: Transition.leftToRight);
-                          /* Get.to(() => SoinsDesPieds(),
-                              duration: Duration(milliseconds: 500),
-                              transition: Transition.leftToRight); */
-                        },
-                        child: Container(
-                          width: width,
-                          height: height * .2,
-                          clipBehavior: Clip.hardEdge,
-                          decoration: BoxDecoration(color: Colors.transparent),
-                          child: Stack(
-                            fit: StackFit.expand,
-                            children: [
-                              Image.network(
-                                'https://i.shgcdn.com/84402c53-6b0d-4f5a-b8f1-b07ac120f709/-/format/auto/-/preview/3000x3000/-/quality/lighter/',
-                                fit: BoxFit.cover,
-                              ),
-                              Container(
-                                width: width,
-                                height: height * .8,
-                                padding: EdgeInsets.all(width * .04),
-                                decoration: BoxDecoration(
-                                    gradient: LinearGradient(
-                                        colors: [
-                                      Colors.black,
-                                      Colors.transparent
-                                    ],
-                                        begin: Alignment.bottomCenter,
-                                        end: Alignment.topCenter)),
-                                child: Column(
-                                  // crossAxisAlignment: CrossAxisAlignment.end,
-                                  mainAxisAlignment: MainAxisAlignment.end,
-                                  children: [
-                                    Row(
-                                      children: [
-                                        Text(
-                                          'Soins visage gommage simple ',
-                                          style: GoogleFonts.poppins(
-                                              fontSize: 16,
-                                              color: Colors.white),
-                                        ),
-                                        Container(
-                                          width: width * .1,
-                                          height: 1,
-                                          margin: EdgeInsets.only(
-                                            left: 10,
-                                          ),
-                                          color: Colors.white,
-                                        )
-                                      ],
-                                    ),
-                                    SizedBox(
-                                      height: 8,
-                                    ),
-                                    Row(
-                                      children: [
-                                        Text(
-                                          '12 500 XOF',
-                                          style: GoogleFonts.poppins(
-                                              fontSize: 16,
-                                              color: Colors.white),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        height: height * .03,
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          Get.to(
-                              () => DescribePage(
-                                    img:
-                                        'https://www.phoenix-barber-institut.fr/photos/550x367/shutterstock_413266930-min.jpg',
-                                    title: 'Soins visage revitalisant',
-                                    desc:
-                                        "Notre service de soins du visage revitalisants est une méthode que nous utilisons pour rafraîchir et tonifier la peau tout en lui redonnant de l'éclat. Ces soins du visage visent à stimuler la circulation sanguine et à oxygéner les cellules de la peau pour améliorer la texture, la fermeté et l'apparence générale du visage",
-                                    montant: '20 000 XOF',
-                                  ),
-                              duration: Duration(milliseconds: 500),
-                              transition: Transition.leftToRight);
-                        },
-                        child: Container(
-                          width: width,
-                          height: height * .2,
-                          clipBehavior: Clip.hardEdge,
-                          decoration: BoxDecoration(color: Colors.transparent),
-                          child: Stack(
-                            fit: StackFit.expand,
-                            children: [
-                              Image.network(
-                                'https://www.phoenix-barber-institut.fr/photos/550x367/shutterstock_413266930-min.jpg',
-                                fit: BoxFit.cover,
-                              ),
-                              Container(
-                                width: width,
-                                height: height * .8,
-                                padding: EdgeInsets.all(width * .04),
-                                decoration: BoxDecoration(
-                                    gradient: LinearGradient(
-                                        colors: [
-                                      Colors.black,
-                                      Colors.transparent
-                                    ],
-                                        begin: Alignment.bottomCenter,
-                                        end: Alignment.topCenter)),
-                                child: Column(
-                                  // crossAxisAlignment: CrossAxisAlignment.end,
-                                  mainAxisAlignment: MainAxisAlignment.end,
-                                  children: [
-                                    Row(
-                                      children: [
-                                        Text(
-                                          'Soins visage revitalisant',
-                                          style: GoogleFonts.poppins(
-                                              fontSize: 16,
-                                              color: Colors.white),
-                                        ),
-                                        Container(
-                                          width: width * .1,
-                                          height: 1,
-                                          margin: EdgeInsets.only(
-                                            left: 10,
-                                          ),
-                                          color: Colors.white,
-                                        )
-                                      ],
-                                    ),
-                                    SizedBox(
-                                      height: 8,
-                                    ),
-                                    Row(
-                                      children: [
-                                        Text(
-                                          '20 000 XOF',
-                                          style: GoogleFonts.poppins(
-                                              fontSize: 16,
-                                              color: Colors.white),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        height: height * .03,
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          Get.to(
-                              () => DescribePage(
-                                    img:
-                                        'https://www.phoenix-barber-institut.fr/photos/549x366/adobestock_269425555.jpeg',
-                                    title: 'Soins purifiant',
-                                    desc:
-                                        "Notre service de soins du visage purifiants est une méthode que nous utilisons pour nettoyer en profondeur la peau, éliminer les impuretés et réduire les pores dilatés. Ces soins du visage visent à éliminer les toxines, l'excès de sébum et les cellules mortes de la peau qui peuvent causer des problèmes de peau tels que l'acné, les points noirs et les boutons",
-                                    montant: '20 000 XOF',
-                                  ),
-                              duration: Duration(milliseconds: 500),
-                              transition: Transition.leftToRight);
-                        },
-                        child: Container(
-                          width: width,
-                          height: height * .2,
-                          clipBehavior: Clip.hardEdge,
-                          decoration: BoxDecoration(color: Colors.transparent),
-                          child: Stack(
-                            fit: StackFit.expand,
-                            children: [
-                              Image.network(
-                                'https://www.phoenix-barber-institut.fr/photos/549x366/adobestock_269425555.jpeg',
-                                fit: BoxFit.cover,
-                              ),
-                              Container(
-                                width: width,
-                                height: height * .8,
-                                padding: EdgeInsets.all(width * .04),
-                                decoration: BoxDecoration(
-                                    gradient: LinearGradient(
-                                        colors: [
-                                      Colors.black,
-                                      Colors.transparent
-                                    ],
-                                        begin: Alignment.bottomCenter,
-                                        end: Alignment.topCenter)),
-                                child: Column(
-                                  // crossAxisAlignment: CrossAxisAlignment.end,
-                                  mainAxisAlignment: MainAxisAlignment.end,
-                                  children: [
-                                    Row(
-                                      children: [
-                                        Text(
-                                          'Soins purifiant',
-                                          style: GoogleFonts.poppins(
-                                              fontSize: 16,
-                                              color: Colors.white),
-                                        ),
-                                        Container(
-                                          width: width * .1,
-                                          height: 1,
-                                          margin: EdgeInsets.only(
-                                            left: 10,
-                                          ),
-                                          color: Colors.white,
-                                        )
-                                      ],
-                                    ),
-                                    SizedBox(
-                                      height: 8,
-                                    ),
-                                    Row(
-                                      children: [
-                                        Text(
-                                          '20 000 XOF',
-                                          style: GoogleFonts.poppins(
-                                              fontSize: 16,
-                                              color: Colors.white),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        height: height * .03,
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          Get.to(
-                              () => DescribePage(
-                                    img:
-                                        'https://i0.wp.com/www.lhommetendance.fr/wp-content/uploads/2013/07/gommage-homme2.jpg?w=655&ssl=1',
-                                    title: 'Soins anti-âge',
-                                    desc:
-                                        "Notre service de soins du visage anti-âge est une méthode que nous utilisons pour réduire les signes du vieillissement tels que les rides, les ridules et le relâchement cutané. Ces soins du visage visent à stimuler la production de collagène et d'élastine dans la peau, ce qui peut aider à améliorer sa texture, son élasticité et sa fermeté.",
-                                    montant: '30 000 XOF',
-                                  ),
-                              duration: Duration(milliseconds: 500),
-                              transition: Transition.leftToRight);
-                        },
-                        child: Container(
-                          width: width,
-                          height: height * .2,
-                          clipBehavior: Clip.hardEdge,
-                          decoration: BoxDecoration(color: Colors.transparent),
-                          child: Stack(
-                            fit: StackFit.expand,
-                            children: [
-                              Image.network(
-                                'https://i0.wp.com/www.lhommetendance.fr/wp-content/uploads/2013/07/gommage-homme2.jpg?w=655&ssl=1',
-                                fit: BoxFit.cover,
-                              ),
-                              Container(
-                                width: width,
-                                height: height * .8,
-                                padding: EdgeInsets.all(width * .04),
-                                decoration: BoxDecoration(
-                                    gradient: LinearGradient(
-                                        colors: [
-                                      Colors.black,
-                                      Colors.transparent
-                                    ],
-                                        begin: Alignment.bottomCenter,
-                                        end: Alignment.topCenter)),
-                                child: Column(
-                                  // crossAxisAlignment: CrossAxisAlignment.end,
-                                  mainAxisAlignment: MainAxisAlignment.end,
-                                  children: [
-                                    Row(
-                                      children: [
-                                        Text(
-                                          'Soins anti-âge',
-                                          style: GoogleFonts.poppins(
-                                              fontSize: 16,
-                                              color: Colors.white),
-                                        ),
-                                        Container(
-                                          width: width * .1,
-                                          height: 1,
-                                          margin: EdgeInsets.only(
-                                            left: 10,
-                                          ),
-                                          color: Colors.white,
-                                        )
-                                      ],
-                                    ),
-                                    SizedBox(
-                                      height: 8,
-                                    ),
-                                    Row(
-                                      children: [
-                                        Text(
-                                          '30 000 XOF',
-                                          style: GoogleFonts.poppins(
-                                              fontSize: 16,
-                                              color: Colors.white),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        height: height * .03,
-                      ),
                     ],
                   ),
                 ),
