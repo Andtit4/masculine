@@ -953,6 +953,170 @@ class _CoupePageState extends State<CoupePage> {
                           ),
                         ),
                       ),
+                      SizedBox(
+                        height: height * .03,
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          Get.to(
+                              () => DescribePage(
+                                  img:
+                                      'https://www.dreads-expert.com/wp-content/uploads/2021/06/Dreads-courtes-degrade-scaled.jpg',
+                                  title: 'Coupe + Teinture',
+                                  desc:
+                                      "Notre service de coupe et teinture est une combinaison d'un service de coupe de cheveux et d'un service de teinture des cheveux pour offrir aux clients une transformation de leur coiffure.",
+                                  montant: '7 500 XOF'),
+                              duration: Duration(milliseconds: 500),
+                              transition: Transition.leftToRight);
+                        },
+                        child: Container(
+                          width: width,
+                          height: height * .2,
+                          clipBehavior: Clip.hardEdge,
+                          decoration: BoxDecoration(color: Colors.transparent),
+                          child: Stack(
+                            fit: StackFit.expand,
+                            children: [
+                              Image.network(
+                                'https://www.dreads-expert.com/wp-content/uploads/2021/06/Dreads-courtes-degrade-scaled.jpg',
+                                fit: BoxFit.cover,
+                              ),
+                              Container(
+                                width: width,
+                                height: height * .8,
+                                padding: EdgeInsets.all(width * .04),
+                                decoration: BoxDecoration(
+                                    gradient: LinearGradient(
+                                        colors: [
+                                      Colors.black,
+                                      Colors.transparent
+                                    ],
+                                        begin: Alignment.bottomCenter,
+                                        end: Alignment.topCenter)),
+                                child: Column(
+                                  // crossAxisAlignment: CrossAxisAlignment.end,
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Text(
+                                          'Coupe + Teinture',
+                                          style: GoogleFonts.poppins(
+                                              fontSize: 16,
+                                              color: Colors.white),
+                                        ),
+                                        Container(
+                                          width: width * .1,
+                                          height: 1,
+                                          margin: EdgeInsets.only(
+                                            left: 10,
+                                          ),
+                                          color: Colors.white,
+                                        )
+                                      ],
+                                    ),
+                                    SizedBox(
+                                      height: 8,
+                                    ),
+                                    Row(
+                                      children: [
+                                        Text(
+                                          '7 500 XOF',
+                                          style: GoogleFonts.poppins(
+                                              fontSize: 16,
+                                              color: Colors.white),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: height * .03,
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          Get.to(
+                              () => DescribePage(
+                                  img:
+                                      'https://www.dreads-expert.com/wp-content/uploads/2021/06/Dreads-courtes-degrade-scaled.jpg',
+                                  title: 'Curly Weave',
+                                  desc:
+                                      "Notre service de weave, également connu sous le nom de tissage, est une technique de coiffure qui consiste à ajouter des mèches de cheveux naturels ou synthétiques à la coiffure existante pour créer un look plus volumineux ou plus long.",
+                                  montant: '7 500 XOF'),
+                              duration: Duration(milliseconds: 500),
+                              transition: Transition.leftToRight);
+                        },
+                        child: Container(
+                          width: width,
+                          height: height * .2,
+                          clipBehavior: Clip.hardEdge,
+                          decoration: BoxDecoration(color: Colors.transparent),
+                          child: Stack(
+                            fit: StackFit.expand,
+                            children: [
+                              Image.network(
+                                'https://www.dreads-expert.com/wp-content/uploads/2021/06/Dreads-courtes-degrade-scaled.jpg',
+                                fit: BoxFit.cover,
+                              ),
+                              Container(
+                                width: width,
+                                height: height * .8,
+                                padding: EdgeInsets.all(width * .04),
+                                decoration: BoxDecoration(
+                                    gradient: LinearGradient(
+                                        colors: [
+                                      Colors.black,
+                                      Colors.transparent
+                                    ],
+                                        begin: Alignment.bottomCenter,
+                                        end: Alignment.topCenter)),
+                                child: Column(
+                                  // crossAxisAlignment: CrossAxisAlignment.end,
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Text(
+                                          'Curly Weave',
+                                          style: GoogleFonts.poppins(
+                                              fontSize: 16,
+                                              color: Colors.white),
+                                        ),
+                                        Container(
+                                          width: width * .1,
+                                          height: 1,
+                                          margin: EdgeInsets.only(
+                                            left: 10,
+                                          ),
+                                          color: Colors.white,
+                                        )
+                                      ],
+                                    ),
+                                    SizedBox(
+                                      height: 8,
+                                    ),
+                                    Row(
+                                      children: [
+                                        Text(
+                                          '7 500 XOF',
+                                          style: GoogleFonts.poppins(
+                                              fontSize: 16,
+                                              color: Colors.white),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
                     ],
                   ),
                 ),
