@@ -1,51 +1,28 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:masculine/widget/otp.dart';
 import 'package:masculine/widget/partials/input.dart';
-import 'package:masculine/widget/screens/cat_1/description.dart';
 
-class LoginPage extends StatefulWidget {
-  final DescribePage data;
-  const LoginPage({super.key, required this.data});
+class OtpPage extends StatefulWidget {
+  final String verId;
+  const OtpPage({super.key, required this.verId});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<OtpPage> createState() => _OtpPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _OtpPageState extends State<OtpPage> {
   late double width = MediaQuery.of(context).size.width;
   late double height = MediaQuery.of(context).size.height;
 
-  final otpPin = "";
-  final number = 0;
-  late String verID = "";
+  TextEditingController otpControler = new TextEditingController();
 
-  TextEditingController telController = new TextEditingController();
-
-  Future authenticate() async {
-    var _telController;
-    setState(() {
-       _telController = '+225' + telController.text;
-    });
-    print('gtgg$_telController');
-
-    await FirebaseAuth.instance.verifyPhoneNumber(
-        phoneNumber: _telController,
-        verificationCompleted: (PhoneAuthCredential credential) {
-          showSnackBarText('Auth Completed!');
-        },
-        verificationFailed: (FirebaseAuthException e) {
-          showSnackBarText('Auth failed!');
-        },
-        codeSent: (String verificationId, int? resendToken) {
-          verID = verificationId;
-          showSnackBarText('OTP Send');
-          Get.to(() => OtpPage(verId: verID));
-        },
-        codeAutoRetrievalTimeout: (String verificationId) {});
+  Future<void> verifyOtp() async {
+    print('start');
+    await FirebaseAuth.instance
+        .signInWithCredential(PhoneAuthProvider.credential(
+            verificationId: widget.verId, smsCode: otpControler.text))
+        .whenComplete(() => showSnackBarText('Code de confirmation vérifié'));
   }
 
   @override
@@ -97,7 +74,7 @@ class _LoginPageState extends State<LoginPage> {
                 height: height * .03,
               ),
               Text(
-                'Entrez votre\nnuméro de téléphone',
+                'Entrez votre\ncode de confirmation',
                 style: GoogleFonts.poppins(
                     fontSize: 22,
                     color: Colors.white,
@@ -109,7 +86,7 @@ class _LoginPageState extends State<LoginPage> {
               SizedBox(
                 width: width * .8,
                 child: Text(
-                  "Pour continuer votre rendez-vous veuillez vous authentifier",
+                  "Veuillez entrer le code de vérification",
                   style: GoogleFonts.poppins(color: Colors.white),
                 ),
               ),
@@ -166,8 +143,8 @@ class _LoginPageState extends State<LoginPage> {
                           color: Color.fromARGB(94, 46, 46, 46),
                           hintText: '',
                           height: height * .08,
-                          icon: '+225',
-                          inputController: telController,
+                          icon: '',
+                          inputController: otpControler,
                           keyboardType: TextInputType.phone,
                           readonly: false,
                           width: width * .9)
@@ -180,7 +157,8 @@ class _LoginPageState extends State<LoginPage> {
               ),
               GestureDetector(
                 onTap: () {
-                  authenticate();
+                  /* authenticate(); */
+                  verifyOtp();
                 },
                 child: Container(
                   width: width * .9,
