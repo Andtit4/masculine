@@ -1,5 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:masculine/widget/screens/about.dart';
+import 'package:masculine/widget/screens/comment.dart';
+import 'package:masculine/widget/screens/faq.dart';
+import 'package:masculine/widget/screens/pdc.dart';
+import 'package:masculine/widget/screens/pds.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -76,7 +82,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
+                      /* Text(
                         'Information',
                         style: GoogleFonts.poppins(
                             fontSize: 16,
@@ -121,7 +127,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             ),
                           ),
                         ),
-                      ),
+                      ), */
                       SizedBox(
                         height: height * .02,
                       ),
@@ -132,7 +138,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             fontWeight: FontWeight.bold,
                             color: Colors.white),
                       ),
-                      GestureDetector(
+                      /* GestureDetector(
                         onTap: () {
                           // Vibration.vibrate(amplitude: 30, duration: 30);
                         },
@@ -170,13 +176,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             ),
                           ),
                         ),
-                      ),
+                      ), */
                       SizedBox(
                         height: height * .01,
                       ),
                       GestureDetector(
                         onTap: () {
                           // Vibration.vibrate(amplitude: 30, duration: 30);
+                          Get.to(() => CCM());
                         },
                         child: Container(
                           width: double.infinity,
@@ -218,6 +225,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       ),
                       GestureDetector(
                         onTap: () {
+                          Get.to(() => Faq());
                           // Vibration.vibrate(amplitude: 30, duration: 30);
                         },
                         child: Container(
@@ -232,17 +240,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                /* Container(
-                                width: width * .16,
-                                height: height * .05,
-                                decoration: BoxDecoration(
-                                    color: Color.fromARGB(255, 220, 241, 228),
-                                    /* borderRadius: BorderRadius.circular(25) */),
-                                /* child: FluIcon(
-                                  FluIcons.quoteUpSquare,
-                                  style: FluIconStyles.bulk,
-                                ), */
-                              ), */
                                 Text(
                                   'FAQ',
                                   style:
@@ -261,6 +258,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       GestureDetector(
                         onTap: () {
                           // Vibration.vibrate(amplitude: 30, duration: 30);
+                          Get.to(() => AboutPga());
                         },
                         child: Container(
                           width: double.infinity,
@@ -310,6 +308,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       GestureDetector(
                         onTap: () {
                           // Vibration.vibrate(amplitude: 30, duration: 30);
+                          Get.to(() => PolitiqueS());
                         },
                         child: Container(
                           width: double.infinity,
@@ -352,6 +351,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       GestureDetector(
                         onTap: () {
                           // Vibration.vibrate(amplitude: 30, duration: 30);
+                          Get.to(() => PolitiqueSecu());
                         },
                         child: Container(
                           width: double.infinity,
@@ -382,7 +382,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       ),
                       Center(
                         child: Text(
-                          '©Copyright Komal Technology',
+                          '©Copyright Masculine',
                           style: GoogleFonts.poppins(color: Colors.grey),
                         ),
                       )

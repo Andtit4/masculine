@@ -52,6 +52,7 @@ class _RendezVousState extends State<RendezVous> {
   void initState() {
     super.initState();
     verifyAuth();
+    Api().getDemandeBy(widget.telephoneuser);
   }
 
   @override
@@ -109,7 +110,7 @@ class _RendezVousState extends State<RendezVous> {
                               );
                             }
 
-                            List<RdvModel> data = snapshot.data;
+                            List<RdvModel> data = snapshot.data ?? [];
 
                             print('__ITEM_NB__${data.length}');
 
