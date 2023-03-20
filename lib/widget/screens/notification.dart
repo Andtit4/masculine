@@ -121,41 +121,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
                                   color: select ? Colors.white : Colors.black),
                             ),
                           )
-                          /* Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
-                              Row(
-                                children: [
-                                  Icon(Icons.supervised_user_circle),
-                                  Text(
-                                    'Soin visage',
-                                    style: GoogleFonts.poppins(),
-                                  )
-                                ],
-                              ),
-                              Row(
-                                children: [
-                                  Icon(Icons.history),
-                                  Container(
-                                    // margin: EdgeInsets.only(left: 20),
-                                    child: Text(
-                                      '  En attente',
-                                      style: GoogleFonts.poppins(color: Colors.green),
-                                    ),
-                                  )
-                                ],
-                              ),
-                              Row(
-                                children: [
-                                  Icon(Icons.monetization_on_rounded),
-                                  Text(
-                                    ' 15 000 XOF',
-                                    style: GoogleFonts.poppins(),
-                                  )
-                                ],
-                              )
-                            ],
-                          ), */
+                         
                         ],
                       ),
                     ],

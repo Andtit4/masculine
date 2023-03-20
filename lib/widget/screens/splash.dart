@@ -26,7 +26,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
     return Scaffold(
       body: SingleChildScrollView(
-        physics: BouncingScrollPhysics(),
+        physics: const BouncingScrollPhysics(),
         child: Stack(
           children: [
             TiCarousel(

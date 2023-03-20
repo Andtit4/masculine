@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print, await_only_futures
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -27,7 +29,7 @@ class _OtpPageState extends State<OtpPage> {
 
   late String tel = "";
 
-  TextEditingController otpControler = new TextEditingController();
+  TextEditingController otpControler = TextEditingController();
 
   Future<void> verifyOtp() async {
     // Api().alreadyExiste();

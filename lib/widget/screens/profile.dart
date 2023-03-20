@@ -17,9 +17,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
     return Scaffold(
       backgroundColor: Colors.black,
       body: SingleChildScrollView(
-        physics: BouncingScrollPhysics(),
+        physics: const BouncingScrollPhysics(),
         child: Padding(
-          padding: EdgeInsets.all(15),
+          padding: const EdgeInsets.all(15),
           child: Column(
             children: [
               SizedBox(
@@ -68,7 +68,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               SizedBox(
                 height: height * .02,
               ),
-              Container(
+              SizedBox(
                 width: width,
                 height: height * .8,
                 child: Padding(
@@ -90,7 +90,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         child: Container(
                           width: double.infinity,
                           height: height * .07,
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                               color: Color.fromARGB(94, 46, 46,
                                   46) /* borderRadius: BorderRadius.circular(25) */
                               ),
@@ -115,7 +115,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   style:
                                       GoogleFonts.poppins(color: Colors.white),
                                 ),
-                                Icon(Icons.arrow_right_alt,
+                                const Icon(Icons.arrow_right_alt,
                                     color: Colors.white),
                               ],
                             ),
@@ -139,7 +139,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         child: Container(
                           width: double.infinity,
                           height: height * .07,
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                               color: Color.fromARGB(94, 46, 46,
                                   46) /* borderRadius: BorderRadius.circular(25) */
                               ),
@@ -164,7 +164,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   style:
                                       GoogleFonts.poppins(color: Colors.white),
                                 ),
-                                Icon(Icons.arrow_right_alt,
+                                const Icon(Icons.arrow_right_alt,
                                     color: Colors.white),
                               ],
                             ),
@@ -181,7 +181,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         child: Container(
                           width: double.infinity,
                           height: height * .07,
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                               color: Color.fromARGB(94, 46, 46,
                                   46) /* borderRadius: BorderRadius.circular(25) */
                               ),
@@ -206,7 +206,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   style:
                                       GoogleFonts.poppins(color: Colors.white),
                                 ),
-                                Icon(Icons.arrow_right_alt,
+                                const Icon(Icons.arrow_right_alt,
                                     color: Colors.white),
                               ],
                             ),
@@ -223,7 +223,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         child: Container(
                           width: double.infinity,
                           height: height * .07,
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                               color: Color.fromARGB(94, 46, 46,
                                   46) /* borderRadius: BorderRadius.circular(25) */
                               ),
@@ -248,7 +248,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   style:
                                       GoogleFonts.poppins(color: Colors.white),
                                 ),
-                                Icon(Icons.arrow_right_alt,
+                                const Icon(Icons.arrow_right_alt,
                                     color: Colors.white),
                               ],
                             ),
@@ -265,7 +265,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         child: Container(
                           width: double.infinity,
                           height: height * .07,
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                               color: Color.fromARGB(94, 46, 46,
                                   46) /* borderRadius: BorderRadius.circular(25) */
                               ),
@@ -290,7 +290,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   style:
                                       GoogleFonts.poppins(color: Colors.white),
                                 ),
-                                Icon(Icons.arrow_right_alt,
+                                const Icon(Icons.arrow_right_alt,
                                     color: Colors.white),
                               ],
                             ),
@@ -314,7 +314,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         child: Container(
                           width: double.infinity,
                           height: height * .07,
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                               color: Color.fromARGB(94, 46, 46,
                                   46) /* borderRadius: BorderRadius.circular(25) */
                               ),
@@ -339,7 +339,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   style:
                                       GoogleFonts.poppins(color: Colors.white),
                                 ),
-                                Icon(Icons.arrow_right_alt,
+                                const Icon(Icons.arrow_right_alt,
                                     color: Colors.white),
                               ],
                             ),
@@ -356,7 +356,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         child: Container(
                           width: double.infinity,
                           height: height * .07,
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                             color: Color.fromARGB(94, 46, 46,
                                 46), /* borderRadius: BorderRadius.circular(25) */
                           ),
@@ -370,7 +370,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   style:
                                       GoogleFonts.poppins(color: Colors.white),
                                 ),
-                                Icon(Icons.arrow_right_alt,
+                                const Icon(Icons.arrow_right_alt,
                                     color: Colors.white),
                               ],
                             ),

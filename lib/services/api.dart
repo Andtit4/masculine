@@ -4,9 +4,12 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:masculine/models/rdv.model.dart';
 
 class Api extends StatefulWidget {
-  const Api({super.key});
+  Api({super.key});
+
+  List<RdvModel> rdv = [];
 
   initializeEndPoint(middlware, endpoint) async {
     final url = "https://itchy-woolens-toad.cyclic.app/$middlware/$endpoint";
@@ -73,6 +76,61 @@ class Api extends StatefulWidget {
       // var jsonData = json.decode(response.body);
       print("___INSERT___SUCCESS___demande");
       // return jsonData[0]['nb'];
+    } else {
+      print('___ERROR____${response.statusCode}');
+    }
+  }
+
+  Future getDemandeBy(telephoneuser) async {
+    const middleware = "api/rdv";
+    var endpoint = "?telephoneuser=$telephoneuser";
+    String apiUrl = await initializeEndPoint(middleware, endpoint);
+
+    var response = await http.get(Uri.parse(apiUrl));
+
+    if (response.statusCode == 200) {
+      var jsonData = json.decode(response.body);
+      print("___NUMBER__$telephoneuser");
+      print("___DATA___GET");
+      print("__DATA___${jsonData}");
+      rdv = (jsonData as List<dynamic>)
+          .map((json) => RdvModel.fromJson(json))
+          .toList();
+
+      return rdv;
+      // return jsonData;
+    } else {
+      print('___ERROR____${response.statusCode}');
+    }
+  }
+
+  updateRdv(date_debut, date_fin, date_create, telephoneuser, id_rdv) async {
+    const middleware = "api/rdv";
+    var endpoint = "update";
+    String apiUrl = await initializeEndPoint(middleware, endpoint);
+
+    var response = await http.put(Uri.parse(apiUrl), body: {
+      'date_debut': date_debut.toString(),
+      'date_fin': date_fin.toString(),
+      'date_create': date_create.toString(),
+      'telephoneuser': telephoneuser.toString(),
+      'id_rdv': id_rdv.toString()
+    });
+
+    if (response.statusCode == 200) {
+      print('___UPDATED____');
+    } else {
+      print('___ERROR____${response.statusCode}');
+    }
+  }
+
+  deleteRdv(id_rdv) async {
+    const middleware = "api/rdv";
+    var endpoint = "?id_rdv=$id_rdv";
+    String apiUrl = await initializeEndPoint(middleware, endpoint);
+    var response = await http.delete(Uri.parse(apiUrl));
+    if (response.statusCode == 200) {
+      print('___DELETED____');
     } else {
       print('___ERROR____${response.statusCode}');
     }
