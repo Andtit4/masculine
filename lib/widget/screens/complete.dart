@@ -1,5 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -7,78 +5,22 @@ import 'package:masculine/services/api.dart';
 import 'package:masculine/widget/otp.dart';
 import 'package:masculine/widget/partials/bottom_nav.dart';
 import 'package:masculine/widget/partials/input.dart';
-import 'package:masculine/widget/screens/cat_1/description.dart';
 
-class LoginPage extends StatefulWidget {
-  final DescribePage data;
-  final String heure_debut;
-  final String heure_fin;
-  final String date;
-
-  const LoginPage(
-      {super.key,
-      required this.data,
-      required this.heure_debut,
-      required this.heure_fin,
-      required this.date});
+class CompletePage extends StatefulWidget {
+  final String? data;
+  final OtpPage data1;
+  const CompletePage({super.key, required this.data, required this.data1});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<CompletePage> createState() => _CompletePageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _CompletePageState extends State<CompletePage> {
   late double width = MediaQuery.of(context).size.width;
   late double height = MediaQuery.of(context).size.height;
 
-  final otpPin = "";
-  final number = 0;
-  late String verID = "";
-
-  TextEditingController telController = new TextEditingController();
-
-  authenticate() async {
-    var _telController;
-    setState(() {
-      _telController = '+228' + telController.text;
-    });
-    print('gtgg$_telController');
-
-    var data = await Api().alreadyExiste(telController.text);
-    print('_____$data');
-
-    if (data != 0) {
-      await Api().insertDemande(
-          widget.data.title,
-          widget.data.desc,
-          widget.data.montant,
-          widget.heure_debut,
-          widget.heure_fin,
-          telController.text);
-      showSnackBarText('Votre rendez-vous a bien été envoyé');
-      Get.offAll(() => BottomNavBar(telephoneuser: telController.text));
-    } else {
-      // Get.to(() => OtpPage(verId: verID, telephoneuser: _telController, data: widget));
-
-      await FirebaseAuth.instance.verifyPhoneNumber(
-          phoneNumber: _telController,
-          verificationCompleted: (PhoneAuthCredential credential) {
-            showSnackBarText('Auth Completed!');
-          },
-          verificationFailed: (FirebaseAuthException e) {
-            showSnackBarText('Auth failed!');
-          },
-          codeSent: (String verificationId, int? resendToken) {
-            verID = verificationId;
-            showSnackBarText('OTP Send');
-            Get.to(() => OtpPage(
-                verId: verID, telephoneuser: telController.text, data: widget));
-          },
-          codeAutoRetrievalTimeout: (String verificationId) {});
-    }
-    // print("${data[0]['nb']}");
-
-/*    */
-  }
+  TextEditingController _nomController = new TextEditingController();
+  TextEditingController _prenomController = new TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -99,9 +41,6 @@ class _LoginPageState extends State<LoginPage> {
                 children: [
                   GestureDetector(
                     onTap: () {
-                      setState(() {
-                        telController.text = "";
-                      });
                       Navigator.pop(context);
                     },
                     child: Container(
@@ -132,7 +71,7 @@ class _LoginPageState extends State<LoginPage> {
                 height: height * .03,
               ),
               Text(
-                'Entrez votre\nnuméro de téléphone',
+                'Complètez votre profil',
                 style: GoogleFonts.poppins(
                     fontSize: 22,
                     color: Colors.white,
@@ -144,7 +83,7 @@ class _LoginPageState extends State<LoginPage> {
               SizedBox(
                 width: width * .8,
                 child: Text(
-                  "Pour continuer votre rendez-vous veuillez vous authentifier",
+                  "Veuillez complèter votre profil pour enregistrer votre premier rendez-vous.",
                   style: GoogleFonts.poppins(color: Colors.white),
                 ),
               ),
@@ -191,21 +130,37 @@ class _LoginPageState extends State<LoginPage> {
                             ],
                           ),
                           SizedBox(),
-                          Icon(
+                          SizedBox(),
+
+                          /* Icon(
                             Icons.arrow_downward,
                             color: Colors.white,
-                          )
+                          ) */
                         ],
                       ),
-                      TiInput(
-                          color: Color.fromARGB(94, 46, 46, 46),
-                          hintText: '',
-                          height: height * .08,
-                          icon: '+225',
-                          inputController: telController,
-                          keyboardType: TextInputType.phone,
-                          readonly: false,
-                          width: width * .9)
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          TiInput(
+                              color: Color.fromARGB(94, 46, 46, 46),
+                              hintText: '',
+                              height: height * .08,
+                              icon: 'Nom',
+                              inputController: _nomController,
+                              keyboardType: TextInputType.name,
+                              readonly: false,
+                              width: width * .37),
+                          TiInput(
+                              color: Color.fromARGB(94, 46, 46, 46),
+                              hintText: '',
+                              height: height * .08,
+                              icon: 'Prénom',
+                              inputController: _prenomController,
+                              keyboardType: TextInputType.name,
+                              readonly: false,
+                              width: width * .37),
+                        ],
+                      )
                     ],
                   ),
                 ),
@@ -215,7 +170,20 @@ class _LoginPageState extends State<LoginPage> {
               ),
               GestureDetector(
                 onTap: () {
-                  authenticate();
+                  // authenticate();
+                  print(widget.data);
+                  Api().insertOtp(
+                      _nomController.text, _prenomController.text, widget.data);
+
+                  Api().insertDemande(
+                      widget.data1.data.data.title,
+                      widget.data1.data.data.desc,
+                      widget.data1.data.data.montant,
+                      widget.data1.data.heure_debut,
+                      widget.data1.data.heure_fin,
+                      widget.data1.telephoneuser);
+                  showSnackBarText('Votre rendez-vous a bien été envoyé');
+                  Get.offAll(() => BottomNavBar(telephoneuser: widget.data1.telephoneuser));
                 },
                 child: Container(
                   width: width * .9,
@@ -225,7 +193,7 @@ class _LoginPageState extends State<LoginPage> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        'Vérifier',
+                        'Enregistrer',
                         style: GoogleFonts.poppins(color: Colors.white),
                       ),
                       Icon(

@@ -38,6 +38,7 @@ dependencies:
   flutter_native_splash: ^2.2.19
   get: ^4.6.5
   google_fonts: ^4.0.3
+  http: ^0.13.5
   otp_autofill: ^2.1.0
   pinput: ^2.2.31
   rflutter_alert: ^2.0.4

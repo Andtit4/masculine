@@ -7,7 +7,8 @@ import 'package:masculine/widget/screens/rdv.dart';
 import 'package:sliding_clipped_nav_bar/sliding_clipped_nav_bar.dart';
 
 class BottomNavBar extends StatefulWidget {
-  const BottomNavBar({super.key});
+  final String? telephoneuser;
+  const BottomNavBar({super.key, this.telephoneuser});
 
   @override
   State<BottomNavBar> createState() => _BottomNavBarState();
@@ -41,7 +42,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
           },
           children: [
             HomeScreen(),
-            RendezVous(),
+            RendezVous(telephoneuser: widget.telephoneuser),
             NotificationScreen(),
             ProfileScreen()
           ],

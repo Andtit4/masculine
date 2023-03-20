@@ -27,6 +27,10 @@ class _DescribePageState extends State<DescribePage> {
   late double width = MediaQuery.of(context).size.width;
   late double height = MediaQuery.of(context).size.height;
 
+  late String _date = "";
+  late String _heure_debut = "";
+  late String _heure_fin = "";
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -283,7 +287,91 @@ class _DescribePageState extends State<DescribePage> {
               ),
               GestureDetector(
                 onTap: () {
-                  DatePicker.showDateTimePicker(context,
+                  DatePicker.showDatePicker(
+                    context,
+                    theme: DatePickerTheme(
+                        backgroundColor: Colors.black,
+                        itemStyle: GoogleFonts.poppins(color: Colors.white),
+                        cancelStyle: GoogleFonts.poppins(color: Colors.white)),
+                    showTitleActions: true,
+                    minTime: DateTime(2021, 1, 1),
+                    maxTime: DateTime(2040, 12, 31),
+                    onConfirm: (date) {
+                      setState(() {
+                        _date = date.toString();
+                      });
+                      DatePicker.showTimePicker(context,
+                          theme: DatePickerTheme(
+                              backgroundColor: Colors.black,
+                              itemStyle:
+                                  GoogleFonts.poppins(color: Colors.white),
+                              cancelStyle:
+                                  GoogleFonts.poppins(color: Colors.white)),
+                          onConfirm: (time) {
+                        setState(() {
+                          _heure_debut = time.toString();
+                        });
+                        DatePicker.showTimePicker(context,
+                            theme: DatePickerTheme(
+                                backgroundColor: Colors.black,
+                                itemStyle:
+                                    GoogleFonts.poppins(color: Colors.white),
+                                cancelStyle:
+                                    GoogleFonts.poppins(color: Colors.white)),
+                            onConfirm: (time) {
+                          setState(() {
+                            _heure_fin = time.toString();
+                          });
+                          Alert(
+                              context: context,
+                              desc:
+                                  'Confirmez votre rendez pour ${widget.title} pour le $_date de $_heure_debut à $_heure_fin',
+                              buttons: [
+                                DialogButton(
+                                    width: width * .3,
+                                    color: Colors.black,
+                                    child: Center(
+                                      child: Text(
+                                        'Payement',
+                                        style: GoogleFonts.poppins(
+                                            color: Colors.white),
+                                      ),
+                                    ),
+                                    onPressed: () {
+                                      Navigator.pop(context);
+
+                                      Get.to(
+                                          () => LoginPage(
+                                              data: widget,
+                                              date: _date,
+                                              heure_debut: _heure_debut,
+                                              heure_fin: _heure_fin),
+                                          duration: Duration(milliseconds: 500),
+                                          transition: Transition.rightToLeft);
+
+                                      /*  Get.to(() => PayementScreen(data: widget),
+                                    duration: Duration(milliseconds: 500),
+                                    transition: Transition.rightToLeft); */
+                                    }),
+                                DialogButton(
+                                    width: width * .3,
+                                    color: Colors.red,
+                                    child: Center(
+                                      child: Text(
+                                        'Annuler',
+                                        style: GoogleFonts.poppins(
+                                            color: Colors.white),
+                                      ),
+                                    ),
+                                    onPressed: () {
+                                      Navigator.pop(context);
+                                    })
+                              ]).show();
+                        });
+                      });
+                    },
+                  );
+                  /* DatePicker.showDateTimePicker(context,
                       theme: DatePickerTheme(
                           backgroundColor: Colors.black,
                           itemStyle: GoogleFonts.poppins(color: Colors.white),
@@ -335,7 +423,7 @@ class _DescribePageState extends State<DescribePage> {
                                 Navigator.pop(context);
                               })
                         ]).show();
-                  }, currentTime: DateTime.now(), locale: LocaleType.fr);
+                  }, currentTime: DateTime.now(), locale: LocaleType.fr); */
                 },
                 child: Container(
                   width: double.infinity,

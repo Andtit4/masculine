@@ -1,11 +1,21 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:masculine/services/api.dart';
+import 'package:masculine/widget/login.dart';
 import 'package:masculine/widget/partials/input.dart';
+import 'package:masculine/widget/screens/complete.dart';
 
 class OtpPage extends StatefulWidget {
   final String verId;
-  const OtpPage({super.key, required this.verId});
+  final String? telephoneuser;
+  final LoginPage data;
+  const OtpPage(
+      {super.key,
+      required this.verId,
+      required this.telephoneuser,
+      required this.data});
 
   @override
   State<OtpPage> createState() => _OtpPageState();
@@ -15,14 +25,28 @@ class _OtpPageState extends State<OtpPage> {
   late double width = MediaQuery.of(context).size.width;
   late double height = MediaQuery.of(context).size.height;
 
+  late String tel = "";
+
   TextEditingController otpControler = new TextEditingController();
 
   Future<void> verifyOtp() async {
+    // Api().alreadyExiste();
+
     print('start');
     await FirebaseAuth.instance
         .signInWithCredential(PhoneAuthProvider.credential(
             verificationId: widget.verId, smsCode: otpControler.text))
-        .whenComplete(() => showSnackBarText('Code de confirmation vérifié'));
+        .whenComplete(() async {
+      showSnackBarText('Code de confirmation vérifié');
+      print(widget.telephoneuser);
+
+      tel = await widget.telephoneuser.toString();
+
+      // Api().alreadyExiste(widget.telephoneuser);
+      // print('ççççç___çççç${widget.verId}');
+      Get.offAll(() => CompletePage(data: widget.telephoneuser, data1: widget));
+      // Api().initializeEndPoint(middlware, endpoint)
+    });
   }
 
   @override
@@ -44,6 +68,9 @@ class _OtpPageState extends State<OtpPage> {
                 children: [
                   GestureDetector(
                     onTap: () {
+                      setState(() {
+                        otpControler.text = "";
+                      });
                       Navigator.pop(context);
                     },
                     child: Container(
@@ -187,6 +214,10 @@ class _OtpPageState extends State<OtpPage> {
   }
 
   void showSnackBarText(String text) {
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(text)));
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text(
+      text,
+      style: GoogleFonts.poppins(color: Colors.white),
+    )));
   }
 }

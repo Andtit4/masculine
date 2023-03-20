@@ -134,6 +134,9 @@ class _TiCarouselState extends State<TiCarousel> {
             child: GestureDetector(
               onTap: () {
                 // Vibration.vibrate(amplitude: 30, duration: 30);
+                /* Navigator.of(context).pushAndRemoveUntil(
+                    MaterialPageRoute(builder: (context) => BottomNavBar()),
+                    (Route<dynamic> route) => false); */
                 Get.to(() => BottomNavBar());
               },
               child: Container(

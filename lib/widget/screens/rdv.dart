@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class RendezVous extends StatefulWidget {
-  const RendezVous({super.key});
+  const RendezVous({super.key, String? telephoneuser});
 
   @override
   State<RendezVous> createState() => _RendezVousState();
