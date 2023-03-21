@@ -6,6 +6,7 @@ import 'package:masculine/widget/screens/comment.dart';
 import 'package:masculine/widget/screens/faq.dart';
 import 'package:masculine/widget/screens/pdc.dart';
 import 'package:masculine/widget/screens/pds.dart';
+import 'package:masculine/widget/screens/service_client.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -82,52 +83,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      /* Text(
-                        'Information',
-                        style: GoogleFonts.poppins(
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white),
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          // Vibration.vibrate(amplitude: 30, duration: 30);
-                        },
-                        child: Container(
-                          width: double.infinity,
-                          height: height * .07,
-                          decoration: const BoxDecoration(
-                              color: Color.fromARGB(94, 46, 46,
-                                  46) /* borderRadius: BorderRadius.circular(25) */
-                              ),
-                          child: Padding(
-                            padding: const EdgeInsets.all(10.0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                /* Container(
-                                width: width * .16,
-                                height: height * .05,
-                                decoration: BoxDecoration(
-                                    color: Color.fromARGB(255, 220, 241, 228),
-                                    /* borderRadius: BorderRadius.circular(25) */),
-                                child: FluIcon(
-                                  FluIcons.edit,
-                                  style: FluIconStyles.bulk,
-                                ),
-                              ), */
-                                Text(
-                                  'Information personnelle',
-                                  style:
-                                      GoogleFonts.poppins(color: Colors.white),
-                                ),
-                                const Icon(Icons.arrow_right_alt,
-                                    color: Colors.white),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ), */
                       SizedBox(
                         height: height * .02,
                       ),
@@ -138,8 +93,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             fontWeight: FontWeight.bold,
                             color: Colors.white),
                       ),
-                      /* GestureDetector(
+                      GestureDetector(
                         onTap: () {
+                          Get.to(() => ServiceClient());
                           // Vibration.vibrate(amplitude: 30, duration: 30);
                         },
                         child: Container(
@@ -176,7 +132,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             ),
                           ),
                         ),
-                      ), */
+                      ),
                       SizedBox(
                         height: height * .01,
                       ),

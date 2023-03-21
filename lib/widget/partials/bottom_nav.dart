@@ -68,28 +68,19 @@ class _BottomNavBarState extends State<BottomNavBar> {
           BarItem(
             icon: Icons.home,
             title: 'Home',
-
-
-            // activeColor: Colors.blue,
-            // inactiveColor: Colors.orange,
           ),
           BarItem(
             icon: Icons.calendar_month,
             title: 'Rendez-vous',
-            // activeColor: Colors.yellow,
-            // inactiveColor: Colors.green,
+
           ),
           BarItem(
             icon: Icons.notifications,
             title: 'Notification',
-            // activeColor: Colors.blue,
-            // inactiveColor: Colors.red,
           ),
           BarItem(
             icon: Icons.person,
             title: 'Compte',
-            // activeColor: Colors.cyan,
-            // inactiveColor: Colors.purple,
           ),
         ],
       ),
