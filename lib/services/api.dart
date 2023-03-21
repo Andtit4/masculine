@@ -69,13 +69,51 @@ class Api extends StatefulWidget {
       'montant': montant.toString(),
       'date_debut': date_debut.toString(),
       'date_fin': date_fin.toString(),
-      'telephoneuser': telephoneuser.toString()
+      'telephoneuser': telephoneuser.toString(),
+      'status': 'En attente'
     });
 
     if (response.statusCode == 200) {
       // var jsonData = json.decode(response.body);
       print("___INSERT___SUCCESS___demande");
       // return jsonData[0]['nb'];
+    } else {
+      print('___ERROR____${response.statusCode}');
+    }
+  }
+
+  getTypeUser(telephoneuser) async {
+    const middleware = "api/user";
+    var endpoint = "type?telephoneuser=${telephoneuser.toString()}";
+    String apiUrl = await initializeEndPoint(middleware, endpoint);
+    var response = await http.get(Uri.parse(apiUrl));
+    if (response.statusCode == 200) {
+      var jsonData = json.decode(response.body);
+      print("___INSERT___SUCCESS___${jsonData[0]['type_compte']}");
+      return jsonData[0]['type_compte'];
+    } else {
+      print('___ERROR____${response.statusCode}');
+    }
+  }
+
+  Future getAll() async {
+    const middleware = "api/rdv";
+    var endpoint = "all";
+    String apiUrl = await initializeEndPoint(middleware, endpoint);
+
+    var response = await http.get(Uri.parse(apiUrl));
+
+    if (response.statusCode == 200) {
+      var jsonData = json.decode(response.body);
+      // print("___NUMBER__$telephoneuser");
+      print("ALL___DATA___GET");
+      print("__DATA___${jsonData}");
+      rdv = (jsonData as List<dynamic>)
+          .map((json) => RdvModel.fromJson(json))
+          .toList();
+
+      return rdv;
+      // return jsonData;
     } else {
       print('___ERROR____${response.statusCode}');
     }
@@ -116,6 +154,21 @@ class Api extends StatefulWidget {
       'telephoneuser': telephoneuser.toString(),
       'id_rdv': id_rdv.toString()
     });
+
+    if (response.statusCode == 200) {
+      print('___UPDATED____');
+    } else {
+      print('___ERROR____${response.statusCode}');
+    }
+  }
+
+  updateStatus1(id_rdv) async {
+    const middleware = "api/rdv";
+    var endpoint = "update/status";
+    String apiUrl = await initializeEndPoint(middleware, endpoint);
+
+    var response = await http.put(Uri.parse(apiUrl),
+        body: {'status': 'Reçu', 'id_rdv': id_rdv.toString()});
 
     if (response.statusCode == 200) {
       print('___UPDATED____');

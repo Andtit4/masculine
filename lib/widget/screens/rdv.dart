@@ -7,6 +7,7 @@ import 'package:masculine/services/api.dart';
 import 'package:masculine/services/launcher.dart';
 import 'package:masculine/widget/partials/bottom_nav.dart';
 import 'package:masculine/widget/partials/input.dart';
+import 'package:masculine/widget/screens/admin.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
 class RendezVous extends StatefulWidget {
@@ -21,6 +22,7 @@ class _RendezVousState extends State<RendezVous> {
   late double width = MediaQuery.of(context).size.width;
   late double height = MediaQuery.of(context).size.height;
   late bool showList = false;
+  late bool showAdmin = false;
 
   TextEditingController telController = new TextEditingController();
 
@@ -35,16 +37,23 @@ class _RendezVousState extends State<RendezVous> {
   }
 
   verify() async {
-    var data = await Api().alreadyExiste(telController.text);
-    print("___RESULT__$data");
-    if (data != null) {
-      showSnackBarText('Numéro vérifié!');
-      Get.offAll(() => BottomNavBar(
-            telephoneuser: telController.text,
-          ));
+    var type_user = await Api().getTypeUser(telController.text);
+
+    if (type_user == 'ADMIN') {
+      print("admin");
+      Get.to(() => AdminPage(telephoneuser: telController.text));
     } else {
-      showSnackBarText(
-          "Numéro incorrect ou aucune demande n'est faite avec ce numéro");
+      var data = await Api().alreadyExiste(telController.text);
+      print("___RESULT__$data");
+      if (data != null) {
+        showSnackBarText('Numéro vérifié!');
+        Get.offAll(() => BottomNavBar(
+              telephoneuser: telController.text,
+            ));
+      } else {
+        showSnackBarText(
+            "Numéro incorrect ou aucune demande n'est faite avec ce numéro");
+      }
     }
   }
 
@@ -53,6 +62,8 @@ class _RendezVousState extends State<RendezVous> {
     super.initState();
     verifyAuth();
     Api().getDemandeBy(widget.telephoneuser);
+    Api().getTypeUser(telController.text);
+    // Api().getAll();
   }
 
   @override
@@ -536,7 +547,7 @@ class _RendezVousState extends State<RendezVous> {
                                                 Container(
                                                   // margin: EdgeInsets.only(left: 20),
                                                   child: Text(
-                                                    '  En attente',
+                                                    '  ${data[index].status}',
                                                     style: GoogleFonts.poppins(
                                                         color: Colors.green),
                                                   ),
