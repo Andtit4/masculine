@@ -30,6 +30,17 @@ class _OtpPageState extends State<OtpPage> {
   late String tel = "";
 
   TextEditingController otpControler = TextEditingController();
+  final auth = FirebaseAuth.instance;
+
+  register(String email, String password) async {
+    await auth
+        .createUserWithEmailAndPassword(email: email, password: password)
+        .whenComplete(() {
+      Get.offAll(() => CompletePage(data: widget.telephoneuser, data1: widget));
+    });
+
+    // auth.signInWithCredential();
+  }
 
   Future<void> verifyOtp() async {
     // Api().alreadyExiste();
@@ -173,6 +184,7 @@ class _OtpPageState extends State<OtpPage> {
                           hintText: '',
                           height: height * .08,
                           icon: '',
+                          border: Border.all(width: .1, color: Colors.white),
                           inputController: otpControler,
                           keyboardType: TextInputType.phone,
                           readonly: false,

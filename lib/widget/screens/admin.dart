@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:masculine/models/rdv.model.dart';
 import 'package:masculine/services/api.dart';
 import 'package:masculine/services/launcher.dart';
+import 'package:masculine/widget/screens/chat_admin.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
 class AdminPage extends StatefulWidget {
@@ -361,9 +363,16 @@ class _AdminPageState extends State<AdminPage> {
                                                       )),
                                                   IconButton(
                                                       onPressed: () {
-                                                        Send().launchWhatsApp(
+                                                        Get.to(() =>
+                                                            ChatScreenAdmin(
+                                                              data: data[index],
+                                                              telephoneuser: widget
+                                                                  .telephoneuser,
+                                                            ));
+
+                                                        /* Send().launchWhatsApp(
                                                             22898418900,
-                                                            "Je suis ${data[index].nomuser} pour la réservation de ${data[index].titre}");
+                                                            "Je suis ${data[index].nomuser} pour la réservation de ${data[index].titre}"); */
                                                       },
                                                       icon: Icon(
                                                         Icons.sms,

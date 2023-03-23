@@ -206,6 +206,7 @@ class _LoginPageState extends State<LoginPage> {
                           icon: '+225',
                           inputController: telController,
                           keyboardType: TextInputType.phone,
+                          border: Border.all(width: .1, color: Colors.white),
                           readonly: false,
                           width: width * .9)
                     ],

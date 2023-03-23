@@ -1,7 +1,7 @@
 // ignore_for_file: non_constant_identifier_names
 
 class RdvModel {
-  late int? id_rdv;
+  late int id_rdv;
   late String? titre;
   late String? montant;
   late String? date_debut;

@@ -2,10 +2,20 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:masculine/widget/screens/splash.dart';
+import 'package:masculine/widget/utils/utils.dart';
+import 'package:zego_zimkit/zego_zimkit.dart';
 
 Future<void> main() async {
+  ZIMKit().init(appID: Utils.id, appSign: Utils.signin);
+
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  Firebase.initializeApp();
+  /*  await Firebase.initializeApp(
+      options: FirebaseOptions(
+          apiKey: 'AIzaSyCQ9urMcqSDKRcaprJTNQSxCsCMRQbzq8Q',
+          appId: '1:374156658490:web:05929a23d1f33c52837203',
+          projectId: 'masculine-28efe',
+          messagingSenderId: '374156658490')); */
   runApp(const MyApp());
 }
 

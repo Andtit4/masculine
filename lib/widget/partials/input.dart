@@ -3,24 +3,28 @@ import 'package:google_fonts/google_fonts.dart';
 
 class TiInput extends StatelessWidget {
   final double width;
-  final double height;
+  final double? height;
   final String hintText;
+  final Color? hintColor;
   late String inputValue;
 
-  late TextEditingController inputController;
+  late TextEditingController? inputController;
   final TextInputType keyboardType;
   final String icon;
   final Color color;
+  final BoxBorder? border;
   late bool readonly = false;
 
   TiInput(
       {super.key,
       required this.color,
       required this.hintText,
-      required this.height,
+      this.height,
       required this.icon,
       // required this.inputValue,
-      required this.inputController,
+      this.inputController,
+      this.hintColor,
+      this.border,
       required this.keyboardType,
       required this.readonly,
       required this.width});
@@ -36,19 +40,20 @@ class TiInput extends StatelessWidget {
         height: height,
         margin: EdgeInsets.only(top: 10),
         decoration: BoxDecoration(
-            border: Border.all(width: .1, color: Colors.white),
-            /* borderRadius: const BorderRadius.all(Radius.circular(25)) */),
+          border:
+              border, /* borderRadius: const BorderRadius.all(Radius.circular(25)) */
+        ),
         child: TextField(
           readOnly: readonly,
           keyboardType: keyboardType,
           controller: inputController,
-         style: GoogleFonts.poppins(color: Colors.white), 
+          style: GoogleFonts.poppins(color: Colors.white),
           // controller: _username,
-    
+
           onChanged: ((value) {
             inputValue = value;
             print("Saisie__$inputValue")
-    
+
                 // username = value;
                 /*  telephone_enter = value;
                       print("[+] Saisie : $telephone_enter") */
@@ -57,7 +62,6 @@ class TiInput extends StatelessWidget {
           decoration: InputDecoration(
               filled: true,
               fillColor: color,
-
               prefixIcon: Padding(
                 padding: const EdgeInsets.all(8),
                 child: Container(
@@ -66,12 +70,15 @@ class TiInput extends StatelessWidget {
                     /* clipBehavior: Clip.hardEdge,
                     decoration:
                         BoxDecoration(borderRadius: BorderRadius.circular(15)), */
-                    child: Text(icon, style: GoogleFonts.poppins(color: Colors.white),)),
+                    child: Text(
+                      icon,
+                      style: GoogleFonts.poppins(color: Colors.white),
+                    )),
               ),
               // prefixIconColor: const Color.fromARGB(255, 248, 200, 24),
               // contentPadding: EdgeInsets.all(10),
               hintText: hintText,
-              hintStyle: GoogleFonts.poppins(fontSize: 16),
+              hintStyle: GoogleFonts.poppins(fontSize: 16, color: hintColor),
               enabledBorder: const OutlineInputBorder(
                 // borderRadius: BorderRadius.all(Radius.circular(25)),
                 borderSide: BorderSide.none,

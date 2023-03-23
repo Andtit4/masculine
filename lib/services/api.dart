@@ -4,15 +4,19 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:masculine/models/message.dart';
 import 'package:masculine/models/rdv.model.dart';
 
 class Api extends StatefulWidget {
   Api({super.key});
 
   List<RdvModel> rdv = [];
+  List<Message> message = [];
 
   initializeEndPoint(middlware, endpoint) async {
-    final url = "https://itchy-woolens-toad.cyclic.app/$middlware/$endpoint";
+    final url = "https://masuline-grkb.onrender.com/$middlware/$endpoint";
+    // final url = "http://192.168.100.40:3000/$middlware/$endpoint";
+
     // final middlewarre = ""
     return url;
   }
@@ -26,7 +30,8 @@ class Api extends StatefulWidget {
     var response = await http.post(Uri.parse(apiUrl), body: {
       'nomuser': nomuser,
       'prenomuser': prenomuser,
-      'telephoneuser': telephoneuser
+      'telephoneuser': telephoneuser,
+      'type_compte': 'USER'
     });
 
     if (response.statusCode == 200) {
@@ -84,13 +89,14 @@ class Api extends StatefulWidget {
 
   getTypeUser(telephoneuser) async {
     const middleware = "api/user";
-    var endpoint = "type?telephoneuser=${telephoneuser.toString()}";
+    var endpoint = "?telephoneuser=${telephoneuser.toString()}";
     String apiUrl = await initializeEndPoint(middleware, endpoint);
     var response = await http.get(Uri.parse(apiUrl));
     if (response.statusCode == 200) {
       var jsonData = json.decode(response.body);
-      print("___INSERT___SUCCESS___${jsonData[0]['type_compte']}");
-      return jsonData[0]['type_compte'];
+      print("______TYPE___${jsonData[0]['type_compte'].toString()}");
+      var type = jsonData[0]['type_compte'].toString();
+      return type;
     } else {
       print('___ERROR____${response.statusCode}');
     }
@@ -172,6 +178,46 @@ class Api extends StatefulWidget {
 
     if (response.statusCode == 200) {
       print('___UPDATED____');
+    } else {
+      print('___ERROR____${response.statusCode}');
+    }
+  }
+
+  addMessage(from_num, to_num, content, nom, id_rdv) async {
+    const middleware = "api/message";
+    var endpoint = "create";
+    String apiUrl = await initializeEndPoint(middleware, endpoint);
+
+    var response = await http.post(Uri.parse(apiUrl), body: {
+      'from_num': from_num.toString(),
+      'to_num': to_num.toString(),
+      'content': '${nom.toString()}:  ${content.toString()}',
+      'id_rdv': id_rdv.toString()
+    });
+    if (response.statusCode == 200) {
+      print('___MESSAGE_SEND____');
+    } else {
+      print('___ERROR __WHILE__SENDING____${response.statusCode}');
+    }
+  }
+
+  getMessageBy(id_rdv, from_num) async {
+    const middleware = "api/message";
+    var endpoint = "?id_rdv=$id_rdv&from_num=$from_num";
+    String apiUrl = await initializeEndPoint(middleware, endpoint);
+
+    var response = await http.get(Uri.parse(apiUrl));
+
+    if (response.statusCode == 200) {
+      print('___UPDATED____');
+      var jsonData = json.decode(response.body);
+      // print("___NUMBER__$telephoneuser");
+      print("___MESSAGE");
+      print("__DATA___${jsonData}");
+      message = (jsonData as List<dynamic>)
+          .map((json) => Message.fromJson(json))
+          .toList();
+      return message;
     } else {
       print('___ERROR____${response.statusCode}');
     }

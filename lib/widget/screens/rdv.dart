@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:get/get.dart';
@@ -8,7 +9,9 @@ import 'package:masculine/services/launcher.dart';
 import 'package:masculine/widget/partials/bottom_nav.dart';
 import 'package:masculine/widget/partials/input.dart';
 import 'package:masculine/widget/screens/admin.dart';
+import 'package:masculine/widget/screens/chat.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
+import 'package:zego_zimkit/zego_zimkit.dart';
 
 class RendezVous extends StatefulWidget {
   final String? telephoneuser;
@@ -37,15 +40,19 @@ class _RendezVousState extends State<RendezVous> {
   }
 
   verify() async {
-    var type_user = await Api().getTypeUser(telController.text);
+    final type_user = await Api().getTypeUser(telController.text);
+    print('_____________________TYPE___$type_user');
 
     if (type_user == 'ADMIN') {
-      print("admin");
+      print("\nadmin");
+      await ZIMKit().connectUser(id: 'admin', name: 'admin');
       Get.to(() => AdminPage(telephoneuser: telController.text));
-    } else {
+    } else if (type_user == 'USER') {
       var data = await Api().alreadyExiste(telController.text);
       print("___RESULT__$data");
       if (data != null) {
+        await ZIMKit()
+            .connectUser(id: telController.text, name: telController.text);
         showSnackBarText('Numéro vérifié!');
         Get.offAll(() => BottomNavBar(
               telephoneuser: telController.text,
@@ -61,6 +68,7 @@ class _RendezVousState extends State<RendezVous> {
   void initState() {
     super.initState();
     verifyAuth();
+    verify();
     Api().getDemandeBy(widget.telephoneuser);
     Api().getTypeUser(telController.text);
     // Api().getAll();
@@ -69,6 +77,30 @@ class _RendezVousState extends State<RendezVous> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      /* appBar: AppBar(
+        backgroundColor: Colors.black,
+        elevation: 0,
+        title: Text(
+          'Rendez-vous',
+          style: GoogleFonts.poppins(
+              fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold),
+        ),
+        actions: [
+          PopupMenuButton(
+            itemBuilder: (context) {
+              return [
+                PopupMenuItem(
+                  value: 'New Chat',
+                  child: const ListTile(
+                      leading: Icon(CupertinoIcons.chat_bubble_2_fill),
+                      title: Text('Vos réponses', maxLines: 1)),
+                  onTap: () => Get.to(() => ChatScreen())
+                )
+              ];
+            },
+          ),
+        ],
+      ), */
       backgroundColor: Colors.black,
       body: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
@@ -103,9 +135,9 @@ class _RendezVousState extends State<RendezVous> {
                     fontWeight: FontWeight.bold,
                     color: Colors.white),
               ),
-              SizedBox(
+              /* SizedBox(
                 height: height * .02,
-              ),
+              ), */
               showList == true
                   ? SizedBox(
                       width: width * .9,
@@ -385,9 +417,20 @@ class _RendezVousState extends State<RendezVous> {
                                                             )),
                                                         IconButton(
                                                             onPressed: () {
-                                                              Send().launchWhatsApp(
+                                                              Get.to(() =>
+                                                                  ChatScreen(
+                                                                    telephoneuser:
+                                                                        widget
+                                                                            .telephoneuser,
+                                                                    data: data[
+                                                                        index],
+                                                                  ));
+                                                              /* ZIMKit()
+                                                                  .showDefaultNewPeerChatDialog(
+                                                                      context); */
+                                                              /* Send().launchWhatsApp(
                                                                   22898418900,
-                                                                  "Je suis ${data[index].nomuser} pour la réservation de ${data[index].titre}");
+                                                                  "Je suis ${data[index].nomuser} pour la réservation de ${data[index].titre}"); */
                                                             },
                                                             icon: Icon(
                                                               Icons.sms,
