@@ -87,6 +87,45 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         height: height * .02,
                       ),
                       Text(
+                        'Information générale',
+                        style: GoogleFonts.poppins(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white),
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          Get.to(() => ServiceClient());
+                          // Vibration.vibrate(amplitude: 30, duration: 30);
+                        },
+                        child: Container(
+                          width: double.infinity,
+                          height: height * .07,
+                          decoration: const BoxDecoration(
+                              color: Color.fromARGB(94, 46, 46,
+                                  46) /* borderRadius: BorderRadius.circular(25) */
+                              ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(10.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  'Information personnelle',
+                                  style:
+                                      GoogleFonts.poppins(color: Colors.white),
+                                ),
+                                const Icon(Icons.arrow_right_alt,
+                                    color: Colors.white),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: height * .02,
+                      ),
+                      Text(
                         'Support',
                         style: GoogleFonts.poppins(
                             fontSize: 16,

@@ -43,7 +43,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
           children: [
             HomeScreen(),
             RendezVous(telephoneuser: widget.telephoneuser),
-            NotificationScreen(),
+            NotificationScreen(telephoneuser: widget.telephoneuser),
             ProfileScreen()
           ],
         ),

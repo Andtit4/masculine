@@ -425,12 +425,7 @@ class _RendezVousState extends State<RendezVous> {
                                                                     data: data[
                                                                         index],
                                                                   ));
-                                                              /* ZIMKit()
-                                                                  .showDefaultNewPeerChatDialog(
-                                                                      context); */
-                                                              /* Send().launchWhatsApp(
-                                                                  22898418900,
-                                                                  "Je suis ${data[index].nomuser} pour la réservation de ${data[index].titre}"); */
+    
                                                             },
                                                             icon: Icon(
                                                               Icons.sms,

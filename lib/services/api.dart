@@ -5,6 +5,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:masculine/models/message.dart';
+import 'package:masculine/models/notification.dart';
 import 'package:masculine/models/rdv.model.dart';
 
 class Api extends StatefulWidget {
@@ -12,10 +13,11 @@ class Api extends StatefulWidget {
 
   List<RdvModel> rdv = [];
   List<Message> message = [];
+  List<NotificationModel> notifications = [];
 
   initializeEndPoint(middlware, endpoint) async {
-    final url = "https://masuline-grkb.onrender.com/$middlware/$endpoint";
-    // final url = "http://192.168.100.40:3000/$middlware/$endpoint";
+    // final url = "https://masuline-grkb.onrender.com/$middlware/$endpoint";
+    final url = "http://192.168.100.40:3000/$middlware/$endpoint";
 
     // final middlewarre = ""
     return url;
@@ -56,6 +58,47 @@ class Api extends StatefulWidget {
     }
   }
 
+  // NOTIFICATIONS
+  insertnotif(telephoneuser, content) async {
+    const middleware = "api/notif";
+    var endpoint = "create";
+    String apiUrl = await initializeEndPoint(middleware, endpoint);
+    var response = await http.post(Uri.parse(apiUrl), body: {
+      'telephoneuser': telephoneuser.toString(),
+      'content': content.toString(),
+    });
+
+    if (response.statusCode == 200) {
+      // var jsonData = json.decode(response.body);
+      print("___INSERT___SUCCESS___NOTIFICATION");
+      // return jsonData[0]['nb'];
+    } else {
+      print('___ERROR____${response.statusCode}');
+    }
+  }
+
+  getNotif(telephoneuser) async {
+    const middleware = "api/notif";
+    var endpoint = "all?telephoneuser=$telephoneuser";
+    String apiUrl = await initializeEndPoint(middleware, endpoint);
+    var response = await http.get(Uri.parse(apiUrl));
+    if (response.statusCode == 200) {
+      var jsonData = json.decode(response.body);
+      // print("___NUMBER__$telephoneuser");
+      print("ALL___DATA___GET");
+      print("__DATA___${jsonData}");
+      notifications = (jsonData as List<dynamic>)
+          .map((json) => NotificationModel.fromJson(json))
+          .toList();
+
+      return notifications;
+      // return jsonData;
+    } else {
+      print('___ERROR____${response.statusCode}');
+    }
+    
+  }
+
   insertDemande(
     titre,
     description,
@@ -80,6 +123,9 @@ class Api extends StatefulWidget {
 
     if (response.statusCode == 200) {
       // var jsonData = json.decode(response.body);
+      insertnotif(telephoneuser,
+          'Vous avez fait une demande de $titre pour le montant de $montant ce $date_debut');
+
       print("___INSERT___SUCCESS___demande");
       // return jsonData[0]['nb'];
     } else {
