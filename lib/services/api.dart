@@ -16,8 +16,8 @@ class Api extends StatefulWidget {
   List<NotificationModel> notifications = [];
 
   initializeEndPoint(middlware, endpoint) async {
-    // final url = "https://masuline-grkb.onrender.com/$middlware/$endpoint";
-    final url = "http://192.168.100.40:3000/$middlware/$endpoint";
+    final url = "https://masuline-grkb.onrender.com/$middlware/$endpoint";
+    // final url = "http://192.168.100.40:3000/$middlware/$endpoint";
 
     // final middlewarre = ""
     return url;
