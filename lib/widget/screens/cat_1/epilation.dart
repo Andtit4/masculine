@@ -25,7 +25,7 @@ class _EpilationPageState extends State<EpilationPage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(
-                height: height * .03,
+                height: height * .02,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -36,7 +36,7 @@ class _EpilationPageState extends State<EpilationPage> {
                     },
                     child: Container(
                         width: width * .2,
-                        height: height * .08,
+                        height: height * .05,
                         decoration: BoxDecoration(
                             border: Border.all(width: 1, color: Colors.black)),
                         child: Icon(
@@ -44,6 +44,11 @@ class _EpilationPageState extends State<EpilationPage> {
                           color: Colors.white,
                         )),
                   ),
+                  /*                  Text(
+                    "Service pour homme",
+                    style: GoogleFonts.poppins(
+                        fontSize: 20, fontWeight: FontWeight.bold),
+                  ), */
                   SizedBox(),
                   Container(
                       width: width * .2,
@@ -54,7 +59,7 @@ class _EpilationPageState extends State<EpilationPage> {
                 ],
               ),
               SizedBox(
-                height: height * .03,
+                height: height * .01,
               ),
               SizedBox(
                 width: width * .9,

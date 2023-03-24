@@ -77,7 +77,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    'Welcome \nto Masculine',
+                    'Bienvenue \nà Masculine',
                     style: GoogleFonts.poppins(
                         fontSize: 22,
                         fontWeight: FontWeight.bold,
@@ -221,7 +221,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 mainAxisAlignment: MainAxisAlignment.end,
                                 children: [
                                   Text(
-                                    "Homme",
+                                    "Lui",
                                     style: GoogleFonts.poppins(
                                         color: Colors.white),
                                   )
@@ -265,7 +265,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 mainAxisAlignment: MainAxisAlignment.end,
                                 children: [
                                   Text(
-                                    "Femme",
+                                    "Elle",
                                     style: GoogleFonts.poppins(
                                         color: Colors.white),
                                   )

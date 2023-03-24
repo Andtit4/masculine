@@ -25,7 +25,7 @@ class _PayementScreenState extends State<PayementScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(
-                height: height * .03,
+                height: height * .02,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -35,8 +35,8 @@ class _PayementScreenState extends State<PayementScreen> {
                       Navigator.pop(context);
                     },
                     child: Container(
-                        width: width * .1,
-                        height: height * .08,
+                        width: width * .2,
+                        height: height * .05,
                         decoration: BoxDecoration(
                             border: Border.all(width: 1, color: Colors.black)),
                         child: Icon(
@@ -59,7 +59,7 @@ class _PayementScreenState extends State<PayementScreen> {
                 ],
               ),
               SizedBox(
-                height: height * .03,
+                height: height * .01,
               ),
               Container(
                   width: width,

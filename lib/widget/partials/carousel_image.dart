@@ -3,17 +3,21 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:masculine/services/plug.dart';
 import 'package:masculine/widget/partials/bottom_nav.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class TiCarousel extends StatefulWidget {
   final double width;
   final double height;
   final List<String> imgList;
+  late bool cred;
   // final List<String> caption;
-  const TiCarousel(
+  TiCarousel(
       {super.key,
       required this.height,
       required this.width,
+      required this.cred,
       // required this.caption,
       required this.imgList});
 
@@ -93,11 +97,29 @@ class _TiCarouselState extends State<TiCarousel> {
     });
   }
 
+  change() async {
+    print("__BEFORE__STATE__:${widget.cred}");
+
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    var value = false;
+    var tmp = await PageControl().togglePageShow(value, prefs);
+
+    widget.cred   ==  PageControl().togglePageShowGet(prefs);
+
+    // widget.cred = tmp;
+
+    // 
+
+    print("__CHANGE__STATE__:${widget.cred}");
+  }
+
   @override
   void initState() {
     super.initState();
     _controller = PageController(initialPage: currentPage);
     increment();
+    // change();
   }
 
   @override
@@ -133,6 +155,7 @@ class _TiCarouselState extends State<TiCarousel> {
             left: 10,
             child: GestureDetector(
               onTap: () {
+                change();
                 Get.to(() => BottomNavBar());
               },
               child: Container(

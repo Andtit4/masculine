@@ -31,7 +31,7 @@ class _ServiceHommeState extends State<ServiceHomme> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(
-                height: height * .03,
+                height: height * .02,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -42,7 +42,7 @@ class _ServiceHommeState extends State<ServiceHomme> {
                     },
                     child: Container(
                         width: width * .2,
-                        height: height * .08,
+                        height: height * .05,
                         decoration: BoxDecoration(
                             border: Border.all(width: 1, color: Colors.black)),
                         child: Icon(
@@ -65,7 +65,7 @@ class _ServiceHommeState extends State<ServiceHomme> {
                 ],
               ),
               SizedBox(
-                height: height * .03,
+                height: height * .01,
               ),
               SizedBox(
                 width: width * .9,

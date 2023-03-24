@@ -36,6 +36,8 @@ class _LoginPageState extends State<LoginPage> {
   final number = 0;
   late String verID = "";
 
+  late bool showProgress = false;
+
   TextEditingController telController = new TextEditingController();
 
   authenticate() async {
@@ -218,26 +220,33 @@ class _LoginPageState extends State<LoginPage> {
               ),
               GestureDetector(
                 onTap: () {
+                  setState(() {
+                    showProgress = true;
+                  });
                   authenticate();
                 },
-                child: Container(
-                  width: width * .9,
-                  height: height * .08,
-                  color: Color.fromARGB(94, 46, 46, 46),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'Vérifier',
-                        style: GoogleFonts.poppins(color: Colors.white),
+                child: showProgress == true
+                    ? Container(
+                        width: width * .9,
+                        height: height * .08,
+                        color: Color.fromARGB(94, 46, 46, 46),
+                        child: Center(
+                          child: CircularProgressIndicator(strokeWidth: 1, color: Colors.white,),
+                        ))
+                    : Container(
+                        width: width * .9,
+                        height: height * .08,
+                        color: Color.fromARGB(94, 46, 46, 46),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              'Vérifier',
+                              style: GoogleFonts.poppins(color: Colors.white),
+                            ),
+                          ],
+                        ),
                       ),
-                      Icon(
-                        Icons.arrow_right_alt,
-                        color: Colors.white,
-                      )
-                    ],
-                  ),
-                ),
               )
             ],
           ),

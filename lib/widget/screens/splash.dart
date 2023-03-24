@@ -6,7 +6,8 @@ import 'package:masculine/widget/partials/carousel_image.dart';
 // import 'package:vibration/vibration.dart';
 
 class SplashScreen extends StatefulWidget {
-  const SplashScreen({super.key});
+  late bool cred;
+  SplashScreen({super.key, required this.cred});
 
   @override
   State<SplashScreen> createState() => _SplashScreenState();
@@ -19,6 +20,8 @@ class _SplashScreenState extends State<SplashScreen> {
     "https://images.pexels.com/photos/2061820/pexels-photo-2061820.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
   ];
 
+  
+
   @override
   Widget build(BuildContext context) {
     late double width = MediaQuery.of(context).size.width;
@@ -30,6 +33,7 @@ class _SplashScreenState extends State<SplashScreen> {
         child: Stack(
           children: [
             TiCarousel(
+              cred: widget.cred,
               width: width,
               height: height,
               imgList: imgList,

@@ -43,7 +43,7 @@ class _DescribePageState extends State<DescribePage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(
-                height: height * .03,
+                height: height * .02,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -53,8 +53,8 @@ class _DescribePageState extends State<DescribePage> {
                       Navigator.pop(context);
                     },
                     child: Container(
-                        width: width * .1,
-                        height: height * .08,
+                        width: width * .2,
+                        height: height * .05,
                         decoration: BoxDecoration(
                             border: Border.all(width: 1, color: Colors.black)),
                         child: Icon(
@@ -77,7 +77,7 @@ class _DescribePageState extends State<DescribePage> {
                 ],
               ),
               SizedBox(
-                height: height * .03,
+                height: height * .01,
               ),
               Container(
                   width: width,
@@ -214,12 +214,26 @@ class _DescribePageState extends State<DescribePage> {
                       Container(
                         width: width * .2,
                         height: height * .15,
+                        margin: EdgeInsets.only(right: 10),
+                        clipBehavior: Clip.hardEdge,
+                        decoration: BoxDecoration(
+                            color: Colors.transparent,
+                            borderRadius: BorderRadius.circular(20)),
+                        child: Image.network(
+                          'https://images.pexels.com/photos/3865792/pexels-photo-3865792.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                      Container(
+                        width: width * .2,
+                        height: height * .15,
+                        margin: EdgeInsets.only(right: 10),
+
                         // margin: EdgeInsets.only(right: 2),
                         clipBehavior: Clip.hardEdge,
                         decoration: BoxDecoration(
                             color: Colors.transparent,
-                            shape: BoxShape
-                                .circle /* borderRadius: BorderRadius.circular(25) */),
+                            borderRadius: BorderRadius.circular(20)),
                         child: Image.network(
                           'https://images.pexels.com/photos/3865792/pexels-photo-3865792.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
                           fit: BoxFit.cover,
@@ -228,12 +242,13 @@ class _DescribePageState extends State<DescribePage> {
                       Container(
                         width: width * .2,
                         height: height * .15,
-                        // margin: EdgeInsets.only(right: width * .005),
+                        margin: EdgeInsets.only(right: 10),
+
+                        // margin: EdgeInsets.only(right: 2),
                         clipBehavior: Clip.hardEdge,
                         decoration: BoxDecoration(
                             color: Colors.transparent,
-                            shape: BoxShape
-                                .circle /* borderRadius: BorderRadius.circular(25) */),
+                            borderRadius: BorderRadius.circular(20)),
                         child: Image.network(
                           'https://images.pexels.com/photos/3865792/pexels-photo-3865792.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
                           fit: BoxFit.cover,
@@ -242,12 +257,13 @@ class _DescribePageState extends State<DescribePage> {
                       Container(
                         width: width * .2,
                         height: height * .15,
-                        margin: EdgeInsets.only(right: width * .01),
+                        margin: EdgeInsets.only(right: 10),
+
+                        // margin: EdgeInsets.only(right: 2),
                         clipBehavior: Clip.hardEdge,
                         decoration: BoxDecoration(
                             color: Colors.transparent,
-                            shape: BoxShape
-                                .circle /* borderRadius: BorderRadius.circular(25) */),
+                            borderRadius: BorderRadius.circular(20)),
                         child: Image.network(
                           'https://images.pexels.com/photos/3865792/pexels-photo-3865792.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
                           fit: BoxFit.cover,
@@ -256,26 +272,11 @@ class _DescribePageState extends State<DescribePage> {
                       Container(
                         width: width * .2,
                         height: height * .15,
-                        margin: EdgeInsets.only(right: width * .01),
+                        margin: EdgeInsets.only(right: 10),
                         clipBehavior: Clip.hardEdge,
                         decoration: BoxDecoration(
                             color: Colors.transparent,
-                            shape: BoxShape
-                                .circle /* borderRadius: BorderRadius.circular(25) */),
-                        child: Image.network(
-                          'https://images.pexels.com/photos/3865792/pexels-photo-3865792.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                      Container(
-                        width: width * .2,
-                        height: height * .15,
-                        margin: EdgeInsets.only(right: width * .01),
-                        clipBehavior: Clip.hardEdge,
-                        decoration: BoxDecoration(
-                            color: Colors.transparent,
-                            shape: BoxShape
-                                .circle /* borderRadius: BorderRadius.circular(25) */),
+                            borderRadius: BorderRadius.circular(20)),
                         child: Image.network(
                           'https://images.pexels.com/photos/3865792/pexels-photo-3865792.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
                           fit: BoxFit.cover,
@@ -329,6 +330,19 @@ class _DescribePageState extends State<DescribePage> {
                               buttons: [
                                 DialogButton(
                                     width: width * .3,
+                                    color: Colors.red,
+                                    child: Center(
+                                      child: Text(
+                                        'Annuler',
+                                        style: GoogleFonts.poppins(
+                                            color: Colors.white),
+                                      ),
+                                    ),
+                                    onPressed: () {
+                                      Navigator.pop(context);
+                                    }),
+                                DialogButton(
+                                    width: width * .3,
                                     color: Colors.black,
                                     child: Center(
                                       child: Text(
@@ -353,19 +367,6 @@ class _DescribePageState extends State<DescribePage> {
                                     duration: Duration(milliseconds: 500),
                                     transition: Transition.rightToLeft); */
                                     }),
-                                DialogButton(
-                                    width: width * .3,
-                                    color: Colors.red,
-                                    child: Center(
-                                      child: Text(
-                                        'Annuler',
-                                        style: GoogleFonts.poppins(
-                                            color: Colors.white),
-                                      ),
-                                    ),
-                                    onPressed: () {
-                                      Navigator.pop(context);
-                                    })
                               ]).show();
                         });
                       });
