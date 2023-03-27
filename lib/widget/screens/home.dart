@@ -6,9 +6,11 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:masculine/widget/partials/carousel_image.dart';
 import 'package:masculine/widget/screens/cat_1/service.dart';
 import 'package:masculine/widget/screens/cat_2/service.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+  late String? telephoneuser;
+  HomeScreen({super.key, this.telephoneuser});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -32,17 +34,27 @@ class _HomeScreenState extends State<HomeScreen> {
     'https://www.dreads-expert.com/wp-content/uploads/2021/06/Dreads-courtes-degrade-scaled.jpg',
   ];
   increment() {
-    timer = Timer.periodic(Duration(seconds: 5), (timer) {
+    timer = Timer.periodic(const Duration(seconds: 5), (timer) {
       if (currentPage != 4) {
-        setState(() {
-          currentPage++;
-        });
+        if (this.mounted) {
+          setState(() {
+            currentPage++;
+          });
+        }
       } else {
         _controller.jumpToPage(0);
       }
       _controller.nextPage(
-          duration: Duration(seconds: 1), curve: Curves.easeInOut);
+          duration: const Duration(seconds: 1), curve: Curves.easeInOut);
       print(currentPage);
+    });
+  }
+
+  onInit() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    setState(() {
+      widget.telephoneuser = prefs.getString('tel_key');
     });
   }
 
@@ -50,6 +62,7 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     super.initState();
     _controller = PageController(initialPage: currentPage);
+    onInit();
     increment();
   }
 
@@ -64,7 +77,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       backgroundColor: Colors.black,
       body: SingleChildScrollView(
-        physics: BouncingScrollPhysics(),
+        physics: const BouncingScrollPhysics(),
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Column(
@@ -86,7 +99,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   Container(
                       width: width * .2,
                       height: height * .07,
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                           /* border: Border.all(width: 1, color: Colors.white) */),
                       child: Center(child: Image.asset("assets/logo1.png"))),
                 ],
@@ -98,13 +111,13 @@ class _HomeScreenState extends State<HomeScreen> {
                   width: width,
                   height: height * .3,
                   clipBehavior: Clip.hardEdge,
-                  decoration: BoxDecoration(color: Colors.transparent),
+                  decoration: const BoxDecoration(color: Colors.transparent),
                   child: Stack(
                     fit: StackFit.expand,
                     children: [
                       PageView(
                         scrollDirection: Axis.horizontal,
-                        physics: BouncingScrollPhysics(),
+                        physics: const BouncingScrollPhysics(),
                         controller: _controller,
                         children: imgList
                             .map(
@@ -119,7 +132,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         width: width,
                         height: height * .8,
                         padding: EdgeInsets.all(width * .04),
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                             gradient: LinearGradient(
                                 colors: [Colors.black, Colors.transparent],
                                 begin: Alignment.bottomCenter,
@@ -138,14 +151,14 @@ class _HomeScreenState extends State<HomeScreen> {
                                 Container(
                                   width: width * .1,
                                   height: 1,
-                                  margin: EdgeInsets.only(
+                                  margin: const EdgeInsets.only(
                                     left: 10,
                                   ),
                                   color: Colors.white,
                                 )
                               ],
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 8,
                             ),
                             Row(
@@ -191,15 +204,16 @@ class _HomeScreenState extends State<HomeScreen> {
                 children: [
                   GestureDetector(
                     onTap: () {
-                      Get.to(() => ServiceHomme(),
-                          duration: Duration(milliseconds: 500),
+                      Get.to(() => const ServiceHomme(),
+                          duration: const Duration(milliseconds: 500),
                           transition: Transition.leftToRight);
                     },
                     child: Container(
                       width: width * .45,
                       height: height * .38,
                       clipBehavior: Clip.hardEdge,
-                      decoration: BoxDecoration(color: Colors.transparent),
+                      decoration:
+                          const BoxDecoration(color: Colors.transparent),
                       child: Stack(
                         fit: StackFit.expand,
                         children: [
@@ -210,7 +224,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           Container(
                             width: width * .45,
                             height: double.infinity,
-                            decoration: BoxDecoration(
+                            decoration: const BoxDecoration(
                                 gradient: LinearGradient(
                                     colors: [Colors.black, Colors.transparent],
                                     begin: Alignment.bottomCenter,
@@ -235,15 +249,16 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   GestureDetector(
                     onTap: () {
-                      Get.to(() => ServiceDame(),
-                          duration: Duration(milliseconds: 500),
+                      Get.to(() => const ServiceDame(),
+                          duration: const Duration(milliseconds: 500),
                           transition: Transition.leftToRight);
                     },
                     child: Container(
                       width: width * .45,
                       height: height * .38,
                       clipBehavior: Clip.hardEdge,
-                      decoration: BoxDecoration(color: Colors.transparent),
+                      decoration:
+                          const BoxDecoration(color: Colors.transparent),
                       child: Stack(
                         fit: StackFit.expand,
                         children: [
@@ -254,7 +269,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           Container(
                             width: width * .45,
                             height: double.infinity,
-                            decoration: BoxDecoration(
+                            decoration: const BoxDecoration(
                                 gradient: LinearGradient(
                                     colors: [Colors.black, Colors.transparent],
                                     begin: Alignment.bottomCenter,

@@ -5,9 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:masculine/services/api.dart';
+import 'package:masculine/services/plug.dart';
 import 'package:masculine/widget/login.dart';
 import 'package:masculine/widget/partials/input.dart';
 import 'package:masculine/widget/screens/complete.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class OtpPage extends StatefulWidget {
   final String verId;
@@ -57,6 +59,8 @@ class _OtpPageState extends State<OtpPage> {
 
       // Api().alreadyExiste(widget.telephoneuser);
       // print('ççççç___çççç${widget.verId}');
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      // PageControl().takeUserNumber(tel, prefs);
       Get.offAll(() => CompletePage(data: widget.telephoneuser, data1: widget));
       // Api().initializeEndPoint(middlware, endpoint)
     });

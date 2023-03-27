@@ -49,7 +49,6 @@ dependencies:
   sliding_clipped_nav_bar: ^3.1.0+4
   socket_io_client: ^2.0.1
   url_launcher: ^6.1.10
-  zego_zimkit: ^1.2.0
 
 dev_dependencies:
   flutter_lints: ^2.0.0

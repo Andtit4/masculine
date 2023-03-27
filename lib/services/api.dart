@@ -16,7 +16,10 @@ class Api extends StatefulWidget {
   List<NotificationModel> notifications = [];
 
   initializeEndPoint(middlware, endpoint) async {
-    final url = "https://masuline-grkb.onrender.com/$middlware/$endpoint";
+    // final url = "https://masuline-grkb.onrender.com/$middlware/$endpoint";
+    final url =
+        "https://drab-puce-peacock-gear.cyclic.app/$middlware/$endpoint";
+
     // final url = "http://192.168.100.40:3000/$middlware/$endpoint";
 
     // final middlewarre = ""
@@ -96,7 +99,6 @@ class Api extends StatefulWidget {
     } else {
       print('___ERROR____${response.statusCode}');
     }
-    
   }
 
   insertDemande(
@@ -133,15 +135,16 @@ class Api extends StatefulWidget {
     }
   }
 
-  getTypeUser(telephoneuser) async {
+  Future getTypeUser(telephoneuser) async {
+    print('___FROM_API___$telephoneuser');
     const middleware = "api/user";
     var endpoint = "?telephoneuser=${telephoneuser.toString()}";
     String apiUrl = await initializeEndPoint(middleware, endpoint);
     var response = await http.get(Uri.parse(apiUrl));
     if (response.statusCode == 200) {
-      var jsonData = json.decode(response.body);
-      print("______TYPE___${jsonData[0]['type_compte'].toString()}");
-      var type = jsonData[0]['type_compte'].toString();
+      var jsonData = await json.decode(response.body);
+      print("______TYPE___${jsonData[0]['type_compte']}");
+      var type = jsonData[0]['type_compte'];
       return type;
     } else {
       print('___ERROR____${response.statusCode}');

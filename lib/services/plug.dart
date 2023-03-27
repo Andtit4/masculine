@@ -8,4 +8,12 @@ class PageControl {
   togglePageShowGet(SharedPreferences prefs) {
     return prefs.getBool('show');
   }
+
+  Future<bool> setUserNumber(String value, SharedPreferences prefs) {
+    return prefs.setString('telephoneuser', value);
+  }
+
+  String? getUserNumber(SharedPreferences prefs) {
+    return prefs.getString('telephoneuser');
+  }
 }

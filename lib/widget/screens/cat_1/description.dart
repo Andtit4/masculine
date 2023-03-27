@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:masculine/services/api.dart';
 import 'package:masculine/widget/login.dart';
+import 'package:masculine/widget/partials/bottom_nav.dart';
 import 'package:masculine/widget/screens/cat_1/payement.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class DescribePage extends StatefulWidget {
   final String img;
@@ -351,21 +354,34 @@ class _DescribePageState extends State<DescribePage> {
                                             color: Colors.white),
                                       ),
                                     ),
-                                    onPressed: () {
+                                    onPressed: () async {
                                       Navigator.pop(context);
-
-                                      Get.to(
-                                          () => LoginPage(
-                                              data: widget,
-                                              date: _date,
-                                              heure_debut: _heure_debut,
-                                              heure_fin: _heure_fin),
-                                          duration: Duration(milliseconds: 500),
-                                          transition: Transition.rightToLeft);
-
-                                      /*  Get.to(() => PayementScreen(data: widget),
-                                    duration: Duration(milliseconds: 500),
-                                    transition: Transition.rightToLeft); */
+                                      SharedPreferences prefs =
+                                          await SharedPreferences.getInstance();
+                                      if (prefs.getString('tel_key') != null) {
+                                        Api().insertDemande(
+                                            widget.title,
+                                            widget.desc,
+                                            widget.montant,
+                                            _heure_debut,
+                                            _heure_fin,
+                                            prefs.getString('tel_key'));
+                                        showSnackBarText(
+                                            'Votre rendez-vous a bien été envoyé');
+                                        Get.offAll(() => BottomNavBar(
+                                            telephoneuser:
+                                                prefs.getString('tel_key')));
+                                      } else {
+                                        Get.to(
+                                            () => LoginPage(
+                                                data: widget,
+                                                date: _date,
+                                                heure_debut: _heure_debut,
+                                                heure_fin: _heure_fin),
+                                            duration:
+                                                Duration(milliseconds: 500),
+                                            transition: Transition.rightToLeft);
+                                      }
                                     }),
                               ]).show();
                         });
@@ -445,5 +461,13 @@ class _DescribePageState extends State<DescribePage> {
         ),
       ),
     );
+  }
+
+  void showSnackBarText(String text) {
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text(
+      text,
+      style: GoogleFonts.poppins(color: Colors.white),
+    )));
   }
 }

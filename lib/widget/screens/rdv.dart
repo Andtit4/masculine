@@ -3,19 +3,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:masculine/main.dart';
 import 'package:masculine/models/rdv.model.dart';
 import 'package:masculine/services/api.dart';
 import 'package:masculine/services/launcher.dart';
+import 'package:masculine/services/plug.dart';
 import 'package:masculine/widget/partials/bottom_nav.dart';
 import 'package:masculine/widget/partials/input.dart';
 import 'package:masculine/widget/screens/admin.dart';
 import 'package:masculine/widget/screens/chat.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
-import 'package:zego_zimkit/zego_zimkit.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class RendezVous extends StatefulWidget {
-  final String? telephoneuser;
-  const RendezVous({super.key, this.telephoneuser});
+  late String? telephoneuser;
+  RendezVous({super.key, this.telephoneuser});
 
   @override
   State<RendezVous> createState() => _RendezVousState();
@@ -26,36 +28,46 @@ class _RendezVousState extends State<RendezVous> {
   late double height = MediaQuery.of(context).size.height;
   late bool showList = false;
   late bool showAdmin = false;
+  late bool showProgress = false;
+  late String? teluser = "";
 
   TextEditingController telController = new TextEditingController();
 
-  verifyAuth() {
-    print("__ID__:__${widget.telephoneuser}");
+  verifyAuth() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
 
-    if (widget.telephoneuser != null) {
+    // print("__ID__:__${widget.telephoneuser}");
+    if (prefs.getString('tel_key') != null) {
+       teluser = prefs.getString('tel_key');
+      print('___FROM___THE___MAIN___${prefs.getString('tel_key')}');
       setState(() {
         showList = true;
+        widget.telephoneuser = prefs.getString('tel_key');
       });
+      print('___FROM__1_THE___MAIN___${widget.telephoneuser}');
     }
   }
 
   verify() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
     final type_user = await Api().getTypeUser(telController.text);
     print('_____________________TYPE___$type_user');
+    prefs.setString('tel_key', telController.text);
+    var tmp = prefs.getString('tel_key');
+    print("___TAKING___$tmp");
 
     if (type_user == 'ADMIN') {
       print("\nadmin");
-      await ZIMKit().connectUser(id: 'admin', name: 'admin');
+
       Get.to(() => AdminPage(telephoneuser: telController.text));
     } else if (type_user == 'USER') {
       var data = await Api().alreadyExiste(telController.text);
       print("___RESULT__$data");
       if (data != null) {
-        await ZIMKit()
-            .connectUser(id: telController.text, name: telController.text);
         showSnackBarText('Numéro vérifié!');
         Get.offAll(() => BottomNavBar(
-              telephoneuser: telController.text,
+              telephoneuser: widget.telephoneuser,
             ));
       } else {
         showSnackBarText(
@@ -70,37 +82,12 @@ class _RendezVousState extends State<RendezVous> {
     verifyAuth();
     verify();
     Api().getDemandeBy(widget.telephoneuser);
-    Api().getTypeUser(telController.text);
-    // Api().getAll();
+    Api().getTypeUser(widget.telephoneuser);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      /* appBar: AppBar(
-        backgroundColor: Colors.black,
-        elevation: 0,
-        title: Text(
-          'Rendez-vous',
-          style: GoogleFonts.poppins(
-              fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold),
-        ),
-        actions: [
-          PopupMenuButton(
-            itemBuilder: (context) {
-              return [
-                PopupMenuItem(
-                  value: 'New Chat',
-                  child: const ListTile(
-                      leading: Icon(CupertinoIcons.chat_bubble_2_fill),
-                      title: Text('Vos réponses', maxLines: 1)),
-                  onTap: () => Get.to(() => ChatScreen())
-                )
-              ];
-            },
-          ),
-        ],
-      ), */
       backgroundColor: Colors.black,
       body: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
@@ -147,9 +134,11 @@ class _RendezVousState extends State<RendezVous> {
                           builder:
                               (BuildContext context, AsyncSnapshot snapshot) {
                             if (!snapshot.hasData) {
-                              const CircularProgressIndicator(
-                                strokeWidth: 1,
-                                color: Colors.white,
+                              const Center(
+                                child: CircularProgressIndicator(
+                                  strokeWidth: 1,
+                                  color: Colors.white,
+                                ),
                               );
                             }
 
@@ -425,7 +414,6 @@ class _RendezVousState extends State<RendezVous> {
                                                                     data: data[
                                                                         index],
                                                                   ));
-    
                                                             },
                                                             icon: Icon(
                                                               Icons.sms,
@@ -716,27 +704,38 @@ class _RendezVousState extends State<RendezVous> {
                             GestureDetector(
                               onTap: () {
                                 // authenticate();
+                                setState(() {
+                                  showProgress = true;
+                                });
                                 verify();
                               },
-                              child: Container(
-                                width: width * .9,
-                                height: height * .08,
-                                color: Color.fromARGB(94, 46, 46, 46),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      'Vérifier',
-                                      style: GoogleFonts.poppins(
-                                          color: Colors.white),
+                              child: showProgress == true
+                                  ? Container(
+                                      width: width * .9,
+                                      height: height * .08,
+                                      color: Color.fromARGB(94, 46, 46, 46),
+                                      child: Center(
+                                        child: CircularProgressIndicator(
+                                          strokeWidth: 1,
+                                          color: Colors.white,
+                                        ),
+                                      ))
+                                  : Container(
+                                      width: width * .9,
+                                      height: height * .08,
+                                      color: Color.fromARGB(94, 46, 46, 46),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Text(
+                                            'Connexion',
+                                            style: GoogleFonts.poppins(
+                                                color: Colors.white),
+                                          ),
+                                        ],
+                                      ),
                                     ),
-                                    Icon(
-                                      Icons.arrow_right_alt,
-                                      color: Colors.white,
-                                    )
-                                  ],
-                                ),
-                              ),
                             )
                           ],
                         ),

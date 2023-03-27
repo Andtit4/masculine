@@ -11,13 +11,13 @@ class TiCarousel extends StatefulWidget {
   final double width;
   final double height;
   final List<String> imgList;
-  late bool cred;
+  late bool? cred;
   // final List<String> caption;
   TiCarousel(
       {super.key,
       required this.height,
       required this.width,
-      required this.cred,
+       this.cred,
       // required this.caption,
       required this.imgList});
 
@@ -103,14 +103,11 @@ class _TiCarouselState extends State<TiCarousel> {
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
     var value = false;
-    var tmp = await PageControl().togglePageShow(value, prefs);
-
-    widget.cred   ==  PageControl().togglePageShowGet(prefs);
-
-    // widget.cred = tmp;
-
-    // 
-
+    prefs.setBool('show', value);
+    var tmp = PageControl().togglePageShow(value, prefs);
+    setState(() {
+      widget.cred = prefs.getBool('show');
+    });
     print("__CHANGE__STATE__:${widget.cred}");
   }
 
@@ -227,10 +224,11 @@ class _TiCarouselState extends State<TiCarousel> {
                       ),
                       SizedBox(
                         width: widget.width * .9,
+                        height: widget.height * .08,
                         child: Text(
                           _caption,
                           style: GoogleFonts.poppins(
-                              fontSize: 16, color: Colors.white),
+                              fontSize: 14, color: Colors.white),
                         ),
                       ),
                       SizedBox(

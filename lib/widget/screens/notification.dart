@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:masculine/models/notification.dart';
 import 'package:masculine/services/api.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class NotificationScreen extends StatefulWidget {
-  final String? telephoneuser;
-  const NotificationScreen({super.key, this.telephoneuser});
+  late String? telephoneuser;
+  NotificationScreen({super.key, this.telephoneuser});
 
   @override
   State<NotificationScreen> createState() => _NotificationScreenState();
@@ -15,10 +16,28 @@ class _NotificationScreenState extends State<NotificationScreen> {
   late double width = MediaQuery.of(context).size.width;
   late double height = MediaQuery.of(context).size.height;
   late bool select = false;
+  late String? id = "";
+
+  onInit() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    if (prefs.getString('tel_key') != null) {
+      print('___FROM___THE___MAIN___${prefs.getString('tel_key')}');
+      setState(() {
+        // showList = true;
+        id = prefs.getString('tel_key');
+        
+
+        widget.telephoneuser = id;
+      });
+      print('___FROM___THE___MAIN__R_${widget.telephoneuser}');
+    }
+  }
 
   @override
   void initState() {
     super.initState();
+    onInit();
     Api().getNotif(widget.telephoneuser);
   }
 

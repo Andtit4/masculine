@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:masculine/widget/screens/IG.dart';
 import 'package:masculine/widget/screens/about.dart';
 import 'package:masculine/widget/screens/comment.dart';
 import 'package:masculine/widget/screens/faq.dart';
@@ -9,7 +10,7 @@ import 'package:masculine/widget/screens/pds.dart';
 import 'package:masculine/widget/screens/service_client.dart';
 
 class ProfileScreen extends StatefulWidget {
-  const ProfileScreen({super.key});
+  const ProfileScreen({super.key, String? telephoneuser});
 
   @override
   State<ProfileScreen> createState() => _ProfileScreenState();
@@ -58,18 +59,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         fontWeight: FontWeight.bold,
                         color: Colors.white),
                   ),
-                  /* Container(
-                    width: width * .1,
-                    height: height * .05,
-                    // margin: EdgeInsets.only(left: 10),
-                    color: Colors.black,
-                    child: Center(
-                      child: Text(
-                        '1',
-                        style: GoogleFonts.poppins(color: Colors.white),
-                      ),
-                    ),
-                  ) */
                 ],
               ),
               SizedBox(
@@ -95,7 +84,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       ),
                       GestureDetector(
                         onTap: () {
-                          Get.to(() => ServiceClient());
+                          Get.to(() => InformationGenerale());
                           // Vibration.vibrate(amplitude: 30, duration: 30);
                         },
                         child: Container(
@@ -149,17 +138,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                /* Container(
-                                width: width * .16,
-                                height: height * .05,
-                                decoration: BoxDecoration(
-                                    color: Color.fromARGB(255, 220, 241, 228),
-                                    /* borderRadius: BorderRadius.circular(25) */),
-                                child: FluIcon(
-                                  FluIcons.edit,
-                                  style: FluIconStyles.bulk,
-                                ),
-                              ), */
                                 Text(
                                   'Service Client',
                                   style:

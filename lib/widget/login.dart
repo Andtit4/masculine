@@ -6,10 +6,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:masculine/services/api.dart';
+import 'package:masculine/services/plug.dart';
 import 'package:masculine/widget/otp.dart';
 import 'package:masculine/widget/partials/bottom_nav.dart';
 import 'package:masculine/widget/partials/input.dart';
 import 'package:masculine/widget/screens/cat_1/description.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginPage extends StatefulWidget {
   final DescribePage data;
@@ -40,6 +42,20 @@ class _LoginPageState extends State<LoginPage> {
 
   TextEditingController telController = new TextEditingController();
 
+  onInit() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    if (prefs.getString('tel_key') != null) {
+      Api().insertDemande(
+          widget.data.title,
+          widget.data.desc,
+          widget.data.montant,
+          widget.heure_debut,
+          widget.heure_fin,
+          prefs.getString('tel_key'));
+      showSnackBarText('Votre rendez-vous a bien été envoyé');
+    }
+  }
+
   authenticate() async {
     var _telController;
     setState(() {
@@ -59,17 +75,28 @@ class _LoginPageState extends State<LoginPage> {
           widget.heure_fin,
           telController.text);
       showSnackBarText('Votre rendez-vous a bien été envoyé');
-      Get.offAll(() => BottomNavBar(telephoneuser: telController.text));
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      // PageControl().takeUserNumber(telController.text, prefs);
+      // var telephoneuser = PageControl().getUserNumber(prefs);
+/*       SharedPreferences prefs = await SharedPreferences.getInstance();
+      var tmp = await PageControl().takeUserNumber(telController.text, prefs); */
+      Get.offAll(() =>
+          BottomNavBar(telephoneuser: PageControl().getUserNumber(prefs)));
     } else {
       // Get.to(() => OtpPage(verId: verID, telephoneuser: _telController, data: widget));
 
-      await FirebaseAuth.instance.verifyPhoneNumber(
+      FirebaseAuth auth = FirebaseAuth.instance;
+      await auth.setSettings(appVerificationDisabledForTesting: true);
+      await auth.verifyPhoneNumber(
           phoneNumber: _telController,
           verificationCompleted: (PhoneAuthCredential credential) {
             showSnackBarText('Auth Completed!');
           },
           verificationFailed: (FirebaseAuthException e) {
             showSnackBarText('Auth failed!');
+            setState(() {
+              showProgress = false;
+            });
           },
           codeSent: (String verificationId, int? resendToken) {
             verID = verificationId;
@@ -231,7 +258,10 @@ class _LoginPageState extends State<LoginPage> {
                         height: height * .08,
                         color: Color.fromARGB(94, 46, 46, 46),
                         child: Center(
-                          child: CircularProgressIndicator(strokeWidth: 1, color: Colors.white,),
+                          child: CircularProgressIndicator(
+                            strokeWidth: 1,
+                            color: Colors.white,
+                          ),
                         ))
                     : Container(
                         width: width * .9,
@@ -241,7 +271,7 @@ class _LoginPageState extends State<LoginPage> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
-                              'Vérifier',
+                              'Connexion',
                               style: GoogleFonts.poppins(color: Colors.white),
                             ),
                           ],

@@ -5,11 +5,12 @@ import 'package:masculine/services/api.dart';
 import 'package:masculine/widget/otp.dart';
 import 'package:masculine/widget/partials/bottom_nav.dart';
 import 'package:masculine/widget/partials/input.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class CompletePage extends StatefulWidget {
-  final String? data;
-  final OtpPage data1;
-  const CompletePage({super.key, required this.data, required this.data1});
+  late String? data;
+  late OtpPage data1;
+  CompletePage({super.key, required this.data, required this.data1});
 
   @override
   State<CompletePage> createState() => _CompletePageState();
@@ -21,6 +22,12 @@ class _CompletePageState extends State<CompletePage> {
 
   TextEditingController _nomController = new TextEditingController();
   TextEditingController _prenomController = new TextEditingController();
+
+  onInit() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    var tel = widget.data1.telephoneuser;
+    prefs.setString('tel_key', tel.toString());
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -183,7 +190,8 @@ class _CompletePageState extends State<CompletePage> {
                       widget.data1.data.heure_fin,
                       widget.data1.telephoneuser);
                   showSnackBarText('Votre rendez-vous a bien été envoyé');
-                  Get.offAll(() => BottomNavBar(telephoneuser: widget.data1.telephoneuser));
+                  Get.offAll(() =>
+                      BottomNavBar(telephoneuser: widget.data1.telephoneuser));
                 },
                 child: Container(
                   width: width * .9,

@@ -8,8 +8,6 @@ import 'package:masculine/models/rdv.model.dart';
 import 'package:masculine/services/api.dart';
 import 'package:masculine/widget/partials/input.dart';
 import 'package:masculine/widget/utils/utils.dart';
-import 'package:zego_zimkit/services/services.dart';
-import 'package:zego_zimkit/zego_zimkit.dart';
 
 class ChatScreenAdmin extends StatefulWidget {
   final String? telephoneuser;

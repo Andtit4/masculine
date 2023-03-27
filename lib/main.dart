@@ -7,10 +7,10 @@ import 'package:masculine/widget/screens/home.dart';
 import 'package:masculine/widget/screens/splash.dart';
 import 'package:masculine/widget/utils/utils.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:zego_zimkit/zego_zimkit.dart';
+// import 'package:zego_zimkit/zego_zimkit.dart';
 
 Future<void> main() async {
-  ZIMKit().init(appID: Utils.id, appSign: Utils.signin);
+  // ZIMKit().init(appID: Utils.id, appSign: Utils.signin);
 
   WidgetsFlutterBinding.ensureInitialized();
   Firebase.initializeApp();
@@ -36,15 +36,15 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(id: 'Flutter Demo Home Page'),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
+  const MyHomePage({super.key, this.id});
 
-  final String title;
+  final String? id;
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -53,6 +53,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   late bool shared = false;
   late bool isShow = true;
+  late String id = "";
 
   onInit() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -60,6 +61,13 @@ class _MyHomePageState extends State<MyHomePage> {
       isShow = PageControl().togglePageShowGet(prefs);
     });
     print("________________$isShow");
+
+    if (widget.id != null) {
+      PageControl().setUserNumber(id, prefs);
+      var tmp = PageControl().getUserNumber(prefs);
+      print("________________$tmp");
+    }
+
     return isShow;
   }
 
@@ -73,6 +81,12 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return isShow == true ? SplashScreen(cred: isShow) : BottomNavBar();
+    return isShow == true
+        ? SplashScreen(cred: isShow)
+        : widget.id != null
+            ? BottomNavBar()
+            : BottomNavBar(
+                telephoneuser: widget.id,
+              );
   }
 }
