@@ -30,7 +30,7 @@ class _AboutPgaState extends State<AboutPga> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    SizedBox(),
+                    // SizedBox(),
                     GestureDetector(
                       onTap: () {
                         Navigator.pop(context);
@@ -38,9 +38,9 @@ class _AboutPgaState extends State<AboutPga> {
                       child: Container(
                           width: width * .2,
                           height: height * .08,
-                          decoration: BoxDecoration(
+                          /* decoration: BoxDecoration(
                               border:
-                                  Border.all(width: 1, color: Colors.black)),
+                                  Border.all(width: 1, color: Colors.black)) */
                           child: const Icon(
                             Icons.arrow_back,
                             color: Colors.white,
