@@ -10,7 +10,8 @@ import 'package:masculine/widget/screens/pds.dart';
 import 'package:masculine/widget/screens/service_client.dart';
 
 class ProfileScreen extends StatefulWidget {
-  const ProfileScreen({super.key, String? telephoneuser});
+  late String? telephoneuser;
+   ProfileScreen({super.key, this.telephoneuser});
 
   @override
   State<ProfileScreen> createState() => _ProfileScreenState();
@@ -84,7 +85,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       ),
                       GestureDetector(
                         onTap: () {
-                          Get.to(() => InformationGenerale());
+                          Get.to(
+                              () => InformationGenerale(telephoneuser: widget.telephoneuser));
                           // Vibration.vibrate(amplitude: 30, duration: 30);
                         },
                         child: Container(

@@ -16,7 +16,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
   late double width = MediaQuery.of(context).size.width;
   late double height = MediaQuery.of(context).size.height;
   late bool select = false;
-  late String? id = "";
+  late String id = "";
 
   onInit() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -25,12 +25,11 @@ class _NotificationScreenState extends State<NotificationScreen> {
       print('___FROM___THE___MAIN___${prefs.getString('tel_key')}');
       setState(() {
         // showList = true;
-        id = prefs.getString('tel_key');
-        
+        id = prefs.getString('tel_key')!;
 
         widget.telephoneuser = id;
       });
-      print('___FROM___THE___MAIN__R_${widget.telephoneuser}');
+      print('___FROM___THE___NOTIFICATION__R_${id}');
     }
   }
 
@@ -38,7 +37,8 @@ class _NotificationScreenState extends State<NotificationScreen> {
   void initState() {
     super.initState();
     onInit();
-    Api().getNotif(widget.telephoneuser);
+    Api().getNotif(id);
+    Api().getNbNotif(id);
   }
 
   @override
@@ -102,7 +102,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
                   height: height * .8,
                   width: width * .9,
                   child: FutureBuilder(
-                    future: Api().getNotif(widget.telephoneuser),
+                    future: Api().getNotif(id),
                     builder: (BuildContext context, AsyncSnapshot snapshot) {
                       if (!snapshot.hasData)
                         return Center(

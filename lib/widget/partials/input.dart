@@ -47,6 +47,7 @@ class TiInput extends StatelessWidget {
           readOnly: readonly,
           keyboardType: keyboardType,
           controller: inputController,
+          
           style: GoogleFonts.poppins(color: Colors.white),
           // controller: _username,
 
@@ -65,7 +66,7 @@ class TiInput extends StatelessWidget {
               prefixIcon: Padding(
                 padding: const EdgeInsets.all(8),
                 child: Container(
-                    width: 50,
+                    width: 60,
                     margin: EdgeInsets.only(top: 3),
                     /* clipBehavior: Clip.hardEdge,
                     decoration:

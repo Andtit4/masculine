@@ -17,7 +17,7 @@ class TiCarousel extends StatefulWidget {
       {super.key,
       required this.height,
       required this.width,
-       this.cred,
+      this.cred,
       // required this.caption,
       required this.imgList});
 
@@ -45,54 +45,60 @@ class _TiCarouselState extends State<TiCarousel> {
   increment() {
     timer = Timer.periodic(Duration(seconds: 5), (timer) {
       if (currentPage != 2) {
-        setState(() {
-          currentPage++;
-        });
+        if (mounted)
+          setState(() {
+            currentPage++;
+          });
         switch (currentPage) {
           case 0:
-            setState(() {
-              _caption =
-                  "Offrez à votre peau le soin qu'elle mérite et révélez votre éclat naturel avec nos soins du visage de qualité professionnelle !";
-            });
+            if (mounted)
+              setState(() {
+                _caption =
+                    "Offrez à votre peau le soin qu'elle mérite et révélez votre éclat naturel avec nos soins du visage de qualité professionnelle !";
+              });
             break;
           case 1:
-            setState(() {
-              _caption =
-                  "Détendez-vous complètement et laissez-nous prendre soin de votre corps et de votre esprit";
-            });
+            if (mounted)
+              setState(() {
+                _caption =
+                    "Détendez-vous complètement et laissez-nous prendre soin de votre corps et de votre esprit";
+              });
             break;
           case 2:
-            setState(() {
-              _caption =
-                  "Transformez votre look avec une coupe de cheveux personnalisée qui mettra en valeur votre beauté naturelle.";
-            });
+            if (mounted)
+              setState(() {
+                _caption =
+                    "Transformez votre look avec une coupe de cheveux personnalisée qui mettra en valeur votre beauté naturelle.";
+              });
             break;
         }
       } else {
         _controller.jumpToPage(0);
         switch (currentPage) {
           case 0:
-            setState(() {
-              _caption =
-                  "Offrez à votre peau le soin qu'elle mérite et révélez votre éclat naturel avec nos soins du visage de qualité professionnelle !";
-            });
+            if (mounted)
+              setState(() {
+                _caption =
+                    "Offrez à votre peau le soin qu'elle mérite et révélez votre éclat naturel avec nos soins du visage de qualité professionnelle !";
+              });
             break;
           case 1:
-            setState(() {
-              _caption =
-                  "Détendez-vous complètement et laissez-nous prendre soin de votre corps et de votre esprit";
-            });
+            if (mounted)
+              setState(() {
+                _caption =
+                    "Détendez-vous complètement et laissez-nous prendre soin de votre corps et de votre esprit";
+              });
             break;
           case 2:
-            setState(() {
-              _caption =
-                  "Transformez votre look avec une coupe de cheveux personnalisée qui mettra en valeur votre beauté naturelle.";
-            });
+            if (mounted)
+              setState(() {
+                _caption =
+                    "Transformez votre look avec une coupe de cheveux personnalisée qui mettra en valeur votre beauté naturelle.";
+              });
             break;
         }
       }
-      _controller.nextPage(
-          duration: Duration(seconds: 1), curve: Curves.easeInOut);
+
       print(currentPage);
     });
   }
@@ -115,6 +121,10 @@ class _TiCarouselState extends State<TiCarousel> {
   void initState() {
     super.initState();
     _controller = PageController(initialPage: currentPage);
+    _controller.addListener(() {
+      /* _controller.nextPage(
+          duration: Duration(seconds: 1), curve: Curves.easeInOut); */
+    });
     increment();
     // change();
   }

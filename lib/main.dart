@@ -64,7 +64,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
     if (widget.id != null) {
       PageControl().setUserNumber(id, prefs);
-      var tmp = PageControl().getUserNumber(prefs);
+      // var tmp = PageControl().getUserNumber(prefs);
+      var tmp = prefs.getString('tel_key');
       print("________________$tmp");
     }
 

@@ -7,6 +7,7 @@ import 'package:http/http.dart' as http;
 import 'package:masculine/models/message.dart';
 import 'package:masculine/models/notification.dart';
 import 'package:masculine/models/rdv.model.dart';
+import 'package:masculine/models/user.dart';
 
 class Api extends StatefulWidget {
   Api({super.key});
@@ -14,10 +15,11 @@ class Api extends StatefulWidget {
   List<RdvModel> rdv = [];
   List<Message> message = [];
   List<NotificationModel> notifications = [];
+  List<UserModel> users = [];
 
   initializeEndPoint(middlware, endpoint) async {
     // final url = "https://masuline-grkb.onrender.com/$middlware/$endpoint";
-    final url =
+      final url =
         "https://drab-puce-peacock-gear.cyclic.app/$middlware/$endpoint";
 
     // final url = "http://192.168.100.40:3000/$middlware/$endpoint";
@@ -101,6 +103,22 @@ class Api extends StatefulWidget {
     }
   }
 
+  getNbNotif(telephoneuser) async {
+    const middleware = "api/notif";
+    var endpoint = "nb?telephoneuser=$telephoneuser";
+    String apiUrl = await initializeEndPoint(middleware, endpoint);
+
+    var response = await http.get(Uri.parse(apiUrl));
+
+    if (response.statusCode == 200) {
+      var jsonData = json.decode(response.body);
+      print('___RESPONSE__FROM__API___${jsonData[0]['nb']}');
+      return jsonData[0]['nb'];
+    } else {
+      print('___ERROR____${response.statusCode}');
+    }
+  }
+
   insertDemande(
     titre,
     description,
@@ -135,17 +153,52 @@ class Api extends StatefulWidget {
     }
   }
 
-  Future getTypeUser(telephoneuser) async {
-    print('___FROM_API___$telephoneuser');
+  getTypeUser(telephoneuser) async {
+    print('___FROM_API___GET__NUMBER_FROM__TYPEUSER__$telephoneuser');
     const middleware = "api/user";
     var endpoint = "?telephoneuser=${telephoneuser.toString()}";
     String apiUrl = await initializeEndPoint(middleware, endpoint);
     var response = await http.get(Uri.parse(apiUrl));
     if (response.statusCode == 200) {
       var jsonData = await json.decode(response.body);
-      print("______TYPE___${jsonData[0]['type_compte']}");
-      var type = jsonData[0]['type_compte'];
+      var type = jsonData['type_compte'];
+      print("______TYPE___${type}");
       return type;
+    } else {
+      print('___ERROR____${response.statusCode}');
+    }
+  }
+
+  getUser(telephoneuser) async {
+    print('___FROM_API___GET__USER_INFORMATION__$telephoneuser');
+    const middleware = "api/user";
+    var endpoint = "?telephoneuser=${telephoneuser.toString()}";
+    String apiUrl = await initializeEndPoint(middleware, endpoint);
+    var response = await http.get(Uri.parse(apiUrl));
+    if (response.statusCode == 200) {
+      var jsonData = await json.decode(response.body);
+      users = (jsonData as List<dynamic>)
+          .map((json) => UserModel.fromJson(json))
+          .toList();
+      return users;
+    } else {
+      print('___ERROR____${response.statusCode}');
+    }
+  }
+
+  updateUser(nomuser, prenomuser, telephoneuser, id) async {
+    const middleware = "api/user";
+    var endpoint = "update";
+    String apiUrl = await initializeEndPoint(middleware, endpoint);
+    var response = await http.put(Uri.parse(apiUrl), body: {
+      'nomuser': nomuser.toString(),
+      'prenomuser': prenomuser.toString(),
+      'telephoneuser': telephoneuser.toString(),
+      'id': id.toString()
+    });
+
+    if (response.statusCode == 200) {
+      print('___UPDATED____');
     } else {
       print('___ERROR____${response.statusCode}');
     }
@@ -174,7 +227,7 @@ class Api extends StatefulWidget {
     }
   }
 
-  Future getDemandeBy(telephoneuser) async {
+  getDemandeBy(telephoneuser) async {
     const middleware = "api/rdv";
     var endpoint = "?telephoneuser=$telephoneuser";
     String apiUrl = await initializeEndPoint(middleware, endpoint);
@@ -183,12 +236,14 @@ class Api extends StatefulWidget {
 
     if (response.statusCode == 200) {
       var jsonData = json.decode(response.body);
+      print('__GET_DEMAND_LIST__');
       print("___NUMBER__$telephoneuser");
       print("___DATA___GET");
       print("__DATA___${jsonData}");
       rdv = (jsonData as List<dynamic>)
           .map((json) => RdvModel.fromJson(json))
           .toList();
+      print('__GETTING__FINISH_DEMAND_LIST');
 
       return rdv;
       // return jsonData;

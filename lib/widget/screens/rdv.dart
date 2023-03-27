@@ -29,19 +29,31 @@ class _RendezVousState extends State<RendezVous> {
   late bool showList = false;
   late bool showAdmin = false;
   late bool showProgress = false;
-  late String? teluser = "";
+  late String teluser = "";
+  late String type_user = "";
 
   TextEditingController telController = new TextEditingController();
+
+  onInit() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    var tmp = prefs.getString('tel_key');
+    setState(() {
+      teluser = tmp!;
+      showList = true;
+    });
+    print('___WIDGET__CHANGING__STATES___${teluser}');
+    // /* await */ Api().getTypeUser(prefs.getString('tel_key'));
+    // /* await */ Api().getDemandeBy(prefs.getString('tel_key'));
+  }
 
   verifyAuth() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
     // print("__ID__:__${widget.telephoneuser}");
     if (prefs.getString('tel_key') != null) {
-       teluser = prefs.getString('tel_key');
+      teluser = prefs.getString('tel_key')!;
       print('___FROM___THE___MAIN___${prefs.getString('tel_key')}');
       setState(() {
-        showList = true;
         widget.telephoneuser = prefs.getString('tel_key');
       });
       print('___FROM__1_THE___MAIN___${widget.telephoneuser}');
@@ -51,9 +63,14 @@ class _RendezVousState extends State<RendezVous> {
   verify() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
-    final type_user = await Api().getTypeUser(telController.text);
+    if (telController.text != null) {
+      type_user = await Api().getTypeUser(telController.text);
+      prefs.setString('tel_key', telController.text);
+    } else {
+      type_user = await Api().getTypeUser(prefs.getString('tel_key'));
+    }
+
     print('_____________________TYPE___$type_user');
-    prefs.setString('tel_key', telController.text);
     var tmp = prefs.getString('tel_key');
     print("___TAKING___$tmp");
 
@@ -62,7 +79,7 @@ class _RendezVousState extends State<RendezVous> {
 
       Get.to(() => AdminPage(telephoneuser: telController.text));
     } else if (type_user == 'USER') {
-      var data = await Api().alreadyExiste(telController.text);
+      var data = await Api().alreadyExiste(prefs.getString('tel_key'));
       print("___RESULT__$data");
       if (data != null) {
         showSnackBarText('Numéro vérifié!');
@@ -79,10 +96,9 @@ class _RendezVousState extends State<RendezVous> {
   @override
   void initState() {
     super.initState();
-    verifyAuth();
-    verify();
-    Api().getDemandeBy(widget.telephoneuser);
-    Api().getTypeUser(widget.telephoneuser);
+    onInit();
+    // verifyAuth();
+    // verify();
   }
 
   @override
@@ -130,7 +146,7 @@ class _RendezVousState extends State<RendezVous> {
                       width: width * .9,
                       height: height * .8,
                       child: FutureBuilder(
-                          future: Api().getDemandeBy(widget.telephoneuser),
+                          future: Api().getDemandeBy(teluser),
                           builder:
                               (BuildContext context, AsyncSnapshot snapshot) {
                             if (!snapshot.hasData) {
@@ -561,6 +577,7 @@ class _RendezVousState extends State<RendezVous> {
                                                   child: Text(
                                                     '${data[index].titre}',
                                                     style: GoogleFonts.poppins(
+                                                        fontSize: 12,
                                                         color: Colors.white),
                                                   ),
                                                 )
