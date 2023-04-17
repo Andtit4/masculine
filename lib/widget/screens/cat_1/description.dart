@@ -359,7 +359,11 @@ class _DescribePageState extends State<DescribePage> {
                                       SharedPreferences prefs =
                                           await SharedPreferences.getInstance();
                                       if (prefs.getString('tel_key') != null) {
-                                        Api().insertDemande(
+                                        Get.to(() => PayementScreen(
+                                            data: widget,
+                                            heure_debut: _heure_debut,
+                                            heure_fin: _heure_fin));
+                                        /* Api().insertDemande(
                                             widget.title,
                                             widget.desc,
                                             widget.montant,
@@ -370,7 +374,7 @@ class _DescribePageState extends State<DescribePage> {
                                             'Votre rendez-vous a bien été envoyé');
                                         Get.offAll(() => BottomNavBar(
                                             telephoneuser:
-                                                prefs.getString('tel_key')));
+                                                prefs.getString('tel_key'))); */
                                       } else {
                                         Get.to(
                                             () => LoginPage(

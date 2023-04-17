@@ -1,10 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:masculine/services/api.dart';
+import 'package:masculine/widget/partials/bottom_nav.dart';
 import 'package:masculine/widget/screens/cat_1/description.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class PayementScreen extends StatefulWidget {
   final DescribePage data;
-  const PayementScreen({super.key, required this.data});
+  final String heure_fin;
+  final String heure_debut;
+  const PayementScreen(
+      {super.key,
+      required this.data,
+      required this.heure_debut,
+      required this.heure_fin});
 
   @override
   State<PayementScreen> createState() => _PayementScreenState();
@@ -161,29 +171,63 @@ class _PayementScreenState extends State<PayementScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Container(
-                    width: width * .4,
-                    height: height * .07,
-                    margin: EdgeInsets.only(top: height * .04),
-                    color: Colors.white,
-                    child: Center(
-                      child: Text(
-                        'Espèce',
-                        style: GoogleFonts.poppins(
-                            color: Colors.black, fontSize: 18),
+                  GestureDetector(
+                    onTap: () async {
+                      SharedPreferences prefs =
+                          await SharedPreferences.getInstance();
+                      Api().insertDemande(
+                          widget.data.title,
+                          widget.data.desc,
+                          widget.data.montant,
+                          widget.heure_debut,
+                          widget.heure_fin,
+                          prefs.getString('tel_key'),
+                          'Espece');
+                      showSnackBarText('Votre rendez-vous a bien été envoyé');
+                      Get.offAll(() => BottomNavBar(
+                          telephoneuser: prefs.getString('tel_key')));
+                    },
+                    child: Container(
+                      width: width * .4,
+                      height: height * .07,
+                      margin: EdgeInsets.only(top: height * .04),
+                      color: Colors.white,
+                      child: Center(
+                        child: Text(
+                          'Espèce',
+                          style: GoogleFonts.poppins(
+                              color: Colors.black, fontSize: 18),
+                        ),
                       ),
                     ),
                   ),
-                  Container(
-                    width: width * .4,
-                    height: height * .07,
-                    margin: EdgeInsets.only(top: height * .04),
-                    color: Colors.white,
-                    child: Center(
-                      child: Text(
-                        'Mobile money',
-                        style: GoogleFonts.poppins(
-                            color: Colors.black, fontSize: 18),
+                  GestureDetector(
+                    onTap: () async {
+                      SharedPreferences prefs =
+                          await SharedPreferences.getInstance();
+                      Api().insertDemande(
+                          widget.data.title,
+                          widget.data.desc,
+                          widget.data.montant,
+                          widget.heure_debut,
+                          widget.heure_fin,
+                          prefs.getString('tel_key'),
+                          'Mobile money');
+                      showSnackBarText('Votre rendez-vous a bien été envoyé');
+                      Get.offAll(() => BottomNavBar(
+                          telephoneuser: prefs.getString('tel_key')));
+                    },
+                    child: Container(
+                      width: width * .4,
+                      height: height * .07,
+                      margin: EdgeInsets.only(top: height * .04),
+                      color: Colors.white,
+                      child: Center(
+                        child: Text(
+                          'Mobile money',
+                          style: GoogleFonts.poppins(
+                              color: Colors.black, fontSize: 18),
+                        ),
                       ),
                     ),
                   ),
@@ -194,5 +238,13 @@ class _PayementScreenState extends State<PayementScreen> {
         ),
       ),
     );
+  }
+
+  void showSnackBarText(String text) {
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text(
+      text,
+      style: GoogleFonts.poppins(color: Colors.white),
+    )));
   }
 }

@@ -7,6 +7,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:masculine/services/api.dart';
 import 'package:masculine/services/plug.dart';
 import 'package:masculine/widget/login.dart';
+import 'package:masculine/widget/partials/bottom_nav.dart';
 import 'package:masculine/widget/partials/input.dart';
 import 'package:masculine/widget/screens/complete.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -14,12 +15,12 @@ import 'package:shared_preferences/shared_preferences.dart';
 class OtpPage extends StatefulWidget {
   final String verId;
   final String? telephoneuser;
-  final LoginPage data;
+  // final LoginPage data;
   const OtpPage(
       {super.key,
       required this.verId,
       required this.telephoneuser,
-      required this.data});
+      /* required this.data */});
 
   @override
   State<OtpPage> createState() => _OtpPageState();
@@ -61,7 +62,7 @@ class _OtpPageState extends State<OtpPage> {
       // print('ççççç___çççç${widget.verId}');
       SharedPreferences prefs = await SharedPreferences.getInstance();
       // PageControl().takeUserNumber(tel, prefs);
-      Get.offAll(() => CompletePage(data: widget.telephoneuser, data1: widget));
+      Get.offAll(() => BottomNavBar(telephoneuser: widget.telephoneuser,));
       // Api().initializeEndPoint(middlware, endpoint)
     });
   }

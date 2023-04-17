@@ -511,7 +511,7 @@ class _RendezVousState extends State<RendezVous> {
                                   },
                                   child: Container(
                                     width: double.infinity,
-                                    height: height * .15,
+                                    height: height * .2,
                                     padding: const EdgeInsets.all(15),
                                     // color: Colors.black,
                                     decoration: BoxDecoration(
@@ -530,10 +530,12 @@ class _RendezVousState extends State<RendezVous> {
                                             Row(
                                               children: [
                                                 const Icon(Icons.message,
+                                                size: 18,
                                                     color: Colors.white),
                                                 Text(
                                                   ' TE-${data[index].id_rdv}',
                                                   style: GoogleFonts.poppins(
+                                                    fontSize: 12,
                                                       color: Colors.white),
                                                 )
                                               ],
@@ -541,10 +543,12 @@ class _RendezVousState extends State<RendezVous> {
                                             Row(
                                               children: [
                                                 const Icon(Icons.person,
+                                                size: 18,
                                                     color: Colors.white),
                                                 Text(
                                                   '${data[index].nomuser} ${data[index].prenomuser}',
                                                   style: GoogleFonts.poppins(
+                                                    fontSize: 12,
                                                       color: Colors.white),
                                                 )
                                               ],
@@ -552,10 +556,12 @@ class _RendezVousState extends State<RendezVous> {
                                             Row(
                                               children: [
                                                 const Icon(Icons.calendar_month,
+                                                size: 18,
                                                     color: Colors.white),
                                                 Text(
-                                                  '${date!.day}/${date.month}/${date.year} de ${time_start!.hour}:${time_start.minute}:${time_start.second} à ${time_go!.hour}:${time_go.minute}:${time_go.second}',
+                                                  '${date!.day}/${date.month}/${date.year} de ${time_start!.hour}:${time_start.minute} à ${time_go!.hour}:${time_go.minute}',
                                                   style: GoogleFonts.poppins(
+                                                    fontSize: 12,
                                                       color: Colors.white),
                                                 )
                                               ],
@@ -571,9 +577,10 @@ class _RendezVousState extends State<RendezVous> {
                                                 const Icon(
                                                     Icons
                                                         .supervised_user_circle,
+                                                        size: 18,
                                                     color: Colors.white),
                                                 SizedBox(
-                                                  width: width * .2,
+                                                  width: width * .24,
                                                   child: Text(
                                                     '${data[index].titre}',
                                                     style: GoogleFonts.poppins(
@@ -586,12 +593,14 @@ class _RendezVousState extends State<RendezVous> {
                                             Row(
                                               children: [
                                                 const Icon(Icons.history,
+                                                size: 18,
                                                     color: Colors.white),
                                                 Container(
                                                   // margin: EdgeInsets.only(left: 20),
                                                   child: Text(
                                                     '  ${data[index].status}',
                                                     style: GoogleFonts.poppins(
+                                                      fontSize: 12,
                                                         color: Colors.green),
                                                   ),
                                                 )
@@ -602,10 +611,12 @@ class _RendezVousState extends State<RendezVous> {
                                                 const Icon(
                                                     Icons
                                                         .monetization_on_rounded,
+                                                        size: 18,
                                                     color: Colors.white),
                                                 Text(
                                                   ' ${data[index].montant}',
                                                   style: GoogleFonts.poppins(
+                                                    fontSize: 12,
                                                       color: Colors.white),
                                                 )
                                               ],

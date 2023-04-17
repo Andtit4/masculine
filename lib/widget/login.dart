@@ -11,6 +11,7 @@ import 'package:masculine/widget/otp.dart';
 import 'package:masculine/widget/partials/bottom_nav.dart';
 import 'package:masculine/widget/partials/input.dart';
 import 'package:masculine/widget/screens/cat_1/description.dart';
+import 'package:masculine/widget/screens/cat_1/payement.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginPage extends StatefulWidget {
@@ -45,13 +46,13 @@ class _LoginPageState extends State<LoginPage> {
   onInit() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     if (prefs.getString('tel_key') != null) {
-      Api().insertDemande(
+      /* Api().insertDemande(
           widget.data.title,
           widget.data.desc,
           widget.data.montant,
           widget.heure_debut,
           widget.heure_fin,
-          prefs.getString('tel_key'));
+          prefs.getString('tel_key')); */
       showSnackBarText('Votre rendez-vous a bien été envoyé');
     }
   }
@@ -67,24 +68,15 @@ class _LoginPageState extends State<LoginPage> {
     print('_____$data');
 
     if (data != 0) {
-      await Api().insertDemande(
-          widget.data.title,
-          widget.data.desc,
-          widget.data.montant,
-          widget.heure_debut,
-          widget.heure_fin,
-          telController.text);
-      showSnackBarText('Votre rendez-vous a bien été envoyé');
       SharedPreferences prefs = await SharedPreferences.getInstance();
-      // PageControl().takeUserNumber(telController.text, prefs);
-      // var telephoneuser = PageControl().getUserNumber(prefs);
-/*       SharedPreferences prefs = await SharedPreferences.getInstance();
-      var tmp = await PageControl().takeUserNumber(telController.text, prefs); */
-      Get.offAll(() =>
-          BottomNavBar(telephoneuser: PageControl().getUserNumber(prefs)));
-    } else {
-      // Get.to(() => OtpPage(verId: verID, telephoneuser: _telController, data: widget));
+      prefs.setString('tel_key', _telController.text);
 
+      Get.offAll(() => PayementScreen(
+            data: widget.data,
+            heure_debut: widget.heure_debut,
+            heure_fin: widget.heure_fin,
+          ));
+    } else {
       FirebaseAuth auth = FirebaseAuth.instance;
       await auth.setSettings(appVerificationDisabledForTesting: true);
       await auth.verifyPhoneNumber(
@@ -102,7 +94,7 @@ class _LoginPageState extends State<LoginPage> {
             verID = verificationId;
             showSnackBarText('OTP Send');
             Get.to(() => OtpPage(
-                verId: verID, telephoneuser: telController.text, data: widget));
+                verId: verID, telephoneuser: telController.text));
           },
           codeAutoRetrievalTimeout: (String verificationId) {});
     }

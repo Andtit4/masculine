@@ -2,6 +2,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:masculine/services/plug.dart';
+import 'package:masculine/sign.dart';
+import 'package:masculine/widget/login.dart';
 import 'package:masculine/widget/partials/bottom_nav.dart';
 import 'package:masculine/widget/screens/home.dart';
 import 'package:masculine/widget/screens/splash.dart';
@@ -53,7 +55,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   late bool shared = false;
   late bool isShow = true;
-  late String id = "";
+  late String idtel = "";
 
   onInit() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -63,10 +65,11 @@ class _MyHomePageState extends State<MyHomePage> {
     print("________________$isShow");
 
     if (widget.id != null) {
-      PageControl().setUserNumber(id, prefs);
+      // PageControl().setUserNumber(id, prefs);
       // var tmp = PageControl().getUserNumber(prefs);
-      var tmp = prefs.getString('tel_key');
-      print("________________$tmp");
+      idtel = prefs.getString('tel_key')!;
+
+      print("____1____________$idtel");
     }
 
     return isShow;
@@ -84,10 +87,10 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return isShow == true
         ? SplashScreen(cred: isShow)
-        : widget.id != null
-            ? BottomNavBar()
-            : BottomNavBar(
-                telephoneuser: widget.id,
-              );
+        : idtel != null
+            ? BottomNavBar(
+                telephoneuser: idtel,
+              )
+            : Sign();
   }
 }

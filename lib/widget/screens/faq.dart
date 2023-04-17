@@ -120,7 +120,7 @@ class _FaqState extends State<Faq> with TickerProviderStateMixin {
                               Text(
                                 "Q : Quels sont les services que vous offrez ? ",
                                 style: GoogleFonts.poppins(
-                                    fontSize: 18,
+                                    fontSize: 14,
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold),
                               ),
@@ -158,7 +158,7 @@ class _FaqState extends State<Faq> with TickerProviderStateMixin {
                               Text(
                                 "Q : Comment puis-je prendre rendez-vous ? ",
                                 style: GoogleFonts.poppins(
-                                    fontSize: 18,
+                                    fontSize: 14,
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold),
                               ),
@@ -197,7 +197,7 @@ class _FaqState extends State<Faq> with TickerProviderStateMixin {
                               Text(
                                 "Q : Quels sont vos tarifs ?",
                                 style: GoogleFonts.poppins(
-                                    fontSize: 18,
+                                    fontSize: 14,
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold),
                               ),
@@ -236,7 +236,7 @@ class _FaqState extends State<Faq> with TickerProviderStateMixin {
                               Text(
                                 "Q : Quels sont vos tarifs ?",
                                 style: GoogleFonts.poppins(
-                                    fontSize: 18,
+                                    fontSize: 14,
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold),
                               ),
@@ -275,7 +275,7 @@ class _FaqState extends State<Faq> with TickerProviderStateMixin {
                               Text(
                                 "Q : Quels types de produits utilisez-vous ?",
                                 style: GoogleFonts.poppins(
-                                    fontSize: 18,
+                                    fontSize: 14,
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold),
                               ),
@@ -314,7 +314,7 @@ class _FaqState extends State<Faq> with TickerProviderStateMixin {
                               Text(
                                 "Q : Quelle est votre politique d'annulation ?",
                                 style: GoogleFonts.poppins(
-                                    fontSize: 18,
+                                    fontSize: 14,
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold),
                               ),

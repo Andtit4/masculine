@@ -154,7 +154,7 @@ class _SoinsDesPiedsState extends State<SoinsDesPieds> {
                                   () => DescribePage(
                                         img:
                                             'https://atelierfaitmain.fr/wp-content/uploads/2021/04/Atelier-Fait-Main-_30A9952-%C2%A9TonyGuillou.jpg',
-                                        title: 'Retouche des mains ',
+                                        title: 'Retouche des mains',
                                         desc:
                                             "Notre service de retouche des mains consiste à rafraîchir et à entretenir l'apparence des ongles et des cuticules",
                                         montant: '2 500 XOF',

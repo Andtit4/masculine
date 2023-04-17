@@ -66,7 +66,7 @@ class _PolitiqueSState extends State<PolitiqueS> with TickerProviderStateMixin {
                 Text(
                   'Politique de confidentialité',
                   style: GoogleFonts.poppins(
-                      fontSize: 18,
+                      fontSize: 14,
                       color: Colors.white,
                       fontWeight: FontWeight.bold),
                 ),
@@ -113,7 +113,7 @@ class _PolitiqueSState extends State<PolitiqueS> with TickerProviderStateMixin {
                             Text(
                               "1. Les types d'informations que nous collectons ",
                               style: GoogleFonts.poppins(
-                                  fontSize: 18,
+                                  fontSize: 14,
                                   color: Colors.white,
                                   fontWeight: FontWeight.bold),
                             ),
@@ -152,7 +152,7 @@ class _PolitiqueSState extends State<PolitiqueS> with TickerProviderStateMixin {
                             Text(
                               "2.	Comment nous utilisons vos informations ",
                               style: GoogleFonts.poppins(
-                                  fontSize: 18,
+                                  fontSize: 14,
                                   color: Colors.white,
                                   fontWeight: FontWeight.bold),
                             ),
@@ -191,7 +191,7 @@ class _PolitiqueSState extends State<PolitiqueS> with TickerProviderStateMixin {
                             Text(
                               "3.	Comment nous protégeons vos informations ",
                               style: GoogleFonts.poppins(
-                                  fontSize: 18,
+                                  fontSize: 14,
                                   color: Colors.white,
                                   fontWeight: FontWeight.bold),
                             ),
@@ -230,7 +230,7 @@ class _PolitiqueSState extends State<PolitiqueS> with TickerProviderStateMixin {
                             Text(
                               "4.	Comment nous partageons vos informations ",
                               style: GoogleFonts.poppins(
-                                  fontSize: 18,
+                                  fontSize: 14,
                                   color: Colors.white,
                                   fontWeight: FontWeight.bold),
                             ),
@@ -269,7 +269,7 @@ class _PolitiqueSState extends State<PolitiqueS> with TickerProviderStateMixin {
                             Text(
                               "5.	Vos choix et vos droits ",
                               style: GoogleFonts.poppins(
-                                  fontSize: 18,
+                                  fontSize: 14,
                                   color: Colors.white,
                                   fontWeight: FontWeight.bold),
                             ),
@@ -308,7 +308,7 @@ class _PolitiqueSState extends State<PolitiqueS> with TickerProviderStateMixin {
                             Text(
                               "6.	Modifications de la politique de confidentialité  ",
                               style: GoogleFonts.poppins(
-                                  fontSize: 18,
+                                  fontSize: 14,
                                   color: Colors.white,
                                   fontWeight: FontWeight.bold),
                             ),

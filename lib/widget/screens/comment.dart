@@ -116,7 +116,7 @@ class _CCMState extends State<CCM> with TickerProviderStateMixin {
                               child: Text(
                                 "   Etape 1 : Télécharger l’application ",
                                 style: GoogleFonts.poppins(
-                                    fontSize: 18,
+                                    fontSize: 14,
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold),
                               ),
@@ -156,7 +156,7 @@ class _CCMState extends State<CCM> with TickerProviderStateMixin {
                               Text(
                                 "   Etape 2 : Choix du service et de la date",
                                 style: GoogleFonts.poppins(
-                                    fontSize: 18,
+                                    fontSize: 14,
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold),
                               ),
@@ -196,7 +196,7 @@ class _CCMState extends State<CCM> with TickerProviderStateMixin {
                               Text(
                                 "   Etape 3 : Création d'un compte",
                                 style: GoogleFonts.poppins(
-                                    fontSize: 18,
+                                    fontSize: 14,
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold),
                               ),
@@ -236,7 +236,7 @@ class _CCMState extends State<CCM> with TickerProviderStateMixin {
                               Text(
                                 "   Etape 4 : Disponibilité des professionnels",
                                 style: GoogleFonts.poppins(
-                                    fontSize: 18,
+                                    fontSize: 14,
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold),
                               ),
@@ -276,7 +276,7 @@ class _CCMState extends State<CCM> with TickerProviderStateMixin {
                               Text(
                                 "   Etape 5 : Confirmation de la réservation",
                                 style: GoogleFonts.poppins(
-                                    fontSize: 18,
+                                    fontSize: 14,
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold),
                               ),
@@ -316,7 +316,7 @@ class _CCMState extends State<CCM> with TickerProviderStateMixin {
                               Text(
                                 "   Etape 6 : Rappels et notifications",
                                 style: GoogleFonts.poppins(
-                                    fontSize: 18,
+                                    fontSize: 14,
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold),
                               ),
@@ -356,7 +356,7 @@ class _CCMState extends State<CCM> with TickerProviderStateMixin {
                               Text(
                                 "   Etape 7 : Rappels et notifications",
                                 style: GoogleFonts.poppins(
-                                    fontSize: 18,
+                                    fontSize: 14,
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold),
                               ),
@@ -396,7 +396,7 @@ class _CCMState extends State<CCM> with TickerProviderStateMixin {
                               Text(
                                 "   Etape 8 : Gestion des rendez-vous",
                                 style: GoogleFonts.poppins(
-                                    fontSize: 18,
+                                    fontSize: 14,
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold),
                               ),

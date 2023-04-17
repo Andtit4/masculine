@@ -1,10 +1,14 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:masculine/models/user.dart';
 import 'package:masculine/services/api.dart';
+import 'package:masculine/sign.dart';
+import 'package:masculine/widget/login.dart';
 import 'package:masculine/widget/partials/input.dart';
+import 'package:masculine/widget/screens/splash.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class InformationGenerale extends StatefulWidget {
@@ -153,23 +157,26 @@ class _InformationGeneraleState extends State<InformationGenerale> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    Row(
-                                      children: [
-                                        Text(
-                                          data[index].nomuser!,
-                                          style: GoogleFonts.poppins(
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 16,
-                                              color: Colors.white),
-                                        ),
-                                        Text(
-                                          '  ${data[index].prenomuser!}',
-                                          style: GoogleFonts.poppins(
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 16,
-                                              color: Colors.white),
-                                        ),
-                                      ],
+                                    SizedBox(
+                                      // width: width,
+                                      child: Row(
+                                        children: [
+                                          Text(
+                                            data[index].nomuser!,
+                                            style: GoogleFonts.poppins(
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 16,
+                                                color: Colors.white),
+                                          ),
+                                          Text(
+                                            '  ${data[index].prenomuser!}',
+                                            style: GoogleFonts.poppins(
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 16,
+                                                color: Colors.white),
+                                          ),
+                                        ],
+                                      ),
                                     ),
                                     Text(
                                       data[index].telephoneuser!,
@@ -184,7 +191,19 @@ class _InformationGeneraleState extends State<InformationGenerale> {
                             ),
                           );
                         },
-                      )
+                      ),
+                      IconButton(
+                          onPressed: () async {
+                            SharedPreferences prefs =
+                                await SharedPreferences.getInstance();
+                            prefs.setString('tel_key', '');
+                            prefs.setBool('show', true);
+                            Get.offAll(() => SplashScreen(cred: false,));
+                          },
+                          icon: Icon(
+                            Icons.logout_outlined,
+                            color: Colors.white,
+                          ))
                     ],
                   ),
                   TiInput(

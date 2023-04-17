@@ -114,7 +114,7 @@ class _PolitiqueSecuState extends State<PolitiqueSecu>
                             Text(
                               "1.	Sécurité des données ",
                               style: GoogleFonts.poppins(
-                                  fontSize: 18,
+                                  fontSize: 14,
                                   color: Colors.white,
                                   fontWeight: FontWeight.bold),
                             ),
@@ -153,7 +153,7 @@ class _PolitiqueSecuState extends State<PolitiqueSecu>
                             Text(
                               "2.	Accès aux données ",
                               style: GoogleFonts.poppins(
-                                  fontSize: 18,
+                                  fontSize: 14,
                                   color: Colors.white,
                                   fontWeight: FontWeight.bold),
                             ),
@@ -192,7 +192,7 @@ class _PolitiqueSecuState extends State<PolitiqueSecu>
                             Text(
                               "3.	Protection contre les virus et les attaques  ",
                               style: GoogleFonts.poppins(
-                                  fontSize: 18,
+                                  fontSize: 14,
                                   color: Colors.white,
                                   fontWeight: FontWeight.bold),
                             ),
@@ -231,7 +231,7 @@ class _PolitiqueSecuState extends State<PolitiqueSecu>
                             Text(
                               "4.	Gestion des incidents de sécurité  ",
                               style: GoogleFonts.poppins(
-                                  fontSize: 18,
+                                  fontSize: 14,
                                   color: Colors.white,
                                   fontWeight: FontWeight.bold),
                             ),
@@ -270,7 +270,7 @@ class _PolitiqueSecuState extends State<PolitiqueSecu>
                             Text(
                               "5.	Formation des employés ",
                               style: GoogleFonts.poppins(
-                                  fontSize: 18,
+                                  fontSize: 14,
                                   color: Colors.white,
                                   fontWeight: FontWeight.bold),
                             ),
@@ -309,7 +309,7 @@ class _PolitiqueSecuState extends State<PolitiqueSecu>
                             Text(
                               "6.	Évaluation régulière ",
                               style: GoogleFonts.poppins(
-                                  fontSize: 18,
+                                  fontSize: 14,
                                   color: Colors.white,
                                   fontWeight: FontWeight.bold),
                             ),

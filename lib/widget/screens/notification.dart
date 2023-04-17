@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:masculine/models/notification.dart';
 import 'package:masculine/services/api.dart';
+import 'package:masculine/widget/screens/global.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class NotificationScreen extends StatefulWidget {
@@ -82,17 +84,16 @@ class _NotificationScreenState extends State<NotificationScreen> {
                         color: Colors.white),
                   ),
                   Container(
-                    width: width * .1,
-                    height: height * .05,
-                    // margin: EdgeInsets.only(left: 10),
-                    color: Colors.white,
-                    child: Center(
-                      child: Text(
-                        '1',
-                        style: GoogleFonts.poppins(color: Colors.black),
-                      ),
-                    ),
-                  )
+                      width: width * .15,
+                      height: height * .08,
+                      // margin: EdgeInsets.only(left: 10),
+                      color: Colors.white,
+                      child: IconButton(
+                          onPressed: () {
+                            Get.to(() => GlobalNotif(
+                                telephoneuser: widget.telephoneuser));
+                          },
+                          icon: Icon(Icons.notification_important)))
                 ],
               ),
               SizedBox(
@@ -126,7 +127,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
                             },
                             child: Container(
                               width: double.infinity,
-                              height: height * .18,
+                              height: height * .24,
                               padding: EdgeInsets.all(15),
                               margin: EdgeInsets.only(bottom: 20),
                               // color: Colors.black,
@@ -170,7 +171,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
                                               ? Colors.white
                                               : Colors.black),
                                       SizedBox(
-                                        width: width * .75,
+                                        width: width * .7,
                                         child: Text(
                                           data[index].content,
                                           maxLines: 5,

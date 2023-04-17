@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:masculine/services/plug.dart';
+import 'package:masculine/sign.dart';
 import 'package:masculine/widget/partials/bottom_nav.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -163,7 +164,7 @@ class _TiCarouselState extends State<TiCarousel> {
             child: GestureDetector(
               onTap: () {
                 change();
-                Get.to(() => BottomNavBar());
+                Get.to(() => Sign());
               },
               child: Container(
                   width: widget.width * .2,
@@ -238,11 +239,11 @@ class _TiCarouselState extends State<TiCarousel> {
                         child: Text(
                           _caption,
                           style: GoogleFonts.poppins(
-                              fontSize: 14, color: Colors.white),
+                              fontSize: 12, color: Colors.white),
                         ),
                       ),
                       SizedBox(
-                        height: widget.height * .02,
+                        height: widget.height * .01,
                       ),
                       Row(
                         // crossAxisAlignment: CrossAxisAlignment.end,
@@ -264,7 +265,7 @@ class _TiCarouselState extends State<TiCarousel> {
                                   _iconbtn == Icon(Icons.login);
                                 });
                               } else {
-                                Get.to(() => BottomNavBar());
+                                Get.to(() => Sign());
                               }
                             },
                             child: Container(

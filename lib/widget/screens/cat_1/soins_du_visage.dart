@@ -163,7 +163,7 @@ class _SoinsDuVisageState extends State<SoinsDuVisage> {
                                   () => DescribePage(
                                         img:
                                             'https://i.shgcdn.com/84402c53-6b0d-4f5a-b8f1-b07ac120f709/-/format/auto/-/preview/3000x3000/-/quality/lighter/',
-                                        title: 'Soins visage gommage simple ',
+                                        title: 'Soins visage gommage simple',
                                         desc:
                                             "Notre service de soins du visage avec un gommage est une méthode que nous utilisons pour éliminer les cellules mortes de la peau et favoriser le renouvellement cellulaire.",
                                         montant: '12 500 XOF',

@@ -67,7 +67,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ),
               SizedBox(
                 width: width,
-                height: height * .8,
+                height: height * .82,
                 child: Padding(
                   padding: const EdgeInsets.all(15.0),
                   child: Column(

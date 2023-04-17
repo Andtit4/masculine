@@ -4,6 +4,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:masculine/models/global_notif.model.dart';
 import 'package:masculine/models/message.dart';
 import 'package:masculine/models/notification.dart';
 import 'package:masculine/models/rdv.model.dart';
@@ -16,10 +17,11 @@ class Api extends StatefulWidget {
   List<Message> message = [];
   List<NotificationModel> notifications = [];
   List<UserModel> users = [];
+  List<GlobalNotifModel>global_notifs = [];
 
   initializeEndPoint(middlware, endpoint) async {
     // final url = "https://masuline-grkb.onrender.com/$middlware/$endpoint";
-      final url =
+    final url =
         "https://drab-puce-peacock-gear.cyclic.app/$middlware/$endpoint";
 
     // final url = "http://192.168.100.40:3000/$middlware/$endpoint";
@@ -103,6 +105,28 @@ class Api extends StatefulWidget {
     }
   }
 
+  getGlobalNotif() async {
+    const middleware = "api/global";
+    var endpoint = "notif";
+    String apiUrl = await initializeEndPoint(middleware, endpoint);
+    var response = await http.get(Uri.parse(apiUrl));
+
+    if (response.statusCode == 200) {
+      var jsonData = json.decode(response.body);
+      // print("___NUMBER__$telephoneuser");
+      print("ALL___DATA___GET");
+      print("__DATA___${jsonData}");
+      global_notifs = (jsonData as List<dynamic>)
+          .map((json) => GlobalNotifModel.fromJson(json))
+          .toList();
+
+      return global_notifs;
+      // return jsonData;
+    } else {
+      print('___ERROR____${response.statusCode}');
+    }
+  }
+
   getNbNotif(telephoneuser) async {
     const middleware = "api/notif";
     var endpoint = "nb?telephoneuser=$telephoneuser";
@@ -119,14 +143,8 @@ class Api extends StatefulWidget {
     }
   }
 
-  insertDemande(
-    titre,
-    description,
-    montant,
-    date_debut,
-    date_fin,
-    telephoneuser,
-  ) async {
+  insertDemande(titre, description, montant, date_debut, date_fin,
+      telephoneuser, mode_payement) async {
     const middleware = "api/rdv";
     var endpoint = "create";
     String apiUrl = await initializeEndPoint(middleware, endpoint);
@@ -138,7 +156,8 @@ class Api extends StatefulWidget {
       'date_debut': date_debut.toString(),
       'date_fin': date_fin.toString(),
       'telephoneuser': telephoneuser.toString(),
-      'status': 'En attente'
+      'status': 'En attente',
+      'mode_payement': mode_payement.toString(),
     });
 
     if (response.statusCode == 200) {
@@ -161,7 +180,7 @@ class Api extends StatefulWidget {
     var response = await http.get(Uri.parse(apiUrl));
     if (response.statusCode == 200) {
       var jsonData = await json.decode(response.body);
-      var type = jsonData['type_compte'];
+      var type = jsonData[0]['type_compte'];
       print("______TYPE___${type}");
       return type;
     } else {

@@ -1,5 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:masculine/services/api.dart';
 import 'package:masculine/widget/otp.dart';
@@ -7,26 +9,70 @@ import 'package:masculine/widget/partials/bottom_nav.dart';
 import 'package:masculine/widget/partials/input.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class CompletePage extends StatefulWidget {
-  late String? data;
-  late OtpPage data1;
-  CompletePage({super.key, required this.data, required this.data1});
+class Sign extends StatefulWidget {
+  const Sign({super.key});
 
   @override
-  State<CompletePage> createState() => _CompletePageState();
+  State<Sign> createState() => _SignState();
 }
 
-class _CompletePageState extends State<CompletePage> {
+class _SignState extends State<Sign> {
   late double width = MediaQuery.of(context).size.width;
   late double height = MediaQuery.of(context).size.height;
+  late bool showProgress = false;
+  late String verID = "";
 
-  TextEditingController _nomController = new TextEditingController();
-  TextEditingController _prenomController = new TextEditingController();
+  TextEditingController telController = new TextEditingController();
 
-  onInit() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    var tel = widget.data1.telephoneuser;
-    prefs.setString('tel_key', tel.toString());
+  authenticate() async {
+    var _telController;
+    setState(() {
+      _telController = '+228${telController.text}';
+    });
+    print('gtgg$_telController');
+
+    var data = await Api().alreadyExiste(telController.text);
+    print('_____$data');
+
+    if (data != 0) {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      prefs.setString('tel_key', telController.text);
+      Get.offAll(() => BottomNavBar(
+            telephoneuser: telController.text,
+          ));
+
+      /* Get.offAll(() => PayementScreen(
+            data: widget.data,
+            heure_debut: widget.heure_debut,
+            heure_fin: widget.heure_fin,
+          )); */
+    } else {
+      FirebaseAuth auth = FirebaseAuth.instance;
+      await auth.setSettings(appVerificationDisabledForTesting: true);
+      await auth.verifyPhoneNumber(
+          phoneNumber: _telController,
+          verificationCompleted: (PhoneAuthCredential credential) {
+            showSnackBarText('Auth Completed!');
+          },
+          verificationFailed: (FirebaseAuthException e) {
+            showSnackBarText('Auth failed!');
+            setState(() {
+              showProgress = false;
+            });
+          },
+          codeSent: (String verificationId, int? resendToken) {
+            verID = verificationId;
+            showSnackBarText('OTP Send');
+            Get.to(() => OtpPage(
+                  verId: verID,
+                  telephoneuser: telController.text,
+                ));
+          },
+          codeAutoRetrievalTimeout: (String verificationId) {});
+    }
+    // print("${data[0]['nb']}");
+
+/*    */
   }
 
   @override
@@ -48,6 +94,9 @@ class _CompletePageState extends State<CompletePage> {
                 children: [
                   GestureDetector(
                     onTap: () {
+                      setState(() {
+                        telController.text = "";
+                      });
                       Navigator.pop(context);
                     },
                     child: Container(
@@ -78,7 +127,7 @@ class _CompletePageState extends State<CompletePage> {
                 height: height * .03,
               ),
               Text(
-                'Complètez votre profil',
+                'Entrez votre\nnuméro de téléphone',
                 style: GoogleFonts.poppins(
                     fontSize: 22,
                     color: Colors.white,
@@ -90,7 +139,7 @@ class _CompletePageState extends State<CompletePage> {
               SizedBox(
                 width: width * .8,
                 child: Text(
-                  "Veuillez complèter votre profil pour enregistrer votre premier rendez-vous.",
+                  "Pour continuer votre rendez-vous veuillez vous authentifier",
                   style: GoogleFonts.poppins(color: Colors.white),
                 ),
               ),
@@ -137,37 +186,22 @@ class _CompletePageState extends State<CompletePage> {
                             ],
                           ),
                           SizedBox(),
-                          SizedBox(),
-
-                          /* Icon(
+                          Icon(
                             Icons.arrow_downward,
                             color: Colors.white,
-                          ) */
+                          )
                         ],
                       ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          TiInput(
-                              color: Color.fromARGB(94, 46, 46, 46),
-                              hintText: '',
-                              height: height * .08,
-                              icon: 'Nom',
-                              inputController: _nomController,
-                              keyboardType: TextInputType.name,
-                              readonly: false,
-                              width: width * .37),
-                          TiInput(
-                              color: Color.fromARGB(94, 46, 46, 46),
-                              hintText: '',
-                              height: height * .08,
-                              icon: 'Prénom',
-                              inputController: _prenomController,
-                              keyboardType: TextInputType.name,
-                              readonly: false,
-                              width: width * .37),
-                        ],
-                      )
+                      TiInput(
+                          color: Color.fromARGB(94, 46, 46, 46),
+                          hintText: '',
+                          height: height * .08,
+                          icon: '+225',
+                          inputController: telController,
+                          keyboardType: TextInputType.phone,
+                          border: Border.all(width: .1, color: Colors.white),
+                          readonly: false,
+                          width: width * .9)
                     ],
                   ),
                 ),
@@ -177,42 +211,36 @@ class _CompletePageState extends State<CompletePage> {
               ),
               GestureDetector(
                 onTap: () {
-                  // authenticate();
-                  print(widget.data);
-                  Api().insertOtp(
-                      _nomController.text, _prenomController.text, widget.data);
-
-                 /*  Api().insertDemande(
-                      widget.data1.data.data.title,
-                      widget.data1.data.data.desc,
-                      widget.data1.data.data.montant,
-                      widget.data1.data.heure_debut,
-                      widget.data1.data.heure_fin,
-                      widget.data1.telephoneuser,
-                      
-                      ); */
-                  showSnackBarText('Votre rendez-vous a bien été envoyé');
-                  Get.offAll(() =>
-                      BottomNavBar(telephoneuser: widget.data1.telephoneuser));
+                  setState(() {
+                    showProgress = true;
+                  });
+                  authenticate();
                 },
-                child: Container(
-                  width: width * .9,
-                  height: height * .08,
-                  color: Color.fromARGB(94, 46, 46, 46),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'Enregistrer',
-                        style: GoogleFonts.poppins(color: Colors.white),
+                child: showProgress == true
+                    ? Container(
+                        width: width * .9,
+                        height: height * .08,
+                        color: Color.fromARGB(94, 46, 46, 46),
+                        child: Center(
+                          child: CircularProgressIndicator(
+                            strokeWidth: 1,
+                            color: Colors.white,
+                          ),
+                        ))
+                    : Container(
+                        width: width * .9,
+                        height: height * .08,
+                        color: Color.fromARGB(94, 46, 46, 46),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              'Connexion',
+                              style: GoogleFonts.poppins(color: Colors.white),
+                            ),
+                          ],
+                        ),
                       ),
-                      Icon(
-                        Icons.arrow_right_alt,
-                        color: Colors.white,
-                      )
-                    ],
-                  ),
-                ),
               )
             ],
           ),
