@@ -204,7 +204,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 children: [
                   GestureDetector(
                     onTap: () {
-                      Get.to(() => const ServiceHomme(),
+                      Get.to(() => const ServiceHomme(sexe: 'Masculin'),
                           duration: const Duration(milliseconds: 500),
                           transition: Transition.leftToRight);
                     },
@@ -249,7 +249,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   GestureDetector(
                     onTap: () {
-                      Get.to(() => const ServiceDame(),
+                      Get.to(() => const ServiceDame(sexe: 'Féminin'),
                           duration: const Duration(milliseconds: 500),
                           transition: Transition.leftToRight);
                     },

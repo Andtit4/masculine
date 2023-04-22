@@ -19,13 +19,15 @@ class LoginPage extends StatefulWidget {
   final String heure_debut;
   final String heure_fin;
   final String date;
+  final String e;
 
   const LoginPage(
       {super.key,
       required this.data,
       required this.heure_debut,
       required this.heure_fin,
-      required this.date});
+      required this.date,
+      required this.e});
 
   @override
   State<LoginPage> createState() => _LoginPageState();
@@ -72,10 +74,10 @@ class _LoginPageState extends State<LoginPage> {
       prefs.setString('tel_key', _telController.text);
 
       Get.offAll(() => PayementScreen(
-            data: widget.data,
-            heure_debut: widget.heure_debut,
-            heure_fin: widget.heure_fin,
-          ));
+          data: widget.data,
+          heure_debut: widget.heure_debut,
+          heure_fin: widget.heure_fin,
+          e: widget.e));
     } else {
       FirebaseAuth auth = FirebaseAuth.instance;
       await auth.setSettings(appVerificationDisabledForTesting: true);
@@ -93,8 +95,8 @@ class _LoginPageState extends State<LoginPage> {
           codeSent: (String verificationId, int? resendToken) {
             verID = verificationId;
             showSnackBarText('OTP Send');
-            Get.to(() => OtpPage(
-                verId: verID, telephoneuser: telController.text));
+            Get.to(
+                () => OtpPage(verId: verID, telephoneuser: telController.text));
           },
           codeAutoRetrievalTimeout: (String verificationId) {});
     }

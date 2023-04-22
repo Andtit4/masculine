@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -10,11 +12,13 @@ class PayementScreen extends StatefulWidget {
   final DescribePage data;
   final String heure_fin;
   final String heure_debut;
+  final String? e;
   const PayementScreen(
       {super.key,
       required this.data,
       required this.heure_debut,
-      required this.heure_fin});
+      required this.heure_fin,
+       this.e});
 
   @override
   State<PayementScreen> createState() => _PayementScreenState();
@@ -182,7 +186,8 @@ class _PayementScreenState extends State<PayementScreen> {
                           widget.heure_debut,
                           widget.heure_fin,
                           prefs.getString('tel_key'),
-                          'Espece');
+                          'Espece',
+                          widget.e.toString());
                       showSnackBarText('Votre rendez-vous a bien été envoyé');
                       Get.offAll(() => BottomNavBar(
                           telephoneuser: prefs.getString('tel_key')));
@@ -212,7 +217,9 @@ class _PayementScreenState extends State<PayementScreen> {
                           widget.heure_debut,
                           widget.heure_fin,
                           prefs.getString('tel_key'),
-                          'Mobile money');
+                          'Mobile money',
+                          widget.e
+                          );
                       showSnackBarText('Votre rendez-vous a bien été envoyé');
                       Get.offAll(() => BottomNavBar(
                           telephoneuser: prefs.getString('tel_key')));

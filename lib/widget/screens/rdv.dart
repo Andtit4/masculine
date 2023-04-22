@@ -248,13 +248,13 @@ class _RendezVousState extends State<RendezVous> {
                                                                       .calendar_month,
                                                                   color: Colors
                                                                       .white),
-                                                              Text(
+                                                             /*  Text(
                                                                 '${date.day}/${date.month}/${date.year} de ${time_start.hour}:${time_start.minute}:${time_start.second} à ${time_go.hour}:${time_go.minute}:${time_go.second}',
                                                                 style: GoogleFonts
                                                                     .poppins(
                                                                         color: Colors
                                                                             .white),
-                                                              )
+                                                              ) */
                                                             ],
                                                           )
                                                         ],
@@ -293,7 +293,7 @@ class _RendezVousState extends State<RendezVous> {
                                                               Container(
                                                                 // margin: EdgeInsets.only(left: 20),
                                                                 child: Text(
-                                                                  '  En attente',
+                                                                  '  ${data[index].status}',
                                                                   style: GoogleFonts
                                                                       .poppins(
                                                                           color:
@@ -342,7 +342,7 @@ class _RendezVousState extends State<RendezVous> {
                                                       children: [
                                                         IconButton(
                                                             onPressed: () {
-                                                              DatePicker.showDatePicker(
+                                                              /* DatePicker.showDatePicker(
                                                                   context,
                                                                   minTime:
                                                                       DateTime(
@@ -412,7 +412,7 @@ class _RendezVousState extends State<RendezVous> {
                                                                         ]).show();
                                                                   });
                                                                 });
-                                                              });
+                                                              }); */
                                                             },
                                                             icon: Icon(
                                                               Icons
@@ -442,7 +442,7 @@ class _RendezVousState extends State<RendezVous> {
                                                                   context:
                                                                       context,
                                                                   desc:
-                                                                      'Voulez-vous supprimer votre demande du ${date.day}/${date.month}/${date.year} de ${time_start.hour}:${time_start.minute}:${time_start.second} à ${time_go.hour}:${time_go.minute}:${time_go.second}',
+                                                                      'Voulez-vous supprimer votre demande du ${data[index].date_create} programmé le ${data[index].day} pour ${data[index].date_debut} à ${data[index].date_fin}',
                                                                   buttons: [
                                                                     DialogButton(
                                                                         width: width *
@@ -558,12 +558,12 @@ class _RendezVousState extends State<RendezVous> {
                                                 const Icon(Icons.calendar_month,
                                                 size: 18,
                                                     color: Colors.white),
-                                                Text(
+                                                /* Text(
                                                   '${date!.day}/${date.month}/${date.year} de ${time_start!.hour}:${time_start.minute} à ${time_go!.hour}:${time_go.minute}',
                                                   style: GoogleFonts.poppins(
                                                     fontSize: 12,
                                                       color: Colors.white),
-                                                )
+                                                ) */
                                               ],
                                             )
                                           ],

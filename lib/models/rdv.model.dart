@@ -11,6 +11,7 @@ class RdvModel {
   late String? prenomuser;
   late String? telephoneuser;
   late String? status;
+  late String? day;
 
   RdvModel(
       {required this.id_rdv,
@@ -22,20 +23,21 @@ class RdvModel {
       required this.nomuser,
       required this.prenomuser,
       required this.status,
+      required this.day,
       required this.montant});
 
   factory RdvModel.fromJson(Map<String, dynamic> json) {
     return RdvModel(
-      date_create: json["date_create"],
-      date_debut: json["date_debut"],
-      date_fin: json["date_fin"],
-      id_rdv: json["id_rdv"],
-      montant: json["montant"],
-      telephoneuser: json["telephoneuser"],
-      titre: json["titre"],
-      nomuser: json["nomuser"],
-      prenomuser: json["prenomuser"],
-      status: json["status"]
-    );
+        date_create: json["date_create"],
+        date_debut: json["date_debut"],
+        date_fin: json["date_fin"],
+        id_rdv: json["id_rdv"],
+        montant: json["montant"],
+        telephoneuser: json["telephoneuser"],
+        titre: json["titre"],
+        nomuser: json["nomuser"],
+        day: json['day'],
+        prenomuser: json["prenomuser"],
+        status: json["status"]);
   }
 }

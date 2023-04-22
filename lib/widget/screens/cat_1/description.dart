@@ -2,25 +2,29 @@ import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:masculine/models/service.model.dart';
 import 'package:masculine/services/api.dart';
 import 'package:masculine/widget/login.dart';
 import 'package:masculine/widget/partials/bottom_nav.dart';
 import 'package:masculine/widget/screens/cat_1/payement.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:table_calendar/table_calendar.dart';
 
 class DescribePage extends StatefulWidget {
   final String img;
   final String title;
   final String montant;
   final String desc;
+  final ServiceModel data;
 
   const DescribePage(
       {super.key,
       required this.img,
       required this.title,
       required this.montant,
-      required this.desc});
+      required this.desc,
+      required this.data});
 
   @override
   State<DescribePage> createState() => _DescribePageState();
@@ -33,6 +37,66 @@ class _DescribePageState extends State<DescribePage> {
   late String _date = "";
   late String _heure_debut = "";
   late String _heure_fin = "";
+  // final DateTime startDate = DateTime(1);
+  late String day1 = "";
+
+  late List day = [
+    'Lundi',
+    'Mardi',
+    'Mercredi',
+    'Jeudi',
+    'Vendredi',
+    'Samedi',
+    'Dimanche'
+  ];
+
+  controleDay() {
+    switch (widget.data.day_begin) {
+      case 'Lundi':
+        setState(() {
+          day = day;
+        });
+        return day;
+      case 'Mardi':
+        setState(() {
+          day = [
+            'Mardi',
+            'Mercredi',
+            'Jeudi',
+            'Vendredi',
+            'Samedi',
+            'Dimanche'
+          ];
+        });
+        return day;
+      case 'Mercredi':
+        setState(() {
+          day = ['Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche'];
+        });
+        return day;
+      case 'Jeudi':
+        setState(() {
+          day = ['Jeudi', 'Vendredi', 'Samedi', 'Dimanche'];
+        });
+        return day;
+      case 'Vendredi':
+        setState(() {
+          day = ['Vendredi', 'Samedi', 'Dimanche'];
+        });
+        return day;
+      case 'Samedi':
+        setState(() {
+          day = ['Samedi', 'Dimanche'];
+        });
+        return day;
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    controleDay();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -291,7 +355,145 @@ class _DescribePageState extends State<DescribePage> {
               ),
               GestureDetector(
                 onTap: () {
-                  DatePicker.showDatePicker(
+                  List<DateTime> weekDays = [];
+                  switch (widget.data.day_begin) {
+                    case 'Lundi':
+                      setState(() {
+                        day1 = 'monday';
+                      });
+                  }
+
+                  showModalBottomSheet(
+                      backgroundColor: Colors.transparent,
+                      context: context,
+                      builder: (context) {
+                        return Container(
+                            width: width,
+                            height: height * .5,
+                            color: Colors.black,
+                            child: SingleChildScrollView(
+                              scrollDirection: Axis.vertical,
+                              child: Column(
+                                children: day
+                                    .map((e) => GestureDetector(
+                                          onTap: () {
+                                            Alert(
+                                                context: context,
+                                                desc:
+                                                    'Confirmez votre rendez pour ${widget.title} pour le $e de ${widget.data.heure_debut} à ${widget.data.heure_fin} ',
+                                                buttons: [
+                                                  DialogButton(
+                                                      width: width * .3,
+                                                      color: Colors.red,
+                                                      child: Center(
+                                                        child: Text(
+                                                          'Annuler',
+                                                          style: GoogleFonts
+                                                              .poppins(
+                                                                  color: Colors
+                                                                      .white),
+                                                        ),
+                                                      ),
+                                                      onPressed: () {
+                                                        Navigator.pop(context);
+                                                      }),
+                                                  DialogButton(
+                                                      width: width * .3,
+                                                      color: Colors.black,
+                                                      child: Center(
+                                                        child: Text(
+                                                          'Payement',
+                                                          style: GoogleFonts
+                                                              .poppins(
+                                                                  color: Colors
+                                                                      .white),
+                                                        ),
+                                                      ),
+                                                      onPressed: () async {
+                                                        Navigator.pop(context);
+                                                        SharedPreferences
+                                                            prefs =
+                                                            await SharedPreferences
+                                                                .getInstance();
+                                                        if (prefs.getString(
+                                                                'tel_key') !=
+                                                            null) {
+                                                          Get.to(() => PayementScreen(
+                                                            e: e,
+                                                              data: widget,
+                                                              heure_debut: widget
+                                                                  .data
+                                                                  .heure_debut!,
+                                                              heure_fin: widget
+                                                                  .data
+                                                                  .heure_fin!));
+                                                          /* Api().insertDemande(
+                                            widget.title,
+                                            widget.desc,
+                                            widget.montant,
+                                            _heure_debut,
+                                            _heure_fin,
+                                            prefs.getString('tel_key'));
+                                        showSnackBarText(
+                                            'Votre rendez-vous a bien été envoyé');
+                                        Get.offAll(() => BottomNavBar(
+                                            telephoneuser:
+                                                prefs.getString('tel_key'))); */
+                                                        } else {
+                                                          Get.to(
+                                                              () => LoginPage(
+                                                                  data: widget,
+                                                                  date: widget
+                                                                      .data
+                                                                      .day_begin!,
+                                                                  heure_debut:
+                                                                      widget
+                                                                          .data
+                                                                          .heure_debut!,
+                                                                  heure_fin: widget.data.heure_fin!,
+                                                                  e: e
+                                                                      .data
+                                                                      .heure_fin!),
+                                                              duration: Duration(
+                                                                  milliseconds:
+                                                                      500),
+                                                              transition: Transition
+                                                                  .rightToLeft);
+                                                        }
+                                                      }),
+                                                ]).show();
+                                          },
+                                          child: Container(
+                                            width: double.infinity,
+                                            height: height * .09,
+                                            margin: EdgeInsets.only(bottom: 10),
+                                            padding: EdgeInsets.all(20),
+                                            color:
+                                                Color.fromARGB(255, 20, 20, 20),
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.spaceEvenly,
+                                              children: [
+                                                Text(
+                                                  '$e (${widget.data.heure_debut} à ${widget.data.heure_fin})',
+                                                  style: GoogleFonts.poppins(
+                                                      color: Colors.white,
+                                                      fontSize: 14),
+                                                ),
+                                                Icon(
+                                                  Icons.arrow_right_alt,
+                                                  color: Colors.white,
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                        ))
+                                    .toList(),
+                              ),
+                            ));
+                      });
+
+                  /* DatePicker.showDatePicker(
                     context,
                     theme: DatePickerTheme(
                         backgroundColor: Colors.black,
@@ -391,7 +593,7 @@ class _DescribePageState extends State<DescribePage> {
                         });
                       });
                     },
-                  );
+                  ); */
                   /* DatePicker.showDateTimePicker(context,
                       theme: DatePickerTheme(
                           backgroundColor: Colors.black,

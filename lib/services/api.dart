@@ -4,10 +4,12 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:masculine/models/categorie.model.dart';
 import 'package:masculine/models/global_notif.model.dart';
 import 'package:masculine/models/message.dart';
 import 'package:masculine/models/notification.dart';
 import 'package:masculine/models/rdv.model.dart';
+import 'package:masculine/models/service.model.dart';
 import 'package:masculine/models/user.dart';
 
 class Api extends StatefulWidget {
@@ -17,7 +19,9 @@ class Api extends StatefulWidget {
   List<Message> message = [];
   List<NotificationModel> notifications = [];
   List<UserModel> users = [];
-  List<GlobalNotifModel>global_notifs = [];
+  List<GlobalNotifModel> global_notifs = [];
+  List<CategorieModel> categorie = [];
+  List<ServiceModel> service = [];
 
   initializeEndPoint(middlware, endpoint) async {
     // final url = "https://masuline-grkb.onrender.com/$middlware/$endpoint";
@@ -144,7 +148,7 @@ class Api extends StatefulWidget {
   }
 
   insertDemande(titre, description, montant, date_debut, date_fin,
-      telephoneuser, mode_payement) async {
+      telephoneuser, mode_payement, day) async {
     const middleware = "api/rdv";
     var endpoint = "create";
     String apiUrl = await initializeEndPoint(middleware, endpoint);
@@ -158,6 +162,7 @@ class Api extends StatefulWidget {
       'telephoneuser': telephoneuser.toString(),
       'status': 'En attente',
       'mode_payement': mode_payement.toString(),
+      'day': day.toString()
     });
 
     if (response.statusCode == 200) {
@@ -353,6 +358,40 @@ class Api extends StatefulWidget {
     var response = await http.delete(Uri.parse(apiUrl));
     if (response.statusCode == 200) {
       print('___DELETED____');
+    } else {
+      print('___ERROR____${response.statusCode}');
+    }
+  }
+
+  getCategoryBySex(sexe) async {
+    const middleware = "api/categorie";
+    var endpoint = "categorie?sexe=$sexe";
+    String apiUrl = await initializeEndPoint(middleware, endpoint);
+    var response = await http.get(Uri.parse(apiUrl));
+    if (response.statusCode == 200) {
+      // print('___DELETED____');
+      var jsonData = json.decode(response.body);
+      categorie = (jsonData as List<dynamic>)
+          .map((json) => CategorieModel.fromJsonMap(json))
+          .toList();
+      return categorie;
+    } else {
+      print('___ERROR____${response.statusCode}');
+    }
+  }
+
+  getServiceByCategory(titre_categorie, genre) async {
+    const middleware = "api/service";
+    var endpoint = "?titre_categorie=$titre_categorie&genre=$genre";
+    String apiUrl = await initializeEndPoint(middleware, endpoint);
+    var response = await http.get(Uri.parse(apiUrl));
+    if (response.statusCode == 200) {
+      // print('___DELETED____');
+      var jsonData = json.decode(response.body);
+      service = (jsonData as List<dynamic>)
+          .map((json) => ServiceModel.fromJson(json))
+          .toList();
+      return service;
     } else {
       print('___ERROR____${response.statusCode}');
     }

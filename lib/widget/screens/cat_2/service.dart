@@ -1,14 +1,15 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:masculine/widget/screens/cat_1/massage.dart';
-import 'package:masculine/widget/screens/cat_2/epilation.dart';
-import 'package:masculine/widget/screens/cat_2/massage.dart';
-import 'package:masculine/widget/screens/cat_2/soin_du_visage.dart';
+import 'package:masculine/models/categorie.model.dart';
+import 'package:masculine/services/api.dart';
 import 'package:masculine/widget/screens/cat_2/soins_des_pied.dart';
 
 class ServiceDame extends StatefulWidget {
-  const ServiceDame({super.key});
+  final String? sexe;
+  const ServiceDame({super.key, this.sexe});
 
   @override
   State<ServiceDame> createState() => _ServiceDameState();
@@ -17,6 +18,26 @@ class ServiceDame extends StatefulWidget {
 class _ServiceDameState extends State<ServiceDame> {
   late double width = MediaQuery.of(context).size.width;
   late double height = MediaQuery.of(context).size.height;
+
+  StreamController<List<CategorieModel>> _streamControllerCategorie =
+      StreamController<List<CategorieModel>>();
+
+  void fetchCategories() async {
+    try {
+      final List<CategorieModel> categorie =
+          await Api().getCategoryBySex(widget.sexe);
+      _streamControllerCategorie.add(categorie);
+    } catch (e) {
+      _streamControllerCategorie.addError(e);
+    }
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    fetchCategories();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -141,7 +162,157 @@ class _ServiceDameState extends State<ServiceDame> {
                     SizedBox(
                       height: height * .04,
                     ),
-                    Column(
+                    StreamBuilder(
+                      stream: _streamControllerCategorie.stream,
+                      builder: (BuildContext context, AsyncSnapshot snapshot) {
+                        if (snapshot.hasError)
+                          return Text(
+                            'An error occurred ${snapshot.error}',
+                            style: GoogleFonts.poppins(color: Colors.white),
+                          );
+                        List<CategorieModel> data = snapshot.data ?? [];
+                        print('Data_length_${data.length}');
+
+                        switch (snapshot.connectionState) {
+                          case ConnectionState.none:
+                            return Text(
+                              'Not connected to the stream or null',
+                              style: GoogleFonts.poppins(color: Colors.white),
+                            );
+                          case ConnectionState.waiting:
+                            return const Center(
+                              child: CircularProgressIndicator(
+                                color: Colors.white,
+                                strokeWidth: 1,
+                              ),
+                            );
+                          case ConnectionState.active:
+                            return SizedBox(
+                              width: width,
+                              height: height * .4,
+                              child: data.length == 0
+                                  ? Center(
+                                      child: Text(
+                                        'Aucune donnée',
+                                        style: GoogleFonts.poppins(
+                                            color: Colors.white),
+                                      ),
+                                    )
+                                  : ListView.builder(
+                                      scrollDirection: Axis.vertical,
+                                      physics: const BouncingScrollPhysics(),
+                                      itemCount: data.length,
+                                      itemBuilder: (context, index) {
+                                        return GestureDetector(
+                                          onTap: () {
+                                            Get.to(
+                                                () => SoinsDuVisageWoman(
+                                                    img: data[index]
+                                                        .img_categorie
+                                                        .toString(),
+                                                    title: data[index]
+                                                        .titre_categorie
+                                                        .toString(),
+                                                    genre: widget.sexe),
+                                                duration:
+                                                    Duration(milliseconds: 500),
+                                                transition:
+                                                    Transition.leftToRight);
+                                          },
+                                          child: Container(
+                                            width: width,
+                                            height: height * .2,
+                                            margin: const EdgeInsets.only(
+                                                bottom: 10),
+                                            clipBehavior: Clip.hardEdge,
+                                            decoration: BoxDecoration(
+                                                color: Colors.transparent),
+                                            child: Stack(
+                                              fit: StackFit.expand,
+                                              children: [
+                                                Image.network(
+                                                  data[index]
+                                                      .img_categorie
+                                                      .toString(),
+                                                  fit: BoxFit.cover,
+                                                ),
+                                                Container(
+                                                  width: width,
+                                                  height: height * .8,
+                                                  padding: EdgeInsets.all(
+                                                      width * .04),
+                                                  decoration: BoxDecoration(
+                                                      gradient: LinearGradient(
+                                                          colors: [
+                                                        Colors.black,
+                                                        Colors.transparent
+                                                      ],
+                                                          begin: Alignment
+                                                              .bottomCenter,
+                                                          end: Alignment
+                                                              .topCenter)),
+                                                  child: Column(
+                                                    // crossAxisAlignment: CrossAxisAlignment.end,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment.end,
+                                                    children: [
+                                                      Row(
+                                                        children: [
+                                                          Text(
+                                                            'Service',
+                                                            style: GoogleFonts
+                                                                .poppins(
+                                                                    fontSize:
+                                                                        16,
+                                                                    color: Colors
+                                                                        .white),
+                                                          ),
+                                                          Container(
+                                                            width: width * .1,
+                                                            height: 1,
+                                                            margin:
+                                                                EdgeInsets.only(
+                                                              left: 10,
+                                                            ),
+                                                            color: Colors.white,
+                                                          )
+                                                        ],
+                                                      ),
+                                                      SizedBox(
+                                                        height: 8,
+                                                      ),
+                                                      Row(
+                                                        children: [
+                                                          Text(
+                                                            data[index]
+                                                                .titre_categorie
+                                                                .toString(),
+                                                            style: GoogleFonts
+                                                                .poppins(
+                                                                    fontSize:
+                                                                        16,
+                                                                    color: Colors
+                                                                        .white),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ],
+                                                  ),
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                    ),
+                            );
+
+                          default:
+                            return Text('');
+                        }
+                      },
+                    )
+                    /* Column(
                       children: [
                         GestureDetector(
                           onTap: () {
@@ -459,7 +630,7 @@ class _ServiceDameState extends State<ServiceDame> {
                           ),
                         ),
                       ],
-                    )
+                    ) */
                   ],
                 ),
               ),
