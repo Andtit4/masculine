@@ -15,12 +15,10 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
   List<String> imgList = [
-    "https://images.pexels.com/photos/7389078/pexels-photo-7389078.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-    "https://images.pexels.com/photos/7697361/pexels-photo-7697361.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-    "https://images.pexels.com/photos/2061820/pexels-photo-2061820.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+    "https://resize.prod.docfr.doc-media.fr/rcrop/1200,675,center-middle/ext/eac4ff34/content/2022/8/27/1664303710444.jpeg",
+    "https://cdn.pixabay.com/photo/2017/03/10/16/54/hand-massage-2133272_1280.jpg",
+    "https://cdn.pixabay.com/photo/2018/02/25/17/58/the-hand-3181279_1280.jpg",
   ];
-
-  
 
   @override
   Widget build(BuildContext context) {

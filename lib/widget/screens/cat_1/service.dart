@@ -105,7 +105,7 @@ class _ServiceHommeState extends State<ServiceHomme> {
                             fit: StackFit.expand,
                             children: [
                               Image.network(
-                                "https://images.pexels.com/photos/3031396/pexels-photo-3031396.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+                                "https://media.istockphoto.com/id/626416292/photo/the-hands-of-young-barber-making-haircut-to-attractive-man.jpg?s=2048x2048&w=is&k=20&c=f3CHzAp6VY10t4Vi0TydIC3SPUK5D7Cy_VdK8PhEAE4=",
                                 fit: BoxFit.cover,
                               ),
                               Container(

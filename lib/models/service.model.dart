@@ -2,8 +2,8 @@
 class ServiceModel {
   late int? id_service;
   late String? title;
-  late String? heure_debut;
-  late String? heure_fin;
+  late int? heure_debut;
+  late int? heure_fin;
   late String? genre;
   late String? description;
   late String? img_url;

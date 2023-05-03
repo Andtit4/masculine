@@ -18,7 +18,7 @@ class PayementScreen extends StatefulWidget {
       required this.data,
       required this.heure_debut,
       required this.heure_fin,
-       this.e});
+      this.e});
 
   @override
   State<PayementScreen> createState() => _PayementScreenState();
@@ -165,6 +165,90 @@ class _PayementScreenState extends State<PayementScreen> {
               SizedBox(
                 height: height * .015,
               ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'Service',
+                    style: GoogleFonts.poppins(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white),
+                  ),
+                  Text(
+                    widget.data.title,
+                    style: GoogleFonts.poppins(
+                        fontSize: 18,
+                        color: Color.fromARGB(255, 124, 123, 123)),
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: height * .015,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'Date prévue',
+                    style: GoogleFonts.poppins(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white),
+                  ),
+                  Text(
+                    '${widget.heure_debut}',
+                    style: GoogleFonts.poppins(
+                        fontSize: 18,
+                        color: Color.fromARGB(255, 124, 123, 123)),
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: height * .015,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'Heure prévue',
+                    style: GoogleFonts.poppins(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white),
+                  ),
+                  Text(
+                    '${widget.heure_fin}',
+                    style: GoogleFonts.poppins(
+                        fontSize: 18,
+                        color: Color.fromARGB(255, 124, 123, 123)),
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: height * .015,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'Heure du service',
+                    style: GoogleFonts.poppins(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white),
+                  ),
+                  Text(
+                    '${widget.data.data.heure_debut}:00 à ${widget.data.data.heure_fin}:00',
+                    style: GoogleFonts.poppins(
+                        fontSize: 18,
+                        color: Color.fromARGB(255, 124, 123, 123)),
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: height * .015,
+              ),
               Text(
                 'Mode de paiement',
                 style: GoogleFonts.poppins(
@@ -188,7 +272,7 @@ class _PayementScreenState extends State<PayementScreen> {
                           prefs.getString('tel_key'),
                           'Espece',
                           widget.e.toString());
-                      showSnackBarText('Votre rendez-vous a bien été envoyé');
+                      showSnackBarText('Votre rendez-vous a bien été envoyé pour le ${widget.heure_debut} à ${widget.heure_fin}');
                       Get.offAll(() => BottomNavBar(
                           telephoneuser: prefs.getString('tel_key')));
                     },
@@ -218,8 +302,7 @@ class _PayementScreenState extends State<PayementScreen> {
                           widget.heure_fin,
                           prefs.getString('tel_key'),
                           'Mobile money',
-                          widget.e
-                          );
+                          widget.e);
                       showSnackBarText('Votre rendez-vous a bien été envoyé');
                       Get.offAll(() => BottomNavBar(
                           telephoneuser: prefs.getString('tel_key')));

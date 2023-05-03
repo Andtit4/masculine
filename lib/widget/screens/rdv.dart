@@ -195,9 +195,10 @@ class _RendezVousState extends State<RendezVous> {
                                                       const EdgeInsets.all(15),
                                                   // color: Colors.black,
                                                   decoration: BoxDecoration(
-                                                      border: Border.all(
+                                                    color: Color.fromARGB(255, 12, 12, 12)
+                                                      /* border: Border.all(
                                                           width: .1,
-                                                          color: Colors.white)),
+                                                          color: Colors.white) */),
                                                   child: Row(
                                                     mainAxisAlignment:
                                                         MainAxisAlignment
@@ -248,13 +249,14 @@ class _RendezVousState extends State<RendezVous> {
                                                                       .calendar_month,
                                                                   color: Colors
                                                                       .white),
-                                                             /*  Text(
-                                                                '${date.day}/${date.month}/${date.year} de ${time_start.hour}:${time_start.minute}:${time_start.second} à ${time_go.hour}:${time_go.minute}:${time_go.second}',
-                                                                style: GoogleFonts
-                                                                    .poppins(
-                                                                        color: Colors
-                                                                            .white),
-                                                              ) */
+                                                              Text(
+                                                                '${data[index].date_debut} à ${data[index].date_fin}',
+                                                                style: GoogleFonts.poppins(
+                                                                    fontSize:
+                                                                        12,
+                                                                    color: Colors
+                                                                        .white),
+                                                              )
                                                             ],
                                                           )
                                                         ],
@@ -442,7 +444,7 @@ class _RendezVousState extends State<RendezVous> {
                                                                   context:
                                                                       context,
                                                                   desc:
-                                                                      'Voulez-vous supprimer votre demande du ${data[index].date_create} programmé le ${data[index].day} pour ${data[index].date_debut} à ${data[index].date_fin}',
+                                                                      'Voulez-vous supprimer votre demande du ${DateTime.tryParse(data[index].date_create!)!.day.toString()}/${DateTime.tryParse(data[index].date_create!)!.month.toString()}/${DateTime.tryParse(data[index].date_create!)!.year.toString()} programmé le ${data[index].day} pour ${data[index].date_debut} à ${data[index].date_fin}',
                                                                   buttons: [
                                                                     DialogButton(
                                                                         width: width *
@@ -513,10 +515,12 @@ class _RendezVousState extends State<RendezVous> {
                                     width: double.infinity,
                                     height: height * .2,
                                     padding: const EdgeInsets.all(15),
+                                    margin: EdgeInsets.only(bottom: 10),
                                     // color: Colors.black,
                                     decoration: BoxDecoration(
-                                        border: Border.all(
-                                            width: .1, color: Colors.white)),
+                                      color: Color.fromARGB(255, 12, 12, 12)
+                                        /* border: Border.all(
+                                            width: .1, color: Colors.white) */),
                                     child: Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
@@ -530,12 +534,12 @@ class _RendezVousState extends State<RendezVous> {
                                             Row(
                                               children: [
                                                 const Icon(Icons.message,
-                                                size: 18,
+                                                    size: 18,
                                                     color: Colors.white),
                                                 Text(
                                                   ' TE-${data[index].id_rdv}',
                                                   style: GoogleFonts.poppins(
-                                                    fontSize: 12,
+                                                      fontSize: 12,
                                                       color: Colors.white),
                                                 )
                                               ],
@@ -543,12 +547,12 @@ class _RendezVousState extends State<RendezVous> {
                                             Row(
                                               children: [
                                                 const Icon(Icons.person,
-                                                size: 18,
+                                                    size: 18,
                                                     color: Colors.white),
                                                 Text(
                                                   '${data[index].nomuser} ${data[index].prenomuser}',
                                                   style: GoogleFonts.poppins(
-                                                    fontSize: 12,
+                                                      fontSize: 12,
                                                       color: Colors.white),
                                                 )
                                               ],
@@ -556,14 +560,14 @@ class _RendezVousState extends State<RendezVous> {
                                             Row(
                                               children: [
                                                 const Icon(Icons.calendar_month,
-                                                size: 18,
+                                                    size: 18,
                                                     color: Colors.white),
-                                                /* Text(
-                                                  '${date!.day}/${date.month}/${date.year} de ${time_start!.hour}:${time_start.minute} à ${time_go!.hour}:${time_go.minute}',
+                                                Text(
+                                                  '${data[index].date_debut} à ${data[index].date_fin}',
                                                   style: GoogleFonts.poppins(
-                                                    fontSize: 12,
+                                                      fontSize: 12,
                                                       color: Colors.white),
-                                                ) */
+                                                )
                                               ],
                                             )
                                           ],
@@ -577,7 +581,7 @@ class _RendezVousState extends State<RendezVous> {
                                                 const Icon(
                                                     Icons
                                                         .supervised_user_circle,
-                                                        size: 18,
+                                                    size: 18,
                                                     color: Colors.white),
                                                 SizedBox(
                                                   width: width * .24,
@@ -593,14 +597,14 @@ class _RendezVousState extends State<RendezVous> {
                                             Row(
                                               children: [
                                                 const Icon(Icons.history,
-                                                size: 18,
+                                                    size: 18,
                                                     color: Colors.white),
                                                 Container(
                                                   // margin: EdgeInsets.only(left: 20),
                                                   child: Text(
                                                     '  ${data[index].status}',
                                                     style: GoogleFonts.poppins(
-                                                      fontSize: 12,
+                                                        fontSize: 12,
                                                         color: Colors.green),
                                                   ),
                                                 )
@@ -611,12 +615,12 @@ class _RendezVousState extends State<RendezVous> {
                                                 const Icon(
                                                     Icons
                                                         .monetization_on_rounded,
-                                                        size: 18,
+                                                    size: 18,
                                                     color: Colors.white),
                                                 Text(
                                                   ' ${data[index].montant}',
                                                   style: GoogleFonts.poppins(
-                                                    fontSize: 12,
+                                                      fontSize: 12,
                                                       color: Colors.white),
                                                 )
                                               ],
