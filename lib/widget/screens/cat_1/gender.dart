@@ -1,4 +1,4 @@
-import 'dart:async';
+/* import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
@@ -12,6 +12,7 @@ import 'package:masculine/widget/partials/am_pm.dart';
 import 'package:masculine/widget/partials/bottom_nav.dart';
 import 'package:masculine/widget/partials/hours.dart';
 import 'package:masculine/widget/partials/minutes.dart';
+import 'package:masculine/widget/screens/cat_1/description.dart';
 import 'package:masculine/widget/screens/cat_1/payement.dart';
 import 'package:masculine/widget/screens/cat_1/service.dart';
 import 'package:masculine/widget/screens/cat_2/service.dart';
@@ -24,14 +25,14 @@ import 'package:syncfusion_flutter_calendar/calendar.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:vibration/vibration.dart';
 
-class DescribePage extends StatefulWidget {
+class DescribePage1 extends StatefulWidget {
   final String img;
   final String title;
   final String montant;
   final String desc;
   final ServiceModel data;
 
-  const DescribePage(
+  const DescribePage1(
       {super.key,
       required this.img,
       required this.title,
@@ -40,10 +41,10 @@ class DescribePage extends StatefulWidget {
       required this.data});
 
   @override
-  State<DescribePage> createState() => _DescribePageState();
+  State<DescribePage1> createState() => _DescribePage1State();
 }
 
-class _DescribePageState extends State<DescribePage> {
+class _DescribePage1State extends State<DescribePage1> {
   late double width = MediaQuery.of(context).size.width;
   late double height = MediaQuery.of(context).size.height;
 
@@ -212,6 +213,7 @@ class _DescribePageState extends State<DescribePage> {
                   GestureDetector(
                     onTap: () {
                       Navigator.pop(context);
+                      
                     },
                     child: Container(
                         width: width * .2,
@@ -405,35 +407,13 @@ class _DescribePageState extends State<DescribePage> {
                               itemBuilder: (context, index) {
                                 return GestureDetector(
                                   onTap: () {
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (builder) => DescribePage(
-                                                img: data[index]
-                                                    .img_url
-                                                    .toString(),
-                                                title: data[index]
-                                                    .title
-                                                    .toString(),
-                                                montant: data[index]
-                                                    .montant
-                                                    .toString(),
-                                                desc: data[index]
-                                                    .description
-                                                    .toString(),
-                                                data: widget.data)));
-                                    /* setState(() {
-                                      widget.img ==
-                                          data[index].img_url.toString();
-                                    }); */
-
-                                    /* Get.offAll(() => DescribePage(
+                                    Get.offAll(() => DescribePage(
                                         img: data[index].img_url.toString(),
                                         title: data[index].title.toString(),
                                         montant: data[index].montant.toString(),
                                         desc:
                                             data[index].description.toString(),
-                                        data: widget.data)); */
+                                        data: widget.data));
                                   },
                                   child: Container(
                                     width: width * .2,
@@ -1086,3 +1066,4 @@ class _DescribePageState extends State<DescribePage> {
     )));
   }
 }
+ */

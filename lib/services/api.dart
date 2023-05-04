@@ -397,6 +397,25 @@ class Api extends StatefulWidget {
     }
   }
 
+  getAllServiceByCategory(titre_categorie, genre) async {
+    const middleware = "api/service";
+    var endpoint =
+        "cat?titre_categorie=$titre_categorie&genre=$genre";
+    String apiUrl = await initializeEndPoint(middleware, endpoint);
+    var response = await http.get(Uri.parse(apiUrl));
+
+    if (response.statusCode == 200) {
+      print('__GROUP_SERVICE_GET__');
+      var jsonData = json.decode(response.body);
+      service = (jsonData as List<dynamic>)
+          .map((json) => ServiceModel.fromJson(json))
+          .toList();
+      return service;
+    } else {
+      print('___ERROR____${response.statusCode}');
+    }
+  }
+
   @override
   State<Api> createState() => _ApiState();
 }
