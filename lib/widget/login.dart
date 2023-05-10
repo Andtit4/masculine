@@ -73,11 +73,12 @@ class _LoginPageState extends State<LoginPage> {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       prefs.setString('tel_key', _telController.text);
 
-      Get.offAll(() => PayementScreen(
+      /* Get.offAll(() => PayementScreen(
+        poste: ,
           data: widget.data,
           heure_debut: widget.heure_debut,
           heure_fin: widget.heure_fin,
-          e: widget.e));
+          e: widget.e)); */
     } else {
       FirebaseAuth auth = FirebaseAuth.instance;
       await auth.setSettings(appVerificationDisabledForTesting: true);

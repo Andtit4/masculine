@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:masculine/models/categorie.model.dart';
 import 'package:masculine/models/global_notif.model.dart';
+import 'package:masculine/models/horaire.model.dart';
 import 'package:masculine/models/message.dart';
 import 'package:masculine/models/notification.dart';
 import 'package:masculine/models/rdv.model.dart';
@@ -22,6 +23,8 @@ class Api extends StatefulWidget {
   List<GlobalNotifModel> global_notifs = [];
   List<CategorieModel> categorie = [];
   List<ServiceModel> service = [];
+  List<HoraireModel> horaire = [];
+
 
   initializeEndPoint(middlware, endpoint) async {
     // final url = "https://masuline-grkb.onrender.com/$middlware/$endpoint";
@@ -148,7 +151,7 @@ class Api extends StatefulWidget {
   }
 
   insertDemande(titre, description, montant, date_debut, date_fin,
-      telephoneuser, mode_payement, day) async {
+      telephoneuser, mode_payement, day, poste) async {
     const middleware = "api/rdv";
     var endpoint = "create";
     String apiUrl = await initializeEndPoint(middleware, endpoint);
@@ -162,7 +165,8 @@ class Api extends StatefulWidget {
       'telephoneuser': telephoneuser.toString(),
       'status': 'En attente',
       'mode_payement': mode_payement.toString(),
-      'day': day.toString()
+      'day': day.toString(),
+      'poste': poste.toString()
     });
 
     if (response.statusCode == 200) {
@@ -380,6 +384,28 @@ class Api extends StatefulWidget {
     }
   }
 
+  getAlready(date_create, poste) async {
+    const middleware = "api/rdv";
+    var endpoint = "already?date_debut=$date_create&poste=$poste";
+    String apiUrl = await initializeEndPoint(middleware, endpoint);
+    var response = await http.get(Uri.parse(apiUrl));
+    if (response.statusCode == 200) {
+      print('___Alreda____$date_create');
+      print('___Poste___$poste');
+
+      
+      var jsonData = json.decode(response.body);
+      print('___Alreda____${jsonData}');
+
+      rdv = (jsonData as List<dynamic>)
+          .map((json) => RdvModel.fromJson(json))
+          .toList();
+      return rdv;
+    } else {
+      print('___ERROR_GET8_ALREADY____${response.statusCode}');
+    }
+  }
+
   getServiceByCategory(titre_categorie, genre) async {
     const middleware = "api/service";
     var endpoint = "?titre_categorie=$titre_categorie&genre=$genre";
@@ -413,6 +439,24 @@ class Api extends StatefulWidget {
       return service;
     } else {
       print('___ERROR____${response.statusCode}');
+    }
+  }
+
+  getAllHoraire(titre_categorie, sexe) async{
+     const middleware = "api/horaire";
+    var endpoint =
+        "?titre_categorie=$titre_categorie&sexe=$sexe";
+    String apiUrl = await initializeEndPoint(middleware, endpoint);
+    var response = await http.get(Uri.parse(apiUrl));
+    if (response.statusCode == 200) {
+      print('__horaire_GET__');
+      var jsonData = json.decode(response.body);
+      horaire = (jsonData as List<dynamic>)
+          .map((json) => HoraireModel.fromJsonMap(json))
+          .toList();
+      return horaire;
+    } else {
+      print('___ERROR_horaire___${response.statusCode}');
     }
   }
 

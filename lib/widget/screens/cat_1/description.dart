@@ -1,9 +1,13 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:masculine/models/categorie.model.dart';
+import 'package:masculine/models/horaire.model.dart';
+import 'package:masculine/models/rdv.model.dart';
 import 'package:masculine/models/service.model.dart';
 import 'package:masculine/services/api.dart';
 import 'package:masculine/sign.dart';
@@ -23,6 +27,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:vibration/vibration.dart';
+import 'package:http/http.dart' as http;
 
 class DescribePage extends StatefulWidget {
   final String img;
@@ -46,6 +51,11 @@ class DescribePage extends StatefulWidget {
 class _DescribePageState extends State<DescribePage> {
   late double width = MediaQuery.of(context).size.width;
   late double height = MediaQuery.of(context).size.height;
+  late int poste = 0;
+  late String posteSelect = "";
+  late String dateCreateToCheck = "";
+  List<RdvModel> rdv = [];
+  List<dynamic> date_fin = [];
 
   late String _date = "";
   late String _heure_debut = "";
@@ -79,93 +89,10 @@ class _DescribePageState extends State<DescribePage> {
     'Dimanche'
   ];
 
-  controleDay() {
-    switch (widget.data.day_begin) {
-      case 'Lundi':
-        setState(() {
-          dayConvert = 1;
-        });
-        return dayConvert;
-      case 'Mardi':
-        setState(() {
-          dayConvert = 2;
-        });
-        return dayConvert;
-      case 'Mercredi':
-        setState(() {
-          dayConvert = 3;
-        });
-        return dayConvert;
-      case 'Jeudi':
-        setState(() {
-          dayConvert = 4;
-        });
-        return dayConvert;
-      case 'Vendredi':
-        setState(() {
-          dayConvert = 5;
-        });
-        return dayConvert;
-      case 'Samedi':
-        setState(() {
-          dayConvert = 6;
-        });
-        return dayConvert;
-      case 'Dimanche':
-        setState(() {
-          dayConvert = 7;
-        });
-        return dayConvert;
-    }
-    print('dayConvert : $dayConvert');
-
-    for (int i = 1; i <= day.length + 1; i++) {
-      if (i == dayConvert) {
-        int j = i;
-      }
-    }
-    /* switch (widget.data.day_begin) {
-      case 'Lundi':
-        setState(() {
-          day = day;
-        });
-        return day;
-      case 'Mardi':
-        setState(() {
-          day = [
-            'Mardi',
-            'Mercredi',
-            'Jeudi',
-            'Vendredi',
-            'Samedi',
-            'Dimanche'
-          ];
-        });
-        return day;
-      case 'Mercredi':
-        setState(() {
-          day = ['Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche'];
-        });
-        return day;
-      case 'Jeudi':
-        setState(() {
-          day = ['Jeudi', 'Vendredi', 'Samedi', 'Dimanche'];
-        });
-        return day;
-      case 'Vendredi':
-        setState(() {
-          day = ['Vendredi', 'Samedi', 'Dimanche'];
-        });
-        return day;
-      case 'Samedi':
-        setState(() {
-          day = ['Samedi', 'Dimanche'];
-        });
-        return day;
-    } */
-  }
-
   StreamController<List<ServiceModel>> _streamControllerService =
+      StreamController<List<ServiceModel>>();
+
+  StreamController<List<ServiceModel>> _streamControllerService1 =
       StreamController<List<ServiceModel>>();
 
   void fetchCategories() async {
@@ -177,6 +104,50 @@ class _DescribePageState extends State<DescribePage> {
       _streamControllerService.addError(e);
     }
   }
+
+  Future getAlready(date_create, poste) async {
+    const middleware = "api/rdv";
+    var endpoint = "already?date_create=$date_create&poste=$poste";
+    String apiUrl = await Api().initializeEndPoint(middleware, endpoint);
+    var response = await http.get(Uri.parse(apiUrl));
+    if (response.statusCode == 200) {
+      var jsonData = json.decode(response.body);
+      setState(() {
+        date_fin == jsonData[0]['date_fin'];
+      });
+      print('___date____$date_fin');
+
+      return date_fin;
+    } else {
+      print('___ERROR_GET8_ALREADY____${response.statusCode}');
+    }
+  }
+
+  void fetchCategories1() async {
+    try {
+      final List<ServiceModel> service = await Api().getAllServiceByCategory(
+          widget.data.titre_categorie, widget.data.genre);
+      _streamControllerService1.add(service);
+    } catch (e) {
+      _streamControllerService1.addError(e);
+    }
+  }
+
+  onPoste(genre) {
+    switch (genre) {
+      case 'Féminin':
+        setState(() {
+          poste = 4;
+        });
+
+        return poste = 4;
+
+      case 'Masculin':
+        return poste = 2;
+      default:
+        return null;
+    }
+  }
   /* getGroupService() async {
 
   } */
@@ -184,12 +155,10 @@ class _DescribePageState extends State<DescribePage> {
   @override
   void initState() {
     super.initState();
-    controleDay();
-    // print(widget.data.titre_categorie);
-    Api().getAllServiceByCategory(
-        widget.data.titre_categorie, widget.data.genre);
+    Api().getCategoryBySex(widget.data.genre);
     fetchCategories();
-    // _controller = FixedExtentScrollController();
+    fetchCategories1();
+    onPoste(widget.data.genre);
   }
 
   @override
@@ -422,18 +391,6 @@ class _DescribePageState extends State<DescribePage> {
                                                     .description
                                                     .toString(),
                                                 data: widget.data)));
-                                    /* setState(() {
-                                      widget.img ==
-                                          data[index].img_url.toString();
-                                    }); */
-
-                                    /* Get.offAll(() => DescribePage(
-                                        img: data[index].img_url.toString(),
-                                        title: data[index].title.toString(),
-                                        montant: data[index].montant.toString(),
-                                        desc:
-                                            data[index].description.toString(),
-                                        data: widget.data)); */
                                   },
                                   child: Container(
                                     width: width * .2,
@@ -553,7 +510,7 @@ class _DescribePageState extends State<DescribePage> {
                       builder: (context) {
                         return Container(
                             width: width,
-                            height: height * .5,
+                            height: height * .532,
                             color: Colors.white,
                             child: TableCalendar(
                               startingDayOfWeek: StartingDayOfWeek.monday,
@@ -572,7 +529,9 @@ class _DescribePageState extends State<DescribePage> {
                                 print(sel);
 
                                 if (sel = true) {
-                                  Alert(
+                                  Navigator.pop(context);
+                                  _bottomModalPoste(context);
+                                  /* Alert(
                                           type: AlertType.warning,
                                           context: context,
                                           style: AlertStyle(
@@ -705,7 +664,7 @@ class _DescribePageState extends State<DescribePage> {
                                           ],
                                           desc:
                                               'Votre service prévue pour le ${dateSelect.day}/${dateSelect.month}/${dateSelect.year} est disponible uniquement de ${widget.data.heure_debut}:00 à ${widget.data.heure_fin}:00')
-                                      .show();
+                                      .show(); */
                                 }
 
                                 // Navigator.pop(context);
@@ -901,161 +860,6 @@ class _DescribePageState extends State<DescribePage> {
                               focusedDay: dateSelect,
                             ));
                       });
-
-                  /* DatePicker.showDatePicker(
-                    context,
-                    theme: DatePickerTheme(
-                        backgroundColor: Colors.black,
-                        itemStyle: GoogleFonts.poppins(color: Colors.white),
-                        cancelStyle: GoogleFonts.poppins(color: Colors.white)),
-                    showTitleActions: true,
-                    minTime: DateTime(2021, 1, 1),
-                    maxTime: DateTime(2040, 12, 31),
-                    onConfirm: (date) {
-                      setState(() {
-                        _date = date.toString();
-                      });
-                      DatePicker.showTimePicker(context,
-                          theme: DatePickerTheme(
-                              backgroundColor: Colors.black,
-                              itemStyle:
-                                  GoogleFonts.poppins(color: Colors.white),
-                              cancelStyle:
-                                  GoogleFonts.poppins(color: Colors.white)),
-                          onConfirm: (time) {
-                        setState(() {
-                          _heure_debut = time.toString();
-                        });
-                        DatePicker.showTimePicker(context,
-                            theme: DatePickerTheme(
-                                backgroundColor: Colors.black,
-                                itemStyle:
-                                    GoogleFonts.poppins(color: Colors.white),
-                                cancelStyle:
-                                    GoogleFonts.poppins(color: Colors.white)),
-                            onConfirm: (time) {
-                          setState(() {
-                            _heure_fin = time.toString();
-                          });
-                          Alert(
-                              context: context,
-                              desc:
-                                  'Confirmez votre rendez pour ${widget.title} pour le $_date de $_heure_debut à $_heure_fin',
-                              buttons: [
-                                DialogButton(
-                                    width: width * .3,
-                                    color: Colors.red,
-                                    child: Center(
-                                      child: Text(
-                                        'Annuler',
-                                        style: GoogleFonts.poppins(
-                                            color: Colors.white),
-                                      ),
-                                    ),
-                                    onPressed: () {
-                                      Navigator.pop(context);
-                                    }),
-                                DialogButton(
-                                    width: width * .3,
-                                    color: Colors.black,
-                                    child: Center(
-                                      child: Text(
-                                        'Payement',
-                                        style: GoogleFonts.poppins(
-                                            color: Colors.white),
-                                      ),
-                                    ),
-                                    onPressed: () async {
-                                      Navigator.pop(context);
-                                      SharedPreferences prefs =
-                                          await SharedPreferences.getInstance();
-                                      if (prefs.getString('tel_key') != null) {
-                                        Get.to(() => PayementScreen(
-                                            data: widget,
-                                            heure_debut: _heure_debut,
-                                            heure_fin: _heure_fin));
-                                        /* Api().insertDemande(
-                                            widget.title,
-                                            widget.desc,
-                                            widget.montant,
-                                            _heure_debut,
-                                            _heure_fin,
-                                            prefs.getString('tel_key'));
-                                        showSnackBarText(
-                                            'Votre rendez-vous a bien été envoyé');
-                                        Get.offAll(() => BottomNavBar(
-                                            telephoneuser:
-                                                prefs.getString('tel_key'))); */
-                                      } else {
-                                        Get.to(
-                                            () => LoginPage(
-                                                data: widget,
-                                                date: _date,
-                                                heure_debut: _heure_debut,
-                                                heure_fin: _heure_fin),
-                                            duration:
-                                                Duration(milliseconds: 500),
-                                            transition: Transition.rightToLeft);
-                                      }
-                                    }),
-                              ]).show();
-                        });
-                      });
-                    },
-                  ); */
-                  /* DatePicker.showDateTimePicker(context,
-                      theme: DatePickerTheme(
-                          backgroundColor: Colors.black,
-                          itemStyle: GoogleFonts.poppins(color: Colors.white),
-                          cancelStyle:
-                              GoogleFonts.poppins(color: Colors.white)),
-                      showTitleActions: true,
-                      minTime: DateTime(2018, 3, 5),
-                      maxTime: DateTime(2040, 12, 31), onChanged: (date) {
-                    print('change $date');
-                  }, onConfirm: (date) {
-                    print('confirm $date');
-                    Alert(
-                        context: context,
-                        desc:
-                            'Confirmez votre rendez pour ${widget.title} pour le $date',
-                        buttons: [
-                          DialogButton(
-                              width: width * .3,
-                              color: Colors.black,
-                              child: Center(
-                                child: Text(
-                                  'Payement',
-                                  style:
-                                      GoogleFonts.poppins(color: Colors.white),
-                                ),
-                              ),
-                              onPressed: () {
-                                Navigator.pop(context);
-
-                                Get.to(() => LoginPage(data: widget),
-                                    duration: Duration(milliseconds: 500),
-                                    transition: Transition.rightToLeft);
-
-                                /*  Get.to(() => PayementScreen(data: widget),
-                                    duration: Duration(milliseconds: 500),
-                                    transition: Transition.rightToLeft); */
-                              }),
-                          DialogButton(
-                              width: width * .3,
-                              color: Colors.red,
-                              child: Center(
-                                child: Text(
-                                  'Annuler',
-                                  style:
-                                      GoogleFonts.poppins(color: Colors.white),
-                                ),
-                              ),
-                              onPressed: () {
-                                Navigator.pop(context);
-                              })
-                        ]).show();
-                  }, currentTime: DateTime.now(), locale: LocaleType.fr); */
                 },
                 child: Container(
                   width: double.infinity,
@@ -1076,6 +880,482 @@ class _DescribePageState extends State<DescribePage> {
         ),
       ),
     );
+  }
+
+  Future<dynamic> _bottomModalPoste(BuildContext context) {
+    return showModalBottomSheet(
+        backgroundColor: Colors.transparent,
+        context: context,
+        builder: (builder) {
+          print('poste_value_$poste');
+          return Container(
+            width: width,
+            height: height * .44,
+            color: Colors.black,
+            padding: EdgeInsets.all(30),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Rendez-vous prévu :',
+                      style: GoogleFonts.poppins(color: Colors.white),
+                    ),
+                    Text(
+                      '${dateSelect.day}/${dateSelect.month}/${dateSelect.year}',
+                      style: GoogleFonts.poppins(color: Colors.white),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: height * .02,
+                ),
+                Text(
+                  'Postes disponibles',
+                  style: GoogleFonts.poppins(color: Colors.white, fontSize: 16),
+                ),
+                SizedBox(
+                  height: height * .02,
+                ),
+
+                FutureBuilder(
+                  future: Api().getCategoryBySex(widget.data.genre),
+                  builder: (BuildContext context, AsyncSnapshot snapshot) {
+                    List<CategorieModel> data = snapshot.data ?? [];
+                    if (!snapshot.hasData)
+                      return Center(
+                        child: CircularProgressIndicator(
+                          strokeWidth: 1,
+                          color: Colors.white,
+                        ),
+                      );
+
+                    return SizedBox(
+                      width: width,
+                      height: height * .22,
+                      child: ListView.builder(
+                        itemCount: poste,
+                        itemBuilder: (context, index) {
+                          return GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                posteSelect = 'Poste ${index + 1}';
+                                Api().getAlready(
+                                    "${dateSelect.day}/${dateSelect.month}/${dateSelect.year}",
+                                    posteSelect);
+                              });
+                              print('Poste_selected: $posteSelect');
+                              // Navigator.pop(context);
+                              Api().getAlready(
+                                  "${dateSelect.year}-0${dateSelect.month}-${dateSelect.day}",
+                                  posteSelect);
+                              _bottomModalHour(context);
+                            },
+                            child: Container(
+                              width: width,
+                              height: height * .08,
+                              color: Color.fromARGB(255, 43, 39, 39),
+                              margin: EdgeInsets.only(bottom: 5),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  Text(
+                                    'Poste ${index + 1}',
+                                    style: GoogleFonts.poppins(
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                  Icon(
+                                    Icons.arrow_right_alt,
+                                    color: Colors.white,
+                                  )
+                                  // Text('$index', style: GoogleFonts.poppins(color: Colors.white, ),),
+                                ],
+                              ),
+                            ),
+                          );
+                        },
+                      ),
+                    );
+                  },
+                )
+
+                /* poste != 0
+                                                ? Container(
+                                                    width: width,
+                                                    height: height * .8,
+                                                    child:
+                                                        ListView.builder(
+                                                      physics:
+                                                          NeverScrollableScrollPhysics(),
+                                                      itemCount: poste,
+                                                      itemBuilder:
+                                                          (context,
+                                                              index) {
+                                                        return Container(
+                                                          width: width,
+                                                          height: height *
+                                                              .08,
+                                                          color: Colors
+                                                              .white,
+                                                          margin: EdgeInsets
+                                                              .only(
+                                                                  bottom:
+                                                                      5),
+                                                        );
+                                                      },
+                                                    ),
+                                                  )
+                                                : Center(
+                                                    child: Text(
+                                                      'Aucune donnée',
+                                                      style: GoogleFonts
+                                                          .poppins(
+                                                              color: Colors
+                                                                  .white),
+                                                    ),
+                                                  ) */
+                // onPoste(widget.data.genre)
+              ],
+            ),
+          );
+        });
+  }
+
+  Future<dynamic> _bottomModalHour(BuildContext context) {
+    return showModalBottomSheet(
+        backgroundColor: Colors.transparent,
+        context: context,
+        builder: (builder) {
+          return Container(
+            width: width,
+            height: height * .4,
+            padding: EdgeInsets.all(10),
+            color: Colors.black,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      children: [
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.pop(context);
+                            // _bottomModalPoste(context);
+                          },
+                          child: Icon(
+                            Icons.arrow_back,
+                            color: Colors.white,
+                          ),
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Text(
+                          "${dateSelect.day}/${dateSelect.month}/${dateSelect.year}",
+                          style: GoogleFonts.poppins(color: Colors.white),
+                        )
+                      ],
+                    ),
+                    Text(
+                      posteSelect,
+                      style: GoogleFonts.poppins(color: Colors.white),
+                    )
+                  ],
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Row(
+                  children: [
+                    Text(
+                      'Indisponibilité',
+                      style: GoogleFonts.poppins(color: Colors.white),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 5,
+                ),
+                FutureBuilder(
+                  future: Api().getAllHoraire(
+                      widget.data.titre_categorie, widget.data.genre),
+                  builder: (BuildContext context, AsyncSnapshot snapshot) {
+                    if (!snapshot.hasData) {
+                      return const Center(
+                        child: CircularProgressIndicator(
+                          strokeWidth: 1,
+                          color: Colors.white,
+                        ),
+                      );
+                    }
+                    List<HoraireModel> data = snapshot.data ?? [];
+                    return GestureDetector(
+                      onTap: () {
+                        /* Alert(
+                                        type: AlertType.warning,
+                                        context: context,
+                                        style: AlertStyle(
+                                          descStyle: GoogleFonts.poppins(),
+                                        ),
+                                        buttons: [
+                                          DialogButton(
+                                              color: Colors.green,
+                                              child: Center(
+                                                child: Text(
+                                                  'Confirmer',
+                                                  style: GoogleFonts.poppins(
+                                                      color: Colors.white),
+                                                ),
+                                              ),
+                                              onPressed: () async {
+                                                Navigator.pop(context);
+                                                Navigator.pop(context);
+                                              }),
+                                          DialogButton(
+                                              color: Colors.red,
+                                              child: Center(
+                                                child: Text(
+                                                  'Annuler',
+                                                  style: GoogleFonts.poppins(
+                                                      color: Colors.white),
+                                                ),
+                                              ),
+                                              onPressed: () {
+                                                Navigator.pop(context);
+                                              })
+                                        ],
+                                        desc:
+                                            'Votre service prévue pour le ${dateSelect.day}/${dateSelect.month}/${dateSelect.year} est disponible uniquement de ${data[index].debut.toString()} à ${data[index].fin.toString()}')
+                                    .show(); */
+                      },
+                      child: SizedBox(
+                        height: height * .3,
+                        child: FutureBuilder(
+                          future: Api().getAlready(
+                              "${dateSelect.day}/${dateSelect.month}/${dateSelect.year}",
+                              posteSelect),
+                          builder:
+                              (BuildContext context, AsyncSnapshot snapshot) {
+                            List<RdvModel> rdv = snapshot.data ?? [];
+
+                            print('lenght__${rdv.length}');
+                            List date_tab = [];
+                            for (int i = 0; i < rdv.length; i++) {
+                              date_tab.add(rdv[i].date_fin);
+                            }
+                            print('___tab__${date_tab}');
+
+                            return SizedBox(
+                                width: width,
+                                height: height * .4,
+                                child: ListView.builder(
+                                  physics: BouncingScrollPhysics(),
+                                  itemCount: data.length,
+                                  itemBuilder: (context, index) {
+                                    List debut = [];
+                                    // print('_____data___${data[index].debut}');
+                                    for (int i = 0; i < data.length; i++) {
+                                      debut.add(data[i].debut);
+                                    }
+                                    String element = debut[index];
+                                    print('__debut___${element}');
+
+                                    Color color = date_tab.contains(element)
+                                        ? Colors.red
+                                        : Colors.black;
+                                    return GestureDetector(
+                                      onTap: () {
+                                        if (date_tab.contains(element)) {
+                                          print('no');
+                                          Navigator.pop(context);
+                                          Navigator.pop(context);
+                                          showSnackBarText(
+                                              'Poste non disponible à cette horaire');
+                                        } else {
+                                          Alert(
+                                                  type: AlertType.warning,
+                                                  context: context,
+                                                  style: AlertStyle(
+                                                    descStyle:
+                                                        GoogleFonts.poppins(),
+                                                  ),
+                                                  buttons: [
+                                                    DialogButton(
+                                                        color: Colors.green,
+                                                        child: Center(
+                                                          child: Text(
+                                                            'Confirmer',
+                                                            style: GoogleFonts
+                                                                .poppins(
+                                                                    color: Colors
+                                                                        .white),
+                                                          ),
+                                                        ),
+                                                        onPressed: () async {
+                                                          Navigator.pop(
+                                                              context);
+                                                          Navigator.pop(
+                                                              context);
+                                                          SharedPreferences
+                                                              prefs =
+                                                              await SharedPreferences
+                                                                  .getInstance();
+                                                          print(prefs.getString(
+                                                              'tel_key'));
+                                                          if (prefs.getString(
+                                                                  'tel_key') !=
+                                                              null) {
+                                                            Get.to(() => PayementScreen(
+                                                              poste: posteSelect,
+                                                                data: widget,
+                                                                heure_debut:
+                                                                    '${dateSelect.day}/${dateSelect.month}/${dateSelect.year}',
+                                                                heure_fin:
+                                                                    debut[index].toString()));
+                                                          } else {
+                                                            showSnackBarText(
+                                                                'Veillez vous reconnecter session expirée');
+                                                            Get.offAll(
+                                                                () => Sign(),
+                                                                transition:
+                                                                    Transition
+                                                                        .rightToLeft,
+                                                                duration:
+                                                                    Duration(
+                                                                        seconds:
+                                                                            1));
+                                                          }
+                                                        }),
+                                                    DialogButton(
+                                                        color: Colors.red,
+                                                        child: Center(
+                                                          child: Text(
+                                                            'Annuler',
+                                                            style: GoogleFonts
+                                                                .poppins(
+                                                                    color: Colors
+                                                                        .white),
+                                                          ),
+                                                        ),
+                                                        onPressed: () {
+                                                          Navigator.pop(
+                                                              context);
+                                                        })
+                                                  ],
+                                                  desc:
+                                                      'Votre rendez-vous est prévu pour le ${dateSelect.day}/${dateSelect.month}/${dateSelect.year} est disponible uniquement de ${data[index].debut.toString()}')
+                                              .show();
+                                        }
+                                      },
+                                      child: Container(
+                                        width: width,
+                                        height: height * .08,
+                                        margin: EdgeInsets.only(bottom: 5),
+                                        color: Colors.white,
+                                        child: Center(
+                                          child: Text(
+                                            "${debut[index].toString()}",
+                                            style: GoogleFonts.poppins(
+                                                color: color),
+                                          ),
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                ));
+
+                            /* Text(
+                                      "${data[index].debut.toString()} à ${data[index].fin.toString()}",
+                                      style: GoogleFonts.poppins(
+                                          color: Colors.white),
+                                    ); */
+                          },
+                        ),
+                      ),
+                    );
+
+                    /* SizedBox(
+                        width: width,
+                        height: height * .25,
+                        child: ListView.builder(
+                          itemCount: data.length,
+                          itemBuilder: (context, index) {
+                            dateCreateToCheck =
+                                "${dateSelect.year}-${dateSelect.month}-${dateSelect.day}";
+
+                            return GestureDetector(
+                              onTap: () {},
+                              child: Container(
+                                width: width,
+                                height: height * .08,
+                                color: Color.fromARGB(255, 31, 28, 28),
+                                margin: EdgeInsets.only(bottom: 5),
+                                child: Center(
+                                  child: Text(
+                                    "${data[index].debut.toString()} à ${data[index].fin.toString()}",
+                                    style: GoogleFonts.poppins(
+                                        color: Colors.white),
+                                  ),
+                                ),
+                              ),
+                            );
+                          },
+                        )); */
+                  },
+                ),
+                /* SizedBox(
+                  width: width * .3,
+                  height: height * .25,
+                  child: ListView.builder(
+                    itemCount: (int.parse(widget.data.heure_fin.toString()) -
+                        int.parse(widget.data.heure_debut.toString())),
+                    itemBuilder: (context, index) {
+                      return Row(
+                        children: [
+                          Container(
+                            width: width * .25,
+                            height: height * .08,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Column(
+                                  children: [
+                                    Text(
+                                      '00',
+                                      style: GoogleFonts.poppins(
+                                          color: Colors.white),
+                                    ),
+                                    SizedBox(
+                                      height: 10,
+                                    ),
+                                    Text(
+                                      '30',
+                                      style: GoogleFonts.poppins(
+                                          color: Colors.white),
+                                    )
+                                  ],
+                                ),
+                                SizedBox(
+                                  width: width * .1,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      );
+                    },
+                  ),
+                ) */
+              ],
+            ),
+          );
+        });
   }
 
   void showSnackBarText(String text) {
