@@ -272,13 +272,13 @@ class _PayementScreenState extends State<PayementScreen> {
               SizedBox(
                 height: height * .015,
               ),
-              Text(
+              /* Text(
                 'Mode de paiement',
                 style: GoogleFonts.poppins(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
                     color: Colors.white),
-              ),
+              ), */
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -301,20 +301,20 @@ class _PayementScreenState extends State<PayementScreen> {
                           telephoneuser: prefs.getString('tel_key')));
                     },
                     child: Container(
-                      width: width * .4,
+                      width: width * .9 ,
                       height: height * .07,
                       margin: EdgeInsets.only(top: height * .04),
                       color: Colors.white,
                       child: Center(
                         child: Text(
-                          'Espèce',
+                          'Prendre rendez-vous',
                           style: GoogleFonts.poppins(
                               color: Colors.black, fontSize: 18),
                         ),
                       ),
                     ),
                   ),
-                  GestureDetector(
+                  /* GestureDetector(
                     onTap: () async {
                       SharedPreferences prefs =
                           await SharedPreferences.getInstance();
@@ -344,7 +344,7 @@ class _PayementScreenState extends State<PayementScreen> {
                         ),
                       ),
                     ),
-                  ),
+                  ), */
                 ],
               ),
             ],

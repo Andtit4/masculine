@@ -63,21 +63,6 @@ class _DescribePageState extends State<DescribePage> {
   late DateTime dateSelect = DateTime.now();
   late String day1 = "";
   late int dayConvert = 0;
-  late FixedExtentScrollController _controller = FixedExtentScrollController();
-  final calendarController = CleanCalendarController(
-    minDate: DateTime.now(),
-    maxDate: DateTime.now() /* .add(const Duration(days: 365)) */,
-    onRangeSelected: (firstDate, secondDate) {},
-    onDayTapped: (date) {},
-    // readOnly: true,
-    onPreviousMinDateTapped: (date) {},
-    onAfterMaxDateTapped: (date) {},
-    weekdayStart: DateTime.monday,
-    // rangeMode: true,
-    initialFocusDate: DateTime.now(),
-    // initialDateSelected: DateTime(2022, 3, 15),
-    // endDateSelected: DateTime(2022, 3, 20),
-  );
 
   late List day = [
     'Lundi',
@@ -141,11 +126,12 @@ class _DescribePageState extends State<DescribePage> {
         });
 
         return poste = 4;
+    }
 
-      case 'Masculin':
-        return poste = 2;
-      default:
-        return null;
+    if ((genre == 'Masculin') & (widget.data.titre_categorie == 'Coupes')) {
+      return poste = 2;
+    } else {
+      return poste = 4;
     }
   }
   /* getGroupService() async {
@@ -416,82 +402,6 @@ class _DescribePageState extends State<DescribePage> {
                       }
                     },
                   ),
-
-                  /* Row(
-                    children: [
-                      Container(
-                        width: width * .2,
-                        height: height * .15,
-                        margin: EdgeInsets.only(right: 10),
-                        clipBehavior: Clip.hardEdge,
-                        decoration: BoxDecoration(
-                            color: Colors.transparent,
-                            borderRadius: BorderRadius.circular(20)),
-                        child: Image.network(
-                          'https://images.pexels.com/photos/3865792/pexels-photo-3865792.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                      Container(
-                        width: width * .2,
-                        height: height * .15,
-                        margin: EdgeInsets.only(right: 10),
-
-                        // margin: EdgeInsets.only(right: 2),
-                        clipBehavior: Clip.hardEdge,
-                        decoration: BoxDecoration(
-                            color: Colors.transparent,
-                            borderRadius: BorderRadius.circular(20)),
-                        child: Image.network(
-                          'https://images.pexels.com/photos/3865792/pexels-photo-3865792.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                      Container(
-                        width: width * .2,
-                        height: height * .15,
-                        margin: EdgeInsets.only(right: 10),
-
-                        // margin: EdgeInsets.only(right: 2),
-                        clipBehavior: Clip.hardEdge,
-                        decoration: BoxDecoration(
-                            color: Colors.transparent,
-                            borderRadius: BorderRadius.circular(20)),
-                        child: Image.network(
-                          'https://images.pexels.com/photos/3865792/pexels-photo-3865792.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                      Container(
-                        width: width * .2,
-                        height: height * .15,
-                        margin: EdgeInsets.only(right: 10),
-
-                        // margin: EdgeInsets.only(right: 2),
-                        clipBehavior: Clip.hardEdge,
-                        decoration: BoxDecoration(
-                            color: Colors.transparent,
-                            borderRadius: BorderRadius.circular(20)),
-                        child: Image.network(
-                          'https://images.pexels.com/photos/3865792/pexels-photo-3865792.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                      Container(
-                        width: width * .2,
-                        height: height * .15,
-                        margin: EdgeInsets.only(right: 10),
-                        clipBehavior: Clip.hardEdge,
-                        decoration: BoxDecoration(
-                            color: Colors.transparent,
-                            borderRadius: BorderRadius.circular(20)),
-                        child: Image.network(
-                          'https://images.pexels.com/photos/3865792/pexels-photo-3865792.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                    ],
-                  ), */
                 ),
               ),
               GestureDetector(
@@ -1074,7 +984,7 @@ class _DescribePageState extends State<DescribePage> {
                 Row(
                   children: [
                     Text(
-                      'Indisponibilité',
+                      'Disponibilité',
                       style: GoogleFonts.poppins(color: Colors.white),
                     ),
                   ],
@@ -1212,12 +1122,14 @@ class _DescribePageState extends State<DescribePage> {
                                                                   'tel_key') !=
                                                               null) {
                                                             Get.to(() => PayementScreen(
-                                                              poste: posteSelect,
+                                                                poste:
+                                                                    posteSelect,
                                                                 data: widget,
                                                                 heure_debut:
                                                                     '${dateSelect.day}/${dateSelect.month}/${dateSelect.year}',
-                                                                heure_fin:
-                                                                    debut[index].toString()));
+                                                                heure_fin: debut[
+                                                                        index]
+                                                                    .toString()));
                                                           } else {
                                                             showSnackBarText(
                                                                 'Veillez vous reconnecter session expirée');
@@ -1279,79 +1191,8 @@ class _DescribePageState extends State<DescribePage> {
                         ),
                       ),
                     );
-
-                    /* SizedBox(
-                        width: width,
-                        height: height * .25,
-                        child: ListView.builder(
-                          itemCount: data.length,
-                          itemBuilder: (context, index) {
-                            dateCreateToCheck =
-                                "${dateSelect.year}-${dateSelect.month}-${dateSelect.day}";
-
-                            return GestureDetector(
-                              onTap: () {},
-                              child: Container(
-                                width: width,
-                                height: height * .08,
-                                color: Color.fromARGB(255, 31, 28, 28),
-                                margin: EdgeInsets.only(bottom: 5),
-                                child: Center(
-                                  child: Text(
-                                    "${data[index].debut.toString()} à ${data[index].fin.toString()}",
-                                    style: GoogleFonts.poppins(
-                                        color: Colors.white),
-                                  ),
-                                ),
-                              ),
-                            );
-                          },
-                        )); */
                   },
                 ),
-                /* SizedBox(
-                  width: width * .3,
-                  height: height * .25,
-                  child: ListView.builder(
-                    itemCount: (int.parse(widget.data.heure_fin.toString()) -
-                        int.parse(widget.data.heure_debut.toString())),
-                    itemBuilder: (context, index) {
-                      return Row(
-                        children: [
-                          Container(
-                            width: width * .25,
-                            height: height * .08,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Column(
-                                  children: [
-                                    Text(
-                                      '00',
-                                      style: GoogleFonts.poppins(
-                                          color: Colors.white),
-                                    ),
-                                    SizedBox(
-                                      height: 10,
-                                    ),
-                                    Text(
-                                      '30',
-                                      style: GoogleFonts.poppins(
-                                          color: Colors.white),
-                                    )
-                                  ],
-                                ),
-                                SizedBox(
-                                  width: width * .1,
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      );
-                    },
-                  ),
-                ) */
               ],
             ),
           );
