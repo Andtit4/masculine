@@ -1,13 +1,10 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_chat_bubble/chat_bubble.dart';
-import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:masculine/models/message.dart';
 import 'package:masculine/models/rdv.model.dart';
 import 'package:masculine/services/api.dart';
 import 'package:masculine/widget/partials/input.dart';
-import 'package:masculine/widget/utils/utils.dart';
 
 class ChatScreenAdmin extends StatefulWidget {
   final String? telephoneuser;
@@ -24,7 +21,7 @@ class ChatScreenAdmin extends StatefulWidget {
 }
 
 class _ChatScreenAdminState extends State<ChatScreenAdmin> {
-  TextEditingController _text = TextEditingController();
+  final TextEditingController _text = TextEditingController();
   late int tel = 0;
 
   _connect() async {
@@ -62,7 +59,7 @@ class _ChatScreenAdminState extends State<ChatScreenAdmin> {
                         widget.data.id_rdv, widget.data.telephoneuser),
                     builder: (BuildContext context, AsyncSnapshot snapshot) {
                       if (!snapshot.hasData)
-                        return Center(
+                        return const Center(
                             child: CircularProgressIndicator(
                           strokeWidth: 2,
                           color: Colors.white,
@@ -85,7 +82,7 @@ class _ChatScreenAdminState extends State<ChatScreenAdmin> {
                                       clipper: ChatBubbleClipper1(
                                           type: BubbleType.receiverBubble),
                                       alignment: Alignment.topRight,
-                                      margin: EdgeInsets.only(top: 20),
+                                      margin: const EdgeInsets.only(top: 20),
                                       backGroundColor: Colors.blue,
                                       child: Container(
                                         constraints: BoxConstraints(
@@ -94,7 +91,7 @@ class _ChatScreenAdminState extends State<ChatScreenAdmin> {
                                                   .width *
                                               0.7,
                                         ),
-                                        child: Text(
+                                        child: const Text(
                                           "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
                                           style: TextStyle(color: Colors.white),
                                         ),
@@ -104,7 +101,7 @@ class _ChatScreenAdminState extends State<ChatScreenAdmin> {
                                       clipper: ChatBubbleClipper1(
                                           type: BubbleType.sendBubble),
                                       alignment: Alignment.topRight,
-                                      margin: EdgeInsets.only(top: 20),
+                                      margin: const EdgeInsets.only(top: 20),
                                       backGroundColor: Colors.blue,
                                       child: Container(
                                         constraints: BoxConstraints(
@@ -159,7 +156,7 @@ class _ChatScreenAdminState extends State<ChatScreenAdmin> {
                         width: width * .15,
                         height: height * .08,
                         color: Colors.grey,
-                        child: Icon(
+                        child: const Icon(
                           Icons.send,
                           color: Colors.white,
                         ),

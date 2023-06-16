@@ -1,6 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:masculine/services/plug.dart';
 import 'package:masculine/sign.dart';
 import 'package:masculine/widget/login.dart';
@@ -16,8 +18,11 @@ Future<void> main() async {
 
   WidgetsFlutterBinding.ensureInitialized();
   Firebase.initializeApp();
-
-  /*  await Firebase.initializeApp(
+  var fontLoader = FontLoader('Poppins');
+/*   await fontLoader.loadFont(
+    'assets/fonts/Poppins-Regular.ttf' as Uint8List,
+  ); */
+  /*await Firebase.initializeApp(
       options: FirebaseOptions(
           apiKey: 'AIzaSyCQ9urMcqSDKRcaprJTNQSxCsCMRQbzq8Q',
           appId: '1:374156658490:web:05929a23d1f33c52837203',
@@ -34,10 +39,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: 'Masculine',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+          primarySwatch: Colors.blue,
+          textTheme: GoogleFonts.poppinsTextTheme()),
       home: const MyHomePage(id: 'Flutter Demo Home Page'),
     );
   }

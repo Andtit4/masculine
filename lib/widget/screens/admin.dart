@@ -1,10 +1,8 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
+/* import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:masculine/models/rdv.model.dart';
 import 'package:masculine/services/api.dart';
-import 'package:masculine/services/launcher.dart';
 import 'package:masculine/widget/screens/chat_admin.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
@@ -25,7 +23,6 @@ class _AdminPageState extends State<AdminPage> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     init();
     Api().getAll();
@@ -585,3 +582,4 @@ class _AdminPageState extends State<AdminPage> {
     )));
   }
 }
+ */

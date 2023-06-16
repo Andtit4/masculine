@@ -123,7 +123,7 @@ class _ServiceClientState extends State<ServiceClient> {
                 onTap: () {
                   // Get.to(() => ServiceClient());
                   // Vibration.vibrate(amplitude: 30, duration: 30);
-                  call('98418900');
+                  call('+22391913939');
                 },
                 child: Container(
                   width: double.infinity,
@@ -154,7 +154,7 @@ class _ServiceClientState extends State<ServiceClient> {
                 onTap: () {
                   // Get.to(() => ServiceClient());
                   // Vibration.vibrate(amplitude: 30, duration: 30);
-                  sms('98418900', "J'aimerais blablabla");
+                  sms('+22391913939', "J'aimerais avoir plus d'information pour la prise de rendez-vous");
                 },
                 child: Container(
                   width: double.infinity,
@@ -185,7 +185,7 @@ class _ServiceClientState extends State<ServiceClient> {
                 onTap: () {
                   // Get.to(() => ServiceClient());
                   // Vibration.vibrate(amplitude: 30, duration: 30);
-                  Send().launchWhatsApp('+22898418900', "J'aimerais blablabla");
+                  Send().launchWhatsApp('+22391913939', "J'aimerais avoir plus d'information pour la prise de rendez-vous");
                 },
                 child: Container(
                   width: double.infinity,

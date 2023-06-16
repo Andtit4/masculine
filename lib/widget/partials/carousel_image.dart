@@ -74,7 +74,7 @@ class _TiCarouselState extends State<TiCarousel> {
             break;
         }
       } else {
-        _controller.jumpToPage(0);
+        // _controller.jumpToPage(0);
         switch (currentPage) {
           case 0:
             if (mounted)

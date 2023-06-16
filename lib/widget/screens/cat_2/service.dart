@@ -152,7 +152,7 @@ class _ServiceDameState extends State<ServiceDame> {
                           ],
                         )),
                     SizedBox(
-                      height: height * .04,
+                      height: height * .0,
                     ),
                     Container(
                       width: width * .3,
@@ -189,7 +189,7 @@ class _ServiceDameState extends State<ServiceDame> {
                           case ConnectionState.active:
                             return SizedBox(
                               width: width,
-                              height: height * .4,
+                              height: height * .47,
                               child: data.length == 0
                                   ? Center(
                                       child: Text(

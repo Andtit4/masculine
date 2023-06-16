@@ -1,8 +1,9 @@
+// ignore_for_file: deprecated_member_use
+
 import 'dart:async';
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:masculine/models/categorie.model.dart';
@@ -11,23 +12,12 @@ import 'package:masculine/models/rdv.model.dart';
 import 'package:masculine/models/service.model.dart';
 import 'package:masculine/services/api.dart';
 import 'package:masculine/sign.dart';
-import 'package:masculine/widget/login.dart';
-import 'package:masculine/widget/partials/am_pm.dart';
-import 'package:masculine/widget/partials/bottom_nav.dart';
-import 'package:masculine/widget/partials/hours.dart';
-import 'package:masculine/widget/partials/minutes.dart';
 import 'package:masculine/widget/screens/cat_1/payement.dart';
-import 'package:masculine/widget/screens/cat_1/service.dart';
-import 'package:masculine/widget/screens/cat_2/service.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
-import 'package:scrollable_clean_calendar/controllers/clean_calendar_controller.dart';
-import 'package:scrollable_clean_calendar/scrollable_clean_calendar.dart';
-import 'package:scrollable_clean_calendar/utils/enums.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:syncfusion_flutter_calendar/calendar.dart';
 import 'package:table_calendar/table_calendar.dart';
-import 'package:vibration/vibration.dart';
 import 'package:http/http.dart' as http;
+import 'package:url_launcher/url_launcher.dart';
 
 class DescribePage extends StatefulWidget {
   final String img;
@@ -87,6 +77,19 @@ class _DescribePageState extends State<DescribePage> {
       _streamControllerService.add(service);
     } catch (e) {
       _streamControllerService.addError(e);
+    }
+  }
+
+  void openGoogleMaps() async {
+    String latitude = "12.6355";
+    String longitude = "-7.9754";
+    String googleMapsUrl =
+        'https://www.google.com/maps/search/?api=1&query=$latitude,$longitude';
+
+    if (await canLaunch(googleMapsUrl)) {
+      await launch(googleMapsUrl);
+    } else {
+      throw 'Impossible d\'ouvrir Google Maps.';
     }
   }
 
@@ -295,7 +298,9 @@ class _DescribePageState extends State<DescribePage> {
               Row(
                 children: [
                   IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        openGoogleMaps();
+                      },
                       icon: Icon(
                         Icons.location_on,
                         color: Colors.white,

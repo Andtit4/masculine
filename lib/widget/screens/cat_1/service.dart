@@ -105,7 +105,7 @@ class _ServiceHommeState extends State<ServiceHomme> {
                             fit: StackFit.expand,
                             children: [
                               Image.network(
-                                "https://media.istockphoto.com/id/626416292/photo/the-hands-of-young-barber-making-haircut-to-attractive-man.jpg?s=2048x2048&w=is&k=20&c=f3CHzAp6VY10t4Vi0TydIC3SPUK5D7Cy_VdK8PhEAE4=",
+                                "https://cdn.shopify.com/s/files/1/0601/2262/8344/collections/portrait-homme-souriant-masque-au-charbon-son-visage_f6b84677-1186-4911-9a7e-97be91674c28_750x.jpg?v=1668620947",
                                 fit: BoxFit.cover,
                               ),
                               Container(
@@ -164,7 +164,7 @@ class _ServiceHommeState extends State<ServiceHomme> {
                             ],
                           )),
                       SizedBox(
-                        height: height * .04,
+                        height: height * .0,
                       ),
                       Container(
                         width: width * .3,
@@ -202,7 +202,7 @@ class _ServiceHommeState extends State<ServiceHomme> {
                             case ConnectionState.active:
                               return SizedBox(
                                 width: width,
-                                height: height * .4,
+                                height: height * .47,
                                 child: ListView.builder(
                                   scrollDirection: Axis.vertical,
                                   physics: const BouncingScrollPhysics(),

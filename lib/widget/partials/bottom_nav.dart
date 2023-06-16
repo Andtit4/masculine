@@ -65,6 +65,10 @@ class _BottomNavBarState extends State<BottomNavBar> {
         selectedIndex: currentpage,
         activeColor: Colors.white,
         inactiveColor: Colors.white,
+        
+        // fontStyle: 'Poppins',
+
+
 
         // fontStyle: FontS,
         onButtonPressed: (index) {

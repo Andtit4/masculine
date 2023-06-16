@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:masculine/main.dart';
@@ -15,6 +14,7 @@ import 'package:masculine/widget/screens/chat.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+// ignore: must_be_immutable
 class RendezVous extends StatefulWidget {
   late String? telephoneuser;
   RendezVous({super.key, this.telephoneuser});
@@ -77,7 +77,7 @@ class _RendezVousState extends State<RendezVous> {
     if (type_user == 'ADMIN') {
       print("\nadmin");
 
-      Get.to(() => AdminPage(telephoneuser: telController.text));
+      // Get.to(() => AdminPage(telephoneuser: telController.text));
     } else if (type_user == 'USER') {
       var data = await Api().alreadyExiste(prefs.getString('tel_key'));
       print("___RESULT__$data");
@@ -165,13 +165,13 @@ class _RendezVousState extends State<RendezVous> {
                             return ListView.builder(
                               itemCount: data.length,
                               itemBuilder: (context, index) {
-                                var date =
+                                /* var date =
                                     DateTime.tryParse(data[index].date_create!);
 
                                 var time_start =
                                     DateTime.tryParse(data[index].date_debut!);
                                 var time_go =
-                                    DateTime.tryParse(data[index].date_fin!);
+                                    DateTime.tryParse(data[index].date_fin!); */
 
                                 return GestureDetector(
                                   onTap: () {
@@ -181,7 +181,7 @@ class _RendezVousState extends State<RendezVous> {
                                         builder: (context) {
                                           return Container(
                                             width: width,
-                                            height: height * .3,
+                                            height: height * .33,
                                             color: Colors.black,
                                             child: Column(
                                               children: [
@@ -217,7 +217,7 @@ class _RendezVousState extends State<RendezVous> {
                                                               const Icon(
                                                                   Icons.message,
                                                                   color: Colors
-                                                                      .white),
+                                                                      .white, size: 15),
                                                               Text(
                                                                 ' TE-${data[index].id_rdv}',
                                                                 style: GoogleFonts
@@ -248,7 +248,7 @@ class _RendezVousState extends State<RendezVous> {
                                                                   Icons
                                                                       .calendar_month,
                                                                   color: Colors
-                                                                      .white),
+                                                                      .white, size: 15,),
                                                               Text(
                                                                 '${data[index].date_debut} à ${data[index].date_fin}',
                                                                 style: GoogleFonts.poppins(
@@ -272,10 +272,10 @@ class _RendezVousState extends State<RendezVous> {
                                                                   Icons
                                                                       .supervised_user_circle,
                                                                   color: Colors
-                                                                      .white),
+                                                                      .white, size: 15,),
                                                               SizedBox(
                                                                 width:
-                                                                    width * .2,
+                                                                    width * .23,
                                                                 child: Text(
                                                                   '${data[index].titre}',
                                                                   style: GoogleFonts
@@ -286,40 +286,26 @@ class _RendezVousState extends State<RendezVous> {
                                                               )
                                                             ],
                                                           ),
-                                                          Row(
-                                                            children: [
-                                                              const Icon(
-                                                                  Icons.history,
-                                                                  color: Colors
-                                                                      .white),
-                                                              Container(
-                                                                // margin: EdgeInsets.only(left: 20),
-                                                                child: Text(
-                                                                  '  ${data[index].status}',
+                                                          SizedBox(
+                                                            width: width * .25,
+                                                            child: Row(
+                                                              children: [
+                                                                const Icon(
+                                                                    Icons
+                                                                        .monetization_on_rounded,
+                                                                    color: Colors
+                                                                        .white, size: 15,),
+                                                                Text(
+                                                                  ' ${data[index].montant}',
                                                                   style: GoogleFonts
                                                                       .poppins(
-                                                                          color:
-                                                                              Colors.green),
-                                                                ),
-                                                              )
-                                                            ],
-                                                          ),
-                                                          Row(
-                                                            children: [
-                                                              const Icon(
-                                                                  Icons
-                                                                      .monetization_on_rounded,
-                                                                  color: Colors
-                                                                      .white),
-                                                              Text(
-                                                                ' ${data[index].montant}',
-                                                                style: GoogleFonts
-                                                                    .poppins(
-                                                                        color: Colors
-                                                                            .white),
-                                                              )
-                                                            ],
+                                                                          color: Colors
+                                                                              .white),
+                                                                )
+                                                              ],
+                                                            ),
                                                           )
+                                                          
                                                         ],
                                                       ),
                                                     ],
@@ -344,77 +330,7 @@ class _RendezVousState extends State<RendezVous> {
                                                       children: [
                                                         IconButton(
                                                             onPressed: () {
-                                                              /* DatePicker.showDatePicker(
-                                                                  context,
-                                                                  minTime:
-                                                                      DateTime(
-                                                                          2020,
-                                                                          1,
-                                                                          1),
-                                                                  maxTime:
-                                                                      DateTime(
-                                                                          2040,
-                                                                          12,
-                                                                          31),
-                                                                  onConfirm:
-                                                                      (date) {
-                                                                var date_create =
-                                                                    date;
-
-                                                                DatePicker.showTimePicker(
-                                                                    context,
-                                                                    onConfirm:
-                                                                        (time) {
-                                                                  var date_debut =
-                                                                      time;
-
-                                                                  DatePicker.showTimePicker(
-                                                                      context,
-                                                                      onConfirm:
-                                                                          (time) {
-                                                                    var date_fin =
-                                                                        time;
-
-                                                                    Alert(
-                                                                        context:
-                                                                            context,
-                                                                        desc:
-                                                                            'Modifiez la date de votre rendez-vous sur le ${date_create.day}/${date_create.month}/${date_create.year}, de ${date_debut.hour}:${date_debut.minute}:${date_debut.second} à  ${date_fin.hour}:${date_fin.minute}:${date_fin.second}',
-                                                                        buttons: [
-                                                                          DialogButton(
-                                                                              width: width * .3,
-                                                                              color: Colors.black,
-                                                                              child: Center(
-                                                                                child: Text(
-                                                                                  'Confirmer',
-                                                                                  style: GoogleFonts.poppins(color: Colors.white),
-                                                                                ),
-                                                                              ),
-                                                                              onPressed: () {
-                                                                                Navigator.pop(context);
-                                                                                Api().updateRdv(date_debut, date_fin, date_create, widget.telephoneuser, data[index].id_rdv);
-                                                                                setState(() {
-                                                                                  data[index];
-                                                                                });
-                                                                                showSnackBarText('Date de rendez-vous modifiée avec succès!');
-                                                                                Navigator.pop(context);
-                                                                              }),
-                                                                          DialogButton(
-                                                                              width: width * .3,
-                                                                              color: Colors.red,
-                                                                              child: Center(
-                                                                                child: Text(
-                                                                                  'Annuler',
-                                                                                  style: GoogleFonts.poppins(color: Colors.white),
-                                                                                ),
-                                                                              ),
-                                                                              onPressed: () {
-                                                                                Navigator.pop(context);
-                                                                              })
-                                                                        ]).show();
-                                                                  });
-                                                                });
-                                                              }); */
+                                                             
                                                             },
                                                             icon: Icon(
                                                               Icons
@@ -534,7 +450,7 @@ class _RendezVousState extends State<RendezVous> {
                                             Row(
                                               children: [
                                                 const Icon(Icons.message,
-                                                    size: 18,
+                                                    size: 15,
                                                     color: Colors.white),
                                                 Text(
                                                   ' TE-${data[index].id_rdv}',
@@ -547,7 +463,7 @@ class _RendezVousState extends State<RendezVous> {
                                             Row(
                                               children: [
                                                 const Icon(Icons.person,
-                                                    size: 18,
+                                                    size: 15,
                                                     color: Colors.white),
                                                 Text(
                                                   '${data[index].nomuser} ${data[index].prenomuser}',
@@ -560,7 +476,7 @@ class _RendezVousState extends State<RendezVous> {
                                             Row(
                                               children: [
                                                 const Icon(Icons.calendar_month,
-                                                    size: 18,
+                                                    size: 15,
                                                     color: Colors.white),
                                                 Text(
                                                   '${data[index].date_debut} à ${data[index].date_fin}',

@@ -88,7 +88,7 @@ class _LoginPageState extends State<LoginPage> {
             showSnackBarText('Auth Completed!');
           },
           verificationFailed: (FirebaseAuthException e) {
-            showSnackBarText('Auth failed!');
+            showSnackBarText('Auth fail!');
             setState(() {
               showProgress = false;
             });

@@ -1,13 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_chat_bubble/chat_bubble.dart';
-import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:masculine/models/message.dart';
 import 'package:masculine/models/rdv.model.dart';
 import 'package:masculine/services/api.dart';
 import 'package:masculine/widget/partials/input.dart';
-import 'package:masculine/widget/utils/utils.dart';
 
 
 class ChatScreen extends StatefulWidget {
@@ -123,19 +121,65 @@ class _ChatScreenState extends State<ChatScreen> {
                     },
                   ),
                 )),
-            Expanded(
-              flex: 1,
+                 Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    TiInput(
+                      height: height * .1,
+                      // height: height * .08,
+                        color: Colors.white,
+                        hintText: 'Message',
+                        // height: height * .08,
+                        icon: '',
+                        hintColor: Colors.black,
+                        // border: Border.all(width: .1, color: Colors.white),
+                        inputController: _text,
+                        keyboardType: TextInputType.text,
+                        readonly: false,
+                        width: width * .7),
+                    GestureDetector(
+                      onTap: () {
+                        Api().addMessage(
+                            widget.telephoneuser,
+                            90202020,
+                            _text.text,
+                            widget.data.nomuser,
+                            widget.data.id_rdv);
+
+                        setState(() {
+                          _text.text = "";
+                        });
+                      },
+                      child: Container(
+                        width: width * .15,
+                        height: height * .08,
+                        color: Colors.grey,
+                        child: Icon(
+                          Icons.send,
+                          color: Colors.white,
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+              )
+            /* Expanded(
+              flex: 2,
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     TiInput(
-                        color: Colors.black,
+                      height: height * .1,
+                      // height: height * .08,
+                        color: Colors.white,
                         hintText: 'Message',
                         // height: height * .08,
                         icon: '',
-                        hintColor: Colors.white,
+                        hintColor: Colors.black,
                         // border: Border.all(width: .1, color: Colors.white),
                         inputController: _text,
                         keyboardType: TextInputType.text,
@@ -167,7 +211,7 @@ class _ChatScreenState extends State<ChatScreen> {
                   ],
                 ),
               ),
-            )
+            ) */
           ],
         ));
   }

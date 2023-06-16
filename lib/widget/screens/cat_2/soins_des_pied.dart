@@ -6,7 +6,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:masculine/models/service.model.dart';
 import 'package:masculine/services/api.dart';
 import 'package:masculine/widget/screens/cat_1/description.dart';
-import 'package:masculine/widget/screens/cat_1/soins_des_pieds.dart';
 
 class SoinsDuVisageWoman extends StatefulWidget {
   final String img;

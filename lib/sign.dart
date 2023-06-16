@@ -27,12 +27,12 @@ class _SignState extends State<Sign> {
   authenticate() async {
     var _telController;
     setState(() {
-      _telController = '+228${telController.text}';
+      _telController = '+225${telController.text}';
     });
     print('gtgg$_telController');
 
     var data = await Api().alreadyExiste(telController.text);
-    print('_____$data');
+    print('___existe?__$data');
 
     if (data != 0) {
       SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -56,6 +56,7 @@ class _SignState extends State<Sign> {
           },
           verificationFailed: (FirebaseAuthException e) {
             showSnackBarText('Auth failed!');
+            print('Error: $e');
             setState(() {
               showProgress = false;
             });
