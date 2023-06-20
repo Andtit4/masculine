@@ -36,7 +36,7 @@ class _ServiceClientState extends State<ServiceClient> {
   mail() async {
     final Uri params = Uri(
       scheme: 'mailto',
-      path: 'email@example.com',
+      path: 'masculine.coiffure.spa@gmail.com',
       query:
           'subject=App Feedback&body=App Version 3.23', //add subject and body here
     );
