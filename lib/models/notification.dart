@@ -1,18 +1,18 @@
-class NotificationModel {
+class NotificationModele {
   late int id_notification;
   late String content;
   late int telephoneuser;
   late String date_add;
 
-  NotificationModel({
+  NotificationModele({
     required this.id_notification,
     required this.content,
     required this.telephoneuser,
     required this.date_add
       });
 
-      factory NotificationModel.fromJson(Map<String, dynamic>json) {
-        return NotificationModel(
+      factory NotificationModele.fromJson(Map<String, dynamic>json) {
+        return NotificationModele(
           id_notification : json["id_notification"],
           content : json["content"],
           telephoneuser : json["telephoneuser"],

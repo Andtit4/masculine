@@ -1,8 +1,13 @@
+import 'dart:convert';
+
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:masculine/models/notification.dart';
+import 'package:masculine/services/api.dart';
+import 'package:masculine/services/local_notification_services.dart';
 import 'package:masculine/services/plug.dart';
 import 'package:masculine/sign.dart';
 import 'package:masculine/widget/login.dart';
@@ -61,11 +66,13 @@ class _MyHomePageState extends State<MyHomePage> {
   late bool shared = false;
   late bool isShow = true;
   late String idtel = "";
+  List<NotificationModele> notifications = [];
+  // late final localNotificationService service;
 
   onInit() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
-      isShow = PageControl().togglePageShowGet(prefs);
+      // isShow = PageControl().togglePageShowGet(prefs);
     });
     print("________________$isShow");
 
@@ -80,11 +87,13 @@ class _MyHomePageState extends State<MyHomePage> {
     return isShow;
   }
 
+  
+
   @override
   void initState() {
-    // TODO: implement initState
+    // service = localNotificationService();
     onInit();
-
+    // getNotif(idtel);
     super.initState();
   }
 

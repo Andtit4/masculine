@@ -53,6 +53,9 @@ dependencies:
   scrollable_clean_calendar: ^1.4.0
   syncfusion_flutter_datepicker: ^21.1.41
   vibration: ^1.7.6
+  flutter_local_notifications: ^14.1.1
+  rxdart: ^0.27.7
+  permission_handler: ^10.3.0
   
 dev_dependencies:
   flutter_lints: ^2.0.0

@@ -1,8 +1,8 @@
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:masculine/services/api.dart';
+import 'package:masculine/services/local_notification_services.dart';
 import 'package:masculine/widget/partials/bottom_nav.dart';
 import 'package:masculine/widget/screens/cat_1/description.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -28,6 +28,14 @@ class PayementScreen extends StatefulWidget {
 class _PayementScreenState extends State<PayementScreen> {
   late double width = MediaQuery.of(context).size.width;
   late double height = MediaQuery.of(context).size.height;
+  // late final localNotificationService service;
+
+  @override
+  void initState() {
+    super.initState();
+    // service = localNotificationService();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -250,7 +258,7 @@ class _PayementScreenState extends State<PayementScreen> {
               SizedBox(
                 height: height * .015,
               ),
-               Row(
+              Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
@@ -293,14 +301,25 @@ class _PayementScreenState extends State<PayementScreen> {
                           widget.heure_fin,
                           prefs.getString('tel_key'),
                           'Espece',
-                          widget.e.toString(), widget.poste);
+                          widget.e.toString(),
+                          widget.poste);
+                      NotificationService().showNotification(
+                          id: 10,
+                          body:
+                              'Vous venez de prendre un rendez-vous pour le ${widget.heure_debut} à ${widget.heure_fin}',
+                          title: 'Masculine');
+                      /* service.showNotification(
+                          id: 10,
+                          body:
+                              'Vous venez de prendre un rendez-vous pour le ${widget.heure_debut} à ${widget.heure_fin}',
+                          title: 'Masculine'); */
                       showSnackBarText(
                           'Votre rendez-vous a bien été envoyé pour le ${widget.heure_debut} à ${widget.heure_fin}');
                       Get.offAll(() => BottomNavBar(
                           telephoneuser: prefs.getString('tel_key')));
                     },
                     child: Container(
-                      width: width * .9 ,
+                      width: width * .9,
                       height: height * .07,
                       margin: EdgeInsets.only(top: height * .04),
                       color: Colors.white,

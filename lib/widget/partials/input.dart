@@ -6,6 +6,7 @@ class TiInput extends StatelessWidget {
   final double? height;
   final String hintText;
   final Color? hintColor;
+  final Color? textColor;
   late String inputValue;
 
   late TextEditingController? inputController;
@@ -21,6 +22,7 @@ class TiInput extends StatelessWidget {
       required this.hintText,
       this.height,
       required this.icon,
+      this.textColor,
       // required this.inputValue,
       this.inputController,
       this.hintColor,
@@ -47,8 +49,8 @@ class TiInput extends StatelessWidget {
           readOnly: readonly,
           keyboardType: keyboardType,
           controller: inputController,
-          
-          style: GoogleFonts.poppins(color: Colors.black),
+
+          style: GoogleFonts.poppins(color: textColor),
           // controller: _username,
 
           onChanged: ((value) {

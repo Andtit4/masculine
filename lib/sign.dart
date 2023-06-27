@@ -27,7 +27,7 @@ class _SignState extends State<Sign> {
   authenticate() async {
     var _telController;
     setState(() {
-      _telController = '+225${telController.text}';
+      _telController = '+223${telController.text}';
     });
     print('gtgg$_telController');
 
@@ -173,7 +173,7 @@ class _SignState extends State<Sign> {
                                 width: 46,
                                 height: 36,
                                 child: Image.network(
-                                  'https://www.larousse.fr/encyclopedie/data/images/1009652-Drapeau_de_la_C%C3%B4te_dIvoire.jpg',
+                                  'https://d1z1c2g2uiorau.cloudfront.net/685-large_default/drapeau-mali-5075-cm.jpg',
                                   fit: BoxFit.cover,
                                 ),
                               ),
@@ -181,7 +181,7 @@ class _SignState extends State<Sign> {
                                 width: width * .03,
                               ),
                               Text(
-                                "Côte d'ivoire",
+                                "Mali",
                                 style: GoogleFonts.poppins(color: Colors.white),
                               ),
                             ],
@@ -195,9 +195,10 @@ class _SignState extends State<Sign> {
                       ),
                       TiInput(
                           color: Color.fromARGB(94, 46, 46, 46),
+                          textColor: Colors.white,
                           hintText: '',
                           height: height * .08,
-                          icon: '+225',
+                          icon: '+223',
                           inputController: telController,
                           keyboardType: TextInputType.phone,
                           border: Border.all(width: .1, color: Colors.white),

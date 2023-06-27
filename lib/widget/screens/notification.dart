@@ -113,7 +113,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
                           ),
                         );
 
-                      List<NotificationModel> data = snapshot.data;
+                      List<NotificationModele> data = snapshot.data;
 
                       return ListView.builder(
                         itemCount: data.length,

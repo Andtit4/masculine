@@ -12,19 +12,19 @@ import 'package:masculine/models/notification.dart';
 import 'package:masculine/models/rdv.model.dart';
 import 'package:masculine/models/service.model.dart';
 import 'package:masculine/models/user.dart';
+import 'package:masculine/services/local_notification_services.dart';
 
 class Api extends StatefulWidget {
   Api({super.key});
 
   List<RdvModel> rdv = [];
   List<Message> message = [];
-  List<NotificationModel> notifications = [];
+  List<NotificationModele> notifications = [];
   List<UserModel> users = [];
   List<GlobalNotifModel> global_notifs = [];
   List<CategorieModel> categorie = [];
   List<ServiceModel> service = [];
   List<HoraireModel> horaire = [];
-
 
   initializeEndPoint(middlware, endpoint) async {
     // final url = "https://masuline-grkb.onrender.com/$middlware/$endpoint";
@@ -102,7 +102,7 @@ class Api extends StatefulWidget {
       print("ALL___DATA___GET");
       print("__DATA___${jsonData}");
       notifications = (jsonData as List<dynamic>)
-          .map((json) => NotificationModel.fromJson(json))
+          .map((json) => NotificationModele.fromJson(json))
           .toList();
 
       return notifications;
@@ -126,6 +126,10 @@ class Api extends StatefulWidget {
       global_notifs = (jsonData as List<dynamic>)
           .map((json) => GlobalNotifModel.fromJson(json))
           .toList();
+      NotificationService().showNotification(
+          id: jsonData[0]['id_notification'],
+          title: 'Masculine',
+          body: jsonData[0]['content']);
 
       return global_notifs;
       // return jsonData;
@@ -393,7 +397,6 @@ class Api extends StatefulWidget {
       print('___Alreda____$date_create');
       print('___Poste___$poste');
 
-      
       var jsonData = json.decode(response.body);
       print('___Alreda____${jsonData}');
 
@@ -425,8 +428,7 @@ class Api extends StatefulWidget {
 
   getAllServiceByCategory(titre_categorie, genre) async {
     const middleware = "api/service";
-    var endpoint =
-        "cat?titre_categorie=$titre_categorie&genre=$genre";
+    var endpoint = "cat?titre_categorie=$titre_categorie&genre=$genre";
     String apiUrl = await initializeEndPoint(middleware, endpoint);
     var response = await http.get(Uri.parse(apiUrl));
 
@@ -442,10 +444,9 @@ class Api extends StatefulWidget {
     }
   }
 
-  getAllHoraire(titre_categorie, sexe) async{
-     const middleware = "api/horaire";
-    var endpoint =
-        "?titre_categorie=$titre_categorie&sexe=$sexe";
+  getAllHoraire(titre_categorie, sexe) async {
+    const middleware = "api/horaire";
+    var endpoint = "?titre_categorie=$titre_categorie&sexe=$sexe";
     String apiUrl = await initializeEndPoint(middleware, endpoint);
     var response = await http.get(Uri.parse(apiUrl));
     if (response.statusCode == 200) {

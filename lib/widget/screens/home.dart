@@ -1,12 +1,19 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:masculine/models/global_notif.model.dart';
+import 'package:masculine/models/notification.dart';
+import 'package:masculine/services/api.dart';
+import 'package:masculine/services/local_notification_services.dart';
 import 'package:masculine/widget/partials/carousel_image.dart';
 import 'package:masculine/widget/screens/cat_1/service.dart';
 import 'package:masculine/widget/screens/cat_2/service.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:http/http.dart' as http;
 
 class HomeScreen extends StatefulWidget {
   late String? telephoneuser;
@@ -22,16 +29,20 @@ class _HomeScreenState extends State<HomeScreen> {
   PageController _controller = PageController();
   int currentPage = 0;
   Timer? timer;
+  List<NotificationModele> notifications = [];
+  List<GlobalNotifModel> global_notifs = [];
+
+  // late final localNotificationService service = localNotificationService();
 
   String _caption =
       "Offrez à votre peau le soin qu'elle mérite et révélez votre éclat naturel avec nos soins du visage de qualité professionnelle !";
 
   List<String> imgList = [
     "https://cdn.pixabay.com/photo/2017/03/10/16/54/hand-massage-2133272_1280.jpg",
-        "https://cdn.pixabay.com/photo/2018/02/25/17/58/the-hand-3181279_1280.jpg",
-        "https://resize.prod.docfr.doc-media.fr/rcrop/1200,675,center-middle/ext/eac4ff34/content/2022/8/27/1664303710444.jpeg",
-        "https://cdn.pixabay.com/photo/2017/03/10/16/54/hand-massage-2133272_1280.jpg",
-        "https://cdn.pixabay.com/photo/2018/02/25/17/58/the-hand-3181279_1280.jpg",
+    "https://cdn.pixabay.com/photo/2018/02/25/17/58/the-hand-3181279_1280.jpg",
+    "https://resize.prod.docfr.doc-media.fr/rcrop/1200,675,center-middle/ext/eac4ff34/content/2022/8/27/1664303710444.jpeg",
+    "https://cdn.pixabay.com/photo/2017/03/10/16/54/hand-massage-2133272_1280.jpg",
+    "https://cdn.pixabay.com/photo/2018/02/25/17/58/the-hand-3181279_1280.jpg",
   ];
   increment() {
     timer = Timer.periodic(const Duration(seconds: 5), (timer) {
@@ -52,10 +63,94 @@ class _HomeScreenState extends State<HomeScreen> {
 
   onInit() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-
+    // service.showNotification(id: 10, body: 'bbbbb', title: 'Test');
+    var status = await Permission.accessNotificationPolicy.status;
+    if (status.isDenied) {
+      Permission.accessNotificationPolicy.request();
+    }
     setState(() {
       widget.telephoneuser = prefs.getString('tel_key');
     });
+  }
+
+  getNotif(telephoneuser) async {
+    const middleware = "api/notif";
+    var endpoint = "all?telephoneuser=$telephoneuser";
+    String apiUrl = await Api().initializeEndPoint(middleware, endpoint);
+    var response = await http.get(Uri.parse(apiUrl));
+    if (response.statusCode == 200) {
+      var jsonData = json.decode(response.body);
+      // print("___NUMBER__$telephoneuser");
+      print("_number notif_${jsonData[0]['id_notification']}");
+      notifications = (jsonData as List<dynamic>)
+          .map((json) => NotificationModele.fromJson(json))
+          .toList();
+      // print(notifications);  
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      var id_notif = prefs.getInt('id_notification');
+      if (id_notif != jsonData[0]['id_notification']) {
+        await prefs.setInt('id_notification', jsonData[0]['id_notification']);
+
+        NotificationService().showNotification(
+            id: jsonData[0]['id_notification'],
+            title: 'Notification',
+            body: jsonData[0]['content']);
+      } else {
+        print('Nothing to show IN notif');
+      }
+      /*   NotificationService().showNotification(
+          id: jsonData[0]['id_notification'],
+          title: 'Masculine',
+          body: jsonData[0]['content']); */
+
+      /*  service.showNotification(
+          id: jsonData[0]['id_notification'],
+          title: 'Masculine',
+          body: jsonData[0]['content']); */
+
+      print("ALL_notif get");
+      return notifications;
+      // return jsonData;
+    } else {
+      print('___ERROR____${response.statusCode}');
+    }
+  }
+
+  getGlobalNotif() async {
+    const middleware = "api/global";
+    var endpoint = "notif";
+    String apiUrl = await Api().initializeEndPoint(middleware, endpoint);
+    var response = await http.get(Uri.parse(apiUrl));
+
+    if (response.statusCode == 200) {
+      var jsonData = json.decode(response.body);
+      // print("___NUMBER__$telephoneuser");
+      print("ALL___DATA___GET");
+      print("__DATA___${jsonData}");
+      global_notifs = (jsonData as List<dynamic>)
+          .map((json) => GlobalNotifModel.fromJson(json))
+          .toList();
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      var id_notif = prefs.getInt('id_notif');
+      if (id_notif != jsonData[0]['id_global_notif']) {
+        await prefs.setInt('id_notif', jsonData[0]['id_global_notif']);
+
+        NotificationService().showNotification(
+            id: jsonData[0]['id_global_notif'],
+            title: 'Masculine',
+            body: jsonData[0]['content']);
+      } else {
+        print('Nothing to show');
+      }
+
+      // var id = jsonData['id_global_notif'];
+      print('id_notif = ${id_notif}');
+
+      return global_notifs;
+      // return jsonData;
+    } else {
+      print('___ERROR____${response.statusCode}');
+    }
   }
 
   @override
@@ -64,6 +159,12 @@ class _HomeScreenState extends State<HomeScreen> {
     _controller = PageController(initialPage: currentPage);
     onInit();
     increment();
+    NotificationService().initNotification();
+    // Timer.periodic()
+    getGlobalNotif();
+    /* NotificationService()
+        .showNotification(id: 12, title: 'Masculine', body: 'test'); */
+    getNotif(widget.telephoneuser);
   }
 
   @override
